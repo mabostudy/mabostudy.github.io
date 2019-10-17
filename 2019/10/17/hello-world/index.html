@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-17T01:29:04.732Z">
+<meta property="og:updated_time" content="2019-10-17T05:06:07.514Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -184,7 +184,14 @@
 <p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a><br>当出现不可点击的情况，解决方法有如下几种：<br>1.加time.sleep(2)里面的数字可以直接等待渲染或者加载之后，如果对速度要求不高的话一般这种情况可以解决问题啦</p>
+<p>2.浏览器的页面并没有完全加载出来，这个时候就需要设置显示等待时间，这里设置为10秒在等待时间内如果某元素达到了判断的条件，那么可以执行下面的操作，如点击等，现设置显示等待时间<br>wait = WebDriverWait(driver, 10)<br>wait.until(EC.等待条件((By.节点信息,‘next-checkbox-label’))).click()</p>
+<p><strong>等待条件</strong>                                  含义<br>title_is                                     标题是某内容<br>title_contains                               标题包含某内容<br>presence_of_element_located                  节点加载出来，传入定位元组，如（By.ID,’p’）<br>visibility_of_element_located                节点可见，传入定位元组<br>visibility_of                                可见，传入节点对象<br>presence_of_all_elements_located             所有节点加载出来<br>text_to_be_present_in_element                某个节点文本包含某个文字<br>text_to_be_present_in_element_value          某个节点值包含某文字<br>frame_to_be_available_and_switch_to_it       加载并切换<br>invisibility_of_element_located              节点不可见<br>element_to_be_clickable                      节点可点击<br>staleness_of                            判断一个节点是否仍然在DOM，可判断页面是否已经刷新</p>
+<p>3.因为网页有时候使用js渲染的，所以我们点击不到，这时候就需要用到js的方法,</p>
+<p>element=wait.until(EC.element_to_be_clickable((By.CLASS_NAME,’next-checkbox-label’)))<br>driver.execute_script(“arguments[0].click();”, element)</p>
+<p>不懂js同学们可以看看这个<a href="https://baijiahao.baidu.com/s?id=1620076858472114075&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">https://baijiahao.baidu.com/s?id=1620076858472114075&amp;wfr=spider&amp;for=pc</a></p>
+<p>4.还有一种情况可能是没有下拉到浏览器对应的视图中，这种情况就需要把试图往下拉了。</p>
+<p>target = driver.find_element_by_id(“id_keypair”)<br>driver.execute_script(“arguments[0].scrollIntoView();”, target) #拖动到可见的元素去</p>
 
       
 
