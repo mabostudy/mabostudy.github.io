@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>爬虫使用selenium浏览器出现Element is not clickable at point的解决办法总结 | 马波</title>
+  <title>爬虫加代理的两种方式 | 马波</title>
   <meta name="keywords" content="">
-  <meta name="description" content="爬虫使用selenium浏览器出现Element is not clickable at point的解决办法总结 | 马波">
+  <meta name="description" content="爬虫加代理的两种方式 | 马波">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="请求头对爬虫有一定实战经验的人都知道，我们往往需要加请求头。那么为什么需要加请求头呢？ 因为搜索引擎其实就是个爬虫，大部分的网页都是允许搜索引擎爬虫来进行爬取的，所以当我们模拟搜索引擎对网页进行爬取的时候就可以在某些场合下爬到数据啦。 更换ip地址但有时候模拟搜索引擎进行爬取时候也会出问题，我们每一台电脑默认都只有一个唯一的ip地址，如果在同一时段内同一IP地址多次重复对某一网站进行有规律地爬取，">
 <meta property="og:type" content="article">
@@ -234,9 +234,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-爬虫使用selenium浏览器出现Element is not clickable at point的解决办法总结" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-爬虫加代理的两种方式" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">爬虫使用selenium浏览器出现Element is not clickable at point的解决办法总结</h1>
+        <h1 class="article-title">爬虫加代理的两种方式</h1>
     
     <div class="article-meta">
         
@@ -246,7 +246,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-10-17 13:18:14'>2019-10-17 09:29</time>
+        创建时间:<time class="date" title='更新时间: 2019-10-27 08:48:15'>2019-10-27 08:48</time>
         
     </div>
     <div class="article-meta">
@@ -268,7 +268,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#请求头"><span class="toc-text">请求头</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#更换ip地址"><span class="toc-text">更换ip地址</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#更换代理ip的方法"><span class="toc-text">更换代理ip的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-通过ip代理池获取代理"><span class="toc-text">1.通过ip代理池获取代理</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-通过购买代理进行爬取"><span class="toc-text">2.通过购买代理进行爬取</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -284,14 +284,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>当出现不可点击的情况，解决方法有如下几种：<br>1.加time.sleep(2)里面的数字可以直接等待渲染或者加载之后，如果对速度要求不高的话一般这种情况可以解决问题啦</p>
-<p>2.浏览器的页面并没有完全加载出来，这个时候就需要设置显示等待时间，这里设置为10秒在等待时间内如果某元素达到了判断的条件，那么可以执行下面的操作，如点击等，现设置显示等待时间<br>wait = WebDriverWait(driver, 10)<br>wait.until(EC.等待条件((By.节点信息,‘next-checkbox-label’))).click()</p>
-<p><strong>等待条件</strong>                                  含义<br>title_is                                     标题是某内容<br>title_contains                               标题包含某内容<br>presence_of_element_located                  节点加载出来，传入定位元组，如（By.ID,’p’）<br>visibility_of_element_located                节点可见，传入定位元组<br>visibility_of                                可见，传入节点对象<br>presence_of_all_elements_located             所有节点加载出来<br>text_to_be_present_in_element                某个节点文本包含某个文字<br>text_to_be_present_in_element_value          某个节点值包含某文字<br>frame_to_be_available_and_switch_to_it       加载并切换<br>invisibility_of_element_located              节点不可见<br>element_to_be_clickable                      节点可点击<br>staleness_of                            判断一个节点是否仍然在DOM，可判断页面是否已经刷新</p>
-<p>3.因为网页有时候使用js渲染的，所以我们点击不到，这时候就需要用到js的方法,</p>
-<p>element=wait.until(EC.element_to_be_clickable((By.CLASS_NAME,’next-checkbox-label’)))<br>driver.execute_script(“arguments[0].click();”, element)</p>
-<p>不懂js同学们可以看看这个<a href="https://baijiahao.baidu.com/s?id=1620076858472114075&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">https://baijiahao.baidu.com/s?id=1620076858472114075&amp;wfr=spider&amp;for=pc</a></p>
-<p>4.还有一种情况可能是没有下拉到浏览器对应的视图中，这种情况就需要把试图往下拉了。</p>
-<p>target = driver.find_element_by_id(“id_keypair”)<br>driver.execute_script(“arguments[0].scrollIntoView();”, target) #拖动到可见的元素去</p>
+        <h5 id="请求头"><a href="#请求头" class="headerlink" title="请求头"></a>请求头</h5><p>对爬虫有一定实战经验的人都知道，我们往往需要加请求头。那么为什么需要加请求头呢？ 因为搜索引擎其实就是个爬虫，大部分的网页都是允许搜索引擎爬虫来进行爬取的，所以当我们模拟搜索引擎对网页进行爬取的时候就可以在某些场合下爬到数据啦。</p>
+<h5 id="更换ip地址"><a href="#更换ip地址" class="headerlink" title="更换ip地址"></a>更换ip地址</h5><p>但有时候模拟搜索引擎进行爬取时候也会出问题，我们每一台电脑默认都只有一个唯一的ip地址，如果在同一时段内同一IP地址多次重复对某一网站进行有规律地爬取，这样是很容易被发现进而你的ip被拉入了黑名单。进入黑名单也就意味着你的ip被发现是用于爬虫的，再次使用的话会出现重定向，获取不到数据，获取到假数据的情况，在这样的情况下，我们就需要更换爬虫所用的ip了，下面介绍几种非常好用的更换代理ip的方法。</p>
+<h4 id="更换代理ip的方法"><a href="#更换代理ip的方法" class="headerlink" title="更换代理ip的方法"></a>更换代理ip的方法</h4><h5 id="1-通过ip代理池获取代理"><a href="#1-通过ip代理池获取代理" class="headerlink" title="1.通过ip代理池获取代理"></a>1.通过ip代理池获取代理</h5><p>这里给出一个github网站，你可以直接下载下来，<a href="https://github.com/Germey/ProxyPool" target="_blank" rel="noopener">github代理项目</a>，安装需要的库，直接run.py就可以运行并等待爬取将可用代理全部装入代理池redis中<br><img src="https://img-blog.csdnimg.cn/2019102716174747.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><strong>从各大代理网站爬取代理进行测试使用:</strong><br><img src="https://img-blog.csdnimg.cn/20191027162207726.png" alt="在这里插入图片描述"><br><strong>访问网址<a href="http://127.0.0.1:5000/get" target="_blank" rel="noopener">http://127.0.0.1:5000/get</a>获取代理，刷新后继续获取</strong><br><img src="https://img-blog.csdnimg.cn/20191027162019130.png" alt="在这里插入图片描述"><strong>redis代理池</strong><br><img src="https://img-blog.csdnimg.cn/2019102716250533.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt="redis代理池">[Note]:   如果你的爬虫项目不大，那么完全可以从代理池中拿几个代理直接使用，如果爬取的项目比较大，那么你可以自己写个爬取<a href="http://127.0.0.1:5000/get" target="_blank" rel="noopener">http://127.0.0.1:5000/get</a>的代码自动从这里面拿代理，这种方式也适合每天定时爬取的项目。</p>
+<p>当然你也可以自己维护一个ip代理池，从各大免费的代理网站上爬取代理，然后自己对ip进行验证，如果访问你所要爬取的网站返回的状态码是200，那么就加入ip列表中，否则不加入列表，继续爬取。</p>
+<h5 id="2-通过购买代理进行爬取"><a href="#2-通过购买代理进行爬取" class="headerlink" title="2.通过购买代理进行爬取"></a>2.通过购买代理进行爬取</h5><p>如果你经济允许的话，可以购买私密代理进行使用，一般代理网站都会给出代理使用的API，你只需要访问它的接口网址就可以拿到代理了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#-*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="string">"""使用requests调用API接口</span></span><br><span class="line"><span class="string">import requests</span></span><br><span class="line"><span class="string">#api链接</span></span><br><span class="line"><span class="string">api_url = "http://dev.kdlapi.com/api/getproxy/?orderid=965102959536478&amp;num=100&amp;protocol=1&amp;method=2&amp;an_ha=1&amp;sep=1"</span></span><br><span class="line"><span class="string">headers = &#123;"Accept-Encoding": "gzip"&#125;  #使用gzip压缩传输数据让访问更快</span></span><br><span class="line"><span class="string">r = requests.get(url=api_url, headers=headers)</span></span><br><span class="line"><span class="string">print(r.status_code) #获取Reponse的返回码</span></span><br><span class="line"><span class="string">print(r.content.decode('utf-8'))  #获取页面内容</span></span><br></pre></td></tr></table></figure>
+<p>需要提醒你的是，虽然你用的是购买了的代理IP，但是仍然会出现使用不了的情况，本人之前买过的快XX就是到了半个月期限的时候所有代理都用不了，但是用第一种方式可以正常爬取网站，所以建议你去别的代理网站去购买。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
@@ -305,12 +304,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>爬虫使用selenium浏览器出现Element is not clickable at point的解决办法总结</p>
+    <p><span class="copy-title">文章标题:</span>爬虫加代理的两种方式</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="bo ma">bo ma</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-10-17, 09:29:04</p>
-    <p><span class="copy-title">最后更新:</span>2019-10-17, 13:18:14</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/17/%E7%88%AC%E8%99%AB%E4%BD%BF%E7%94%A8selenium%E6%B5%8F%E8%A7%88%E5%99%A8%E5%87%BA%E7%8E%B0Element%20is%20not%20clickable%20at%20point%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95%E6%80%BB%E7%BB%93/" title="爬虫使用selenium浏览器出现Element is not clickable at point的解决办法总结">http://yoursite.com/2019/10/17/%E7%88%AC%E8%99%AB%E4%BD%BF%E7%94%A8selenium%E6%B5%8F%E8%A7%88%E5%99%A8%E5%87%BA%E7%8E%B0Element%20is%20not%20clickable%20at%20point%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95%E6%80%BB%E7%BB%93/</a>
+    <p><span class="copy-title">发布时间:</span>2019-10-27, 08:48:07</p>
+    <p><span class="copy-title">最后更新:</span>2019-10-27, 08:48:15</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/27/%E7%88%AC%E8%99%AB%E5%8A%A0%E4%BB%A3%E7%90%86%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F/" title="爬虫加代理的两种方式">http://yoursite.com/2019/10/27/%E7%88%AC%E8%99%AB%E5%8A%A0%E4%BB%A3%E7%90%86%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
