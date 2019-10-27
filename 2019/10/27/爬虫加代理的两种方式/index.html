@@ -17,7 +17,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191027162207726.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191027162019130.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;2019102716250533.png?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-10-27T00:48:15.413Z">
+<meta property="og:updated_time" content="2019-10-27T00:51:09.213Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;2019102716174747.png?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70">
 
@@ -175,11 +175,11 @@
     <nav id="title-list-nav">
         
         <a  class=""
-           href="/2019/10/27/%E7%88%AC%E8%99%AB%E5%8A%A0%E4%BB%A3%E7%90%86%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F/"
+           href="/2019/10/20/%E7%88%AC%E8%99%ABRequests%E5%BA%93%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="爬虫加代理的两种方式">爬虫加代理的两种方式</span>
-            <span class="post-date" title="2019-10-27 08:48:07">2019/10/27</span>
+            <span class="post-title" title="爬虫Requests库的安装和使用">爬虫Requests库的安装和使用</span>
+            <span class="post-date" title="2019-10-20 07:27:57">2019/10/20</span>
         </a>
         
         <a  class=""
@@ -191,11 +191,11 @@
         </a>
         
         <a  class=""
-           href="/2019/10/20/%E7%88%AC%E8%99%ABRequests%E5%BA%93%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/"
+           href="/2019/10/27/%E7%88%AC%E8%99%AB%E5%8A%A0%E4%BB%A3%E7%90%86%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="爬虫Requests库的安装和使用">爬虫Requests库的安装和使用</span>
-            <span class="post-date" title="2019-10-20 07:27:57">2019/10/20</span>
+            <span class="post-title" title="爬虫加代理的两种方式">爬虫加代理的两种方式</span>
+            <span class="post-date" title="2019-10-27 08:48:07">2019/10/27</span>
         </a>
         
         <a  class=""
@@ -246,7 +246,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-10-27 08:48:15'>2019-10-27 08:48</time>
+        创建时间:<time class="date" title='更新时间: 2019-10-27 08:51:09'>2019-10-27 08:48</time>
         
     </div>
     <div class="article-meta">
@@ -286,7 +286,7 @@
       
         <h5 id="请求头"><a href="#请求头" class="headerlink" title="请求头"></a>请求头</h5><p>对爬虫有一定实战经验的人都知道，我们往往需要加请求头。那么为什么需要加请求头呢？ 因为搜索引擎其实就是个爬虫，大部分的网页都是允许搜索引擎爬虫来进行爬取的，所以当我们模拟搜索引擎对网页进行爬取的时候就可以在某些场合下爬到数据啦。</p>
 <h5 id="更换ip地址"><a href="#更换ip地址" class="headerlink" title="更换ip地址"></a>更换ip地址</h5><p>但有时候模拟搜索引擎进行爬取时候也会出问题，我们每一台电脑默认都只有一个唯一的ip地址，如果在同一时段内同一IP地址多次重复对某一网站进行有规律地爬取，这样是很容易被发现进而你的ip被拉入了黑名单。进入黑名单也就意味着你的ip被发现是用于爬虫的，再次使用的话会出现重定向，获取不到数据，获取到假数据的情况，在这样的情况下，我们就需要更换爬虫所用的ip了，下面介绍几种非常好用的更换代理ip的方法。</p>
-<h4 id="更换代理ip的方法"><a href="#更换代理ip的方法" class="headerlink" title="更换代理ip的方法"></a>更换代理ip的方法</h4><h5 id="1-通过ip代理池获取代理"><a href="#1-通过ip代理池获取代理" class="headerlink" title="1.通过ip代理池获取代理"></a>1.通过ip代理池获取代理</h5><p>这里给出一个github网站，你可以直接下载下来，<a href="https://github.com/Germey/ProxyPool" target="_blank" rel="noopener">github代理项目</a>，安装需要的库，直接run.py就可以运行并等待爬取将可用代理全部装入代理池redis中<br><img src="https://img-blog.csdnimg.cn/2019102716174747.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><strong>从各大代理网站爬取代理进行测试使用:</strong><br><img src="https://img-blog.csdnimg.cn/20191027162207726.png" alt="在这里插入图片描述"><br><strong>访问网址<a href="http://127.0.0.1:5000/get" target="_blank" rel="noopener">http://127.0.0.1:5000/get</a>获取代理，刷新后继续获取</strong><br><img src="https://img-blog.csdnimg.cn/20191027162019130.png" alt="在这里插入图片描述"><strong>redis代理池</strong><br><img src="https://img-blog.csdnimg.cn/2019102716250533.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt="redis代理池">[Note]:   如果你的爬虫项目不大，那么完全可以从代理池中拿几个代理直接使用，如果爬取的项目比较大，那么你可以自己写个爬取<a href="http://127.0.0.1:5000/get" target="_blank" rel="noopener">http://127.0.0.1:5000/get</a>的代码自动从这里面拿代理，这种方式也适合每天定时爬取的项目。</p>
+<h4 id="更换代理ip的方法"><a href="#更换代理ip的方法" class="headerlink" title="更换代理ip的方法"></a>更换代理ip的方法</h4><h5 id="1-通过ip代理池获取代理"><a href="#1-通过ip代理池获取代理" class="headerlink" title="1.通过ip代理池获取代理"></a>1.通过ip代理池获取代理</h5><p>这里给出一个github网站，你可以直接下载下来，<a href="https://github.com/Germey/ProxyPool" target="_blank" rel="noopener">github代理项目</a>，安装需要的库，直接run.py就可以运行并等待爬取将可用代理全部装入代理池redis中<br><img src="https://img-blog.csdnimg.cn/2019102716174747.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt=""><strong>从各大代理网站爬取代理进行测试使用:</strong><br><img src="https://img-blog.csdnimg.cn/20191027162207726.png" alt=""><br><strong>访问网址<a href="http://127.0.0.1:5000/get" target="_blank" rel="noopener">http://127.0.0.1:5000/get</a>获取代理，刷新后继续获取</strong><br><img src="https://img-blog.csdnimg.cn/20191027162019130.png" alt=""><strong>redis代理池</strong><br><img src="https://img-blog.csdnimg.cn/2019102716250533.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt="redis代理池">[Note]:   如果你的爬虫项目不大，那么完全可以从代理池中拿几个代理直接使用，如果爬取的项目比较大，那么你可以自己写个爬取<a href="http://127.0.0.1:5000/get" target="_blank" rel="noopener">http://127.0.0.1:5000/get</a>的代码自动从这里面拿代理，这种方式也适合每天定时爬取的项目。</p>
 <p>当然你也可以自己维护一个ip代理池，从各大免费的代理网站上爬取代理，然后自己对ip进行验证，如果访问你所要爬取的网站返回的状态码是200，那么就加入ip列表中，否则不加入列表，继续爬取。</p>
 <h5 id="2-通过购买代理进行爬取"><a href="#2-通过购买代理进行爬取" class="headerlink" title="2.通过购买代理进行爬取"></a>2.通过购买代理进行爬取</h5><p>如果你经济允许的话，可以购买私密代理进行使用，一般代理网站都会给出代理使用的API，你只需要访问它的接口网址就可以拿到代理了。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#-*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="string">"""使用requests调用API接口</span></span><br><span class="line"><span class="string">import requests</span></span><br><span class="line"><span class="string">#api链接</span></span><br><span class="line"><span class="string">api_url = "http://dev.kdlapi.com/api/getproxy/?orderid=965102959536478&amp;num=100&amp;protocol=1&amp;method=2&amp;an_ha=1&amp;sep=1"</span></span><br><span class="line"><span class="string">headers = &#123;"Accept-Encoding": "gzip"&#125;  #使用gzip压缩传输数据让访问更快</span></span><br><span class="line"><span class="string">r = requests.get(url=api_url, headers=headers)</span></span><br><span class="line"><span class="string">print(r.status_code) #获取Reponse的返回码</span></span><br><span class="line"><span class="string">print(r.content.decode('utf-8'))  #获取页面内容</span></span><br></pre></td></tr></table></figure>
@@ -308,7 +308,7 @@
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="bo ma">bo ma</a></p>
     <p><span class="copy-title">发布时间:</span>2019-10-27, 08:48:07</p>
-    <p><span class="copy-title">最后更新:</span>2019-10-27, 08:48:15</p>
+    <p><span class="copy-title">最后更新:</span>2019-10-27, 08:51:09</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/27/%E7%88%AC%E8%99%AB%E5%8A%A0%E4%BB%A3%E7%90%86%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F/" title="爬虫加代理的两种方式">http://yoursite.com/2019/10/27/%E7%88%AC%E8%99%AB%E5%8A%A0%E4%BB%A3%E7%90%86%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
