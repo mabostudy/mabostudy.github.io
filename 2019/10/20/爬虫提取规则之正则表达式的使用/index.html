@@ -6,20 +6,15 @@
   <meta name="keywords" content="">
   <meta name="description" content="爬虫提取规则之正则表达式的使用 | 马波">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="请求头对爬虫有一定实战经验的人都知道，我们往往需要加请求头。那么为什么需要加请求头呢？ 因为搜索引擎其实就是个爬虫，大部分的网页都是允许搜索引擎爬虫来进行爬取的，所以当我们模拟搜索引擎对网页进行爬取的时候就可以在某些场合下爬到数据啦。 更换ip地址但有时候模拟搜索引擎进行爬取时候也会出问题，我们每一台电脑默认都只有一个唯一的ip地址，如果在同一时段内同一IP地址多次重复对某一网站进行有规律地爬取，">
+<meta name="description" content="驱动的安装:1.在http:&#x2F;&#x2F;npm.taobao.org&#x2F;mirrors&#x2F;chromedriver&#x2F;中寻找chrome的驱动，进行安装2.windows中将chrome.exe加入环境变量中3.再把下载的chromedriver复制粘贴到你安装的python的Scripts目录下， 测试是否安装成功: 12from selenium import webdriverbrowser = webd">
 <meta property="og:type" content="article">
-<meta property="og:title" content="爬虫代理的两种来源">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;27&#x2F;%E7%88%AC%E8%99%AB%E4%BB%A3%E7%90%86%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%9D%A5%E6%BA%90&#x2F;index.html">
+<meta property="og:title" content="爬虫之selenium的使用">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;01&#x2F;%E7%88%AC%E8%99%AB%E4%B9%8Bselenium%E7%9A%84%E4%BD%BF%E7%94%A8&#x2F;index.html">
 <meta property="og:site_name" content="马波">
-<meta property="og:description" content="请求头对爬虫有一定实战经验的人都知道，我们往往需要加请求头。那么为什么需要加请求头呢？ 因为搜索引擎其实就是个爬虫，大部分的网页都是允许搜索引擎爬虫来进行爬取的，所以当我们模拟搜索引擎对网页进行爬取的时候就可以在某些场合下爬到数据啦。 更换ip地址但有时候模拟搜索引擎进行爬取时候也会出问题，我们每一台电脑默认都只有一个唯一的ip地址，如果在同一时段内同一IP地址多次重复对某一网站进行有规律地爬取，">
+<meta property="og:description" content="驱动的安装:1.在http:&#x2F;&#x2F;npm.taobao.org&#x2F;mirrors&#x2F;chromedriver&#x2F;中寻找chrome的驱动，进行安装2.windows中将chrome.exe加入环境变量中3.再把下载的chromedriver复制粘贴到你安装的python的Scripts目录下， 测试是否安装成功: 12from selenium import webdriverbrowser = webd">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;2019102716174747.png?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191027162207726.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191027162019130.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;2019102716250533.png?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-10-27T00:51:09.213Z">
+<meta property="og:updated_time" content="2019-10-31T23:12:37.872Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;2019102716174747.png?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70">
 
 
 <link rel="icon" href="/img/mabo.jpg">
@@ -122,7 +117,7 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(6)</small></div></li>
+    <li><div class="all active">全部文章<small>(7)</small></div></li>
     
 </ul>
 <div class="left-bottom">
@@ -134,7 +129,7 @@
     </div>
     <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="6">
+<input type="hidden" id="yelog_site_posts_number" value="7">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -175,6 +170,14 @@
     <nav id="title-list-nav">
         
         <a  class=""
+           href="/2019/11/01/%E7%88%AC%E8%99%AB%E4%B9%8Bselenium%E7%9A%84%E4%BD%BF%E7%94%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="爬虫之selenium的使用">爬虫之selenium的使用</span>
+            <span class="post-date" title="2019-11-01 07:12:05">2019/11/01</span>
+        </a>
+        
+        <a  class=""
            href="/2019/10/17/%E7%88%AC%E8%99%AB%E4%BD%BF%E7%94%A8selenium%E6%B5%8F%E8%A7%88%E5%99%A8%E5%87%BA%E7%8E%B0Element%20is%20not%20clickable%20at%20point%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95%E6%80%BB%E7%BB%93/"
            data-tag=""
            data-author="" >
@@ -183,27 +186,11 @@
         </a>
         
         <a  class=""
-           href="/2019/10/20/%E7%88%AC%E8%99%ABRequests%E5%BA%93%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/"
+           href="/2019/10/27/%E7%88%AC%E8%99%AB%E4%BB%A3%E7%90%86%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%9D%A5%E6%BA%90/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="爬虫Requests库的安装和使用">爬虫Requests库的安装和使用</span>
-            <span class="post-date" title="2019-10-20 07:27:57">2019/10/20</span>
-        </a>
-        
-        <a  class=""
-           href="/2019/10/27/%E7%88%AC%E8%99%AB%E8%BF%90%E8%A1%8C%E9%81%87%E5%88%B0%E8%BF%9E%E6%8E%A5%E4%B8%8D%E4%B8%8A%E4%BB%A3%E7%90%86%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="写爬虫遇到连接不上代理的解决办法">写爬虫遇到连接不上代理的解决办法</span>
-            <span class="post-date" title="2019-10-27 07:54:08">2019/10/27</span>
-        </a>
-        
-        <a  class=""
-           href="/2019/10/20/%E7%88%AC%E8%99%AB%E6%8F%90%E5%8F%96%E8%A7%84%E5%88%99%E4%B9%8B%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E4%BD%BF%E7%94%A8/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="爬虫提取规则之正则表达式的使用">爬虫提取规则之正则表达式的使用</span>
-            <span class="post-date" title="2019-10-20 15:30:12">2019/10/20</span>
+            <span class="post-title" title="爬虫代理的两种来源">爬虫代理的两种来源</span>
+            <span class="post-date" title="2019-10-27 08:48:07">2019/10/27</span>
         </a>
         
         <a  class=""
@@ -215,11 +202,27 @@
         </a>
         
         <a  class=""
-           href="/2019/10/27/%E7%88%AC%E8%99%AB%E4%BB%A3%E7%90%86%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%9D%A5%E6%BA%90/"
+           href="/2019/10/20/%E7%88%AC%E8%99%ABRequests%E5%BA%93%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="爬虫代理的两种来源">爬虫代理的两种来源</span>
-            <span class="post-date" title="2019-10-27 08:48:07">2019/10/27</span>
+            <span class="post-title" title="爬虫Requests库的安装和使用">爬虫Requests库的安装和使用</span>
+            <span class="post-date" title="2019-10-20 07:27:57">2019/10/20</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/10/20/%E7%88%AC%E8%99%AB%E6%8F%90%E5%8F%96%E8%A7%84%E5%88%99%E4%B9%8B%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E4%BD%BF%E7%94%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="爬虫提取规则之正则表达式的使用">爬虫提取规则之正则表达式的使用</span>
+            <span class="post-date" title="2019-10-20 15:30:12">2019/10/20</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/10/27/%E7%88%AC%E8%99%AB%E8%BF%90%E8%A1%8C%E9%81%87%E5%88%B0%E8%BF%9E%E6%8E%A5%E4%B8%8D%E4%B8%8A%E4%BB%A3%E7%90%86%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="写爬虫遇到连接不上代理的解决办法">写爬虫遇到连接不上代理的解决办法</span>
+            <span class="post-date" title="2019-10-27 07:54:08">2019/10/27</span>
         </a>
         
     </nav>
