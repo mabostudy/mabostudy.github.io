@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          
+          爬虫使用selenium浏览器出现Element is not clickable at point的解决办法总结 - null
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/archives/">
+    <link rel="canonical" href="http://yoursite.com/2020/02/12/爬虫使用selenium浏览器出现Element is not clickable at point的解决办法总结/">
 
     <!-- Bootstrap Core CSS -->
 
@@ -101,13 +101,17 @@
 			
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" style="z-index:2;">
                 
-				
-                    <div class="site-heading"  style="padding:40px">
-                        <h1>马波</h1>
-                        <!--<hr class="small">-->
-                        <span class="subheading"></span>
+                    <div class="post-heading" style="padding:40px">
+                        <div class="tags">
+                            
+                        </div>
+                        <h1>爬虫使用selenium浏览器出现Element is not clickable at point的解决办法总结</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by bo ma on
+                            2020-02-12
+                        </span>
                     </div>
-                
                 
                 </div>
             </div>
@@ -228,296 +232,149 @@
 
 
     <!-- Main Content -->
-    <!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
+    <!-- Modify by Yu-Hsuan Yen -->
 
-<!-- USE SIDEBAR -->
-    <!-- Post Container -->
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-            
-	        
-                
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <!-- 归档列表 -->
-            
-            
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
 
-             <!-- 归档列表 -->
+                <p>当出现不可点击的情况，解决方法有如下几种：<br>1.加time.sleep(2)里面的数字可以直接等待渲染或者加载之后，如果对速度要求不高的话一般这种情况可以解决问题啦</p>
+<p>2.浏览器的页面并没有完全加载出来，这个时候就需要设置显示等待时间，这里设置为10秒在等待时间内如果某元素达到了判断的条件，那么可以执行下面的操作，如点击等，现设置显示等待时间<br>wait = WebDriverWait(driver, 10)<br>wait.until(EC.等待条件((By.节点信息,‘next-checkbox-label’))).click()</p>
+<p><strong>等待条件</strong>                                  含义<br>title_is                                     标题是某内容<br>title_contains                               标题包含某内容<br>presence_of_element_located                  节点加载出来，传入定位元组，如（By.ID,’p’）<br>visibility_of_element_located                节点可见，传入定位元组<br>visibility_of                                可见，传入节点对象<br>presence_of_all_elements_located             所有节点加载出来<br>text_to_be_present_in_element                某个节点文本包含某个文字<br>text_to_be_present_in_element_value          某个节点值包含某文字<br>frame_to_be_available_and_switch_to_it       加载并切换<br>invisibility_of_element_located              节点不可见<br>element_to_be_clickable                      节点可点击<br>staleness_of                            判断一个节点是否仍然在DOM，可判断页面是否已经刷新</p>
+<p>3.因为网页有时候使用js渲染的，所以我们点击不到，这时候就需要用到js的方法,</p>
+<p>element=wait.until(EC.element_to_be_clickable((By.CLASS_NAME,’next-checkbox-label’)))<br>driver.execute_script(“arguments[0].click();”, element)</p>
+<p>不懂js同学们可以看看这个<a href="https://baijiahao.baidu.com/s?id=1620076858472114075&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">https://baijiahao.baidu.com/s?id=1620076858472114075&amp;wfr=spider&amp;for=pc</a></p>
+<p>4.还有一种情况可能是没有下拉到浏览器对应的视图中，这种情况就需要把试图往下拉了。</p>
+<p>target = driver.find_element_by_id(“id_keypair”)<br>driver.execute_script(“arguments[0].scrollIntoView();”, target) #拖动到可见的元素去</p>
 
-            
-            <div class="one-tag-list">
-                <span class="fa fa-calendar-times-o listing-seperator" id="2020">
-                    <span class="tag-text">2020</span>
-                </span>
-                <ul>
                 
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li >
-                    02-12
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2020/02/12/爬虫运行遇到连接不上代理的解决办法/" style="color: #0085a1">
-                        <span>
-                            爬虫运行遇到连接不上代理的解决办法
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li >
-                    02-12
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2020/02/12/爬虫提取规则之正则表达式的使用/" style="color: #0085a1">
-                        <span>
-                            爬虫提取规则之正则表达式的使用
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li >
-                    02-12
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2020/02/12/爬虫提取规则之Beautiful Soup的使用/" style="color: #0085a1">
-                        <span>
-                            爬虫提取规则之Beautiful Soup的使用
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li >
-                    02-12
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2020/02/12/爬虫使用selenium浏览器出现Element is not clickable at point的解决办法总结/" style="color: #0085a1">
-                        <span>
-                            爬虫使用selenium浏览器出现Element is not clickable at point的解决办法总结
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li >
-                    02-12
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2020/02/12/爬虫代理的两种来源/" style="color: #0085a1">
-                        <span>
-                            爬虫代理的两种来源
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li >
-                    02-12
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2020/02/12/爬虫之selenium的使用/" style="color: #0085a1">
-                        <span>
-                            爬虫之selenium的使用
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li >
-                    02-12
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2020/02/12/爬虫Requests库的安装和使用/" style="color: #0085a1">
-                        <span>
-                            爬虫Requests库的安装和使用
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li >
-                    02-12
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2020/02/12/Xgboost算法详解/" style="color: #0085a1">
-                        <span>
-                            Xgboost算法详解
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2020/02/12/爬虫提取规则之Beautiful Soup的使用/" data-toggle="tooltip" data-placement="top" title="爬虫提取规则之Beautiful Soup的使用">&larr; Previous post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2020/02/12/爬虫代理的两种来源/" data-toggle="tooltip" data-placement="top" title="爬虫代理的两种来源">Next post &rarr;</a>
+                        </li>
+                    
                 </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+				
             </div>
-            
 
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
 
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">Tags</a></h5>
+                    <div class="tags">
+                       
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://www.sumoon.com" target="_blank">ACE theme</a></li>
+                    
+                </ul>
+                
+            </div>
         </div>
     </div>
-</div>
-            
+</article>
 
 
 
-                <!-- 如果开启评论功能 -->
-                
-            </div>
-
-          <!-- Sidebar Container -->
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-        <!-- Featured Tags -->
-
-<section>
-    <!-- no hr -->
-    <h5><a href="/tags/">Tags</a></h5>
-    <div class="tags">
-        
-    </div>
-</section>
-
-        <hr>
-    
-        <!-- Short About -->
-<section class="visible-md visible-lg">
-    <h5><a href="/about/">About me</a></h5>
-    <div class="short-about">
-
-        
-            <img id = "avatar_pic" src="/img/avatar/logo.png" />
-        
-
-        
-            <p>INNOVATION IS KING!</p>
-        
-
-        <!-- SNS Link -->
-        <ul class="list-inline">
-            
-            
-            
-
-            
-
-            
-
-            
-                <li>
-                    <a target="_blank"  href="https://github.com/kinggozhang">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-            
-            
-            
-            
-        </ul>
-    </div>
-</section>
-
-        <hr>
-    
-        
-  <h5>Recent posts</h3>
-  <div class="widget">
-    <ul>
-      
-        <li>
-          <a href="/2020/02/12/%E7%88%AC%E8%99%AB%E8%BF%90%E8%A1%8C%E9%81%87%E5%88%B0%E8%BF%9E%E6%8E%A5%E4%B8%8D%E4%B8%8A%E4%BB%A3%E7%90%86%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/">爬虫运行遇到连接不上代理的解决办法</a>
-        </li>
-      
-        <li>
-          <a href="/2020/02/12/%E7%88%AC%E8%99%AB%E6%8F%90%E5%8F%96%E8%A7%84%E5%88%99%E4%B9%8B%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E4%BD%BF%E7%94%A8/">爬虫提取规则之正则表达式的使用</a>
-        </li>
-      
-        <li>
-          <a href="/2020/02/12/%E7%88%AC%E8%99%AB%E6%8F%90%E5%8F%96%E8%A7%84%E5%88%99%E4%B9%8BBeautiful%20Soup%E7%9A%84%E4%BD%BF%E7%94%A8/">爬虫提取规则之Beautiful Soup的使用</a>
-        </li>
-      
-        <li>
-          <a href="/2020/02/12/%E7%88%AC%E8%99%AB%E4%BD%BF%E7%94%A8selenium%E6%B5%8F%E8%A7%88%E5%99%A8%E5%87%BA%E7%8E%B0Element%20is%20not%20clickable%20at%20point%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95%E6%80%BB%E7%BB%93/">爬虫使用selenium浏览器出现Element is not clickable at point的解决办法总结</a>
-        </li>
-      
-        <li>
-          <a href="/2020/02/12/%E7%88%AC%E8%99%AB%E4%BB%A3%E7%90%86%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%9D%A5%E6%BA%90/">爬虫代理的两种来源</a>
-        </li>
-      
-    </ul>
-  </div>
-
-        <hr>
-    
-        
-    <h5>Achives</h5>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">8</span></li></ul>
-    </div>
-
-        <hr>
-    
-        <!-- Friends Blog -->
-
-<h5>Friends</h5>
-<ul class="list-inline">
-
-    
-        <li><a href="http://www.sumoon.com" target="_blank">ACE theme</a></li>
-    
-</ul>
 
 
-        <hr>
-    
-</div>
 
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
 
-        
-    </div>
-</div>
 
 
     <!-- Footer -->
@@ -622,7 +479,7 @@
 <script>
     // only load tagcloud.js in tag.html
     if($('#tag_cloud').length !== 0){
-        async("http://yoursite.com/archives/index.html/js/jquery.tagcloud.js",function(){
+        async("http://yoursite.com/2020/02/12/%E7%88%AC%E8%99%AB%E4%BD%BF%E7%94%A8selenium%E6%B5%8F%E8%A7%88%E5%99%A8%E5%87%BA%E7%8E%B0Element%20is%20not%20clickable%20at%20point%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95%E6%80%BB%E7%BB%93/index.html/js/jquery.tagcloud.js",function(){
             $.fn.tagcloud.defaults = {
                 //size: {start: 1, end: 1, unit: 'em'},
                 color: {start: '#bbbbee', end: '#0085a1'},

@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          
+          爬虫之selenium的使用 - null
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/archives/">
+    <link rel="canonical" href="http://yoursite.com/2020/02/12/爬虫之selenium的使用/">
 
     <!-- Bootstrap Core CSS -->
 
@@ -101,13 +101,17 @@
 			
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" style="z-index:2;">
                 
-				
-                    <div class="site-heading"  style="padding:40px">
-                        <h1>马波</h1>
-                        <!--<hr class="small">-->
-                        <span class="subheading"></span>
+                    <div class="post-heading" style="padding:40px">
+                        <div class="tags">
+                            
+                        </div>
+                        <h1>爬虫之selenium的使用</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by bo ma on
+                            2020-02-12
+                        </span>
                     </div>
-                
                 
                 </div>
             </div>
@@ -228,296 +232,158 @@
 
 
     <!-- Main Content -->
-    <!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
+    <!-- Modify by Yu-Hsuan Yen -->
 
-<!-- USE SIDEBAR -->
-    <!-- Post Container -->
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-            
-	        
-                
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <!-- 归档列表 -->
-            
-            
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
 
-             <!-- 归档列表 -->
+                <h3 id="驱动的安装"><a href="#驱动的安装" class="headerlink" title="驱动的安装:"></a>驱动的安装:</h3><p>1.在<a href="http://npm.taobao.org/mirrors/chromedriver/" target="_blank" rel="noopener">http://npm.taobao.org/mirrors/chromedriver/</a>中寻找chrome的驱动，进行安装<br>2.windows中将chrome.exe加入环境变量中<br>3.再把下载的chromedriver复制粘贴到你安装的python的Scripts目录下，</p>
+<p>测试是否安装成功:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line">browser = webdriver.Chrome()</span><br></pre></td></tr></table></figure>
 
-            
-            <div class="one-tag-list">
-                <span class="fa fa-calendar-times-o listing-seperator" id="2020">
-                    <span class="tag-text">2020</span>
-                </span>
-                <ul>
+<p>selenium的安装:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install selenium</span><br></pre></td></tr></table></figure>
+<h4 id="1-打开一个网页"><a href="#1-打开一个网页" class="headerlink" title="1.打开一个网页"></a>1.打开一个网页</h4><h4 id="browser-get-url"><a href="#browser-get-url" class="headerlink" title="browser.get(url)"></a>browser.get(url)</h4><p>browser.get(“<a href="https://www.baidu.com&quot;" target="_blank" rel="noopener">https://www.baidu.com&quot;</a>)</p>
+<h4 id="2-对元素进行查找定位"><a href="#2-对元素进行查找定位" class="headerlink" title="2.对元素进行查找定位"></a>2.对元素进行查找定位</h4><h4 id="browser-find-element"><a href="#browser-find-element" class="headerlink" title="browser.find_element()"></a>browser.find_element()</h4><p>通过下面几种方式进行查找定位</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">login_form = driver.find_element_by_xpath(<span class="string">"/html/body/form[1]"</span>)</span><br><span class="line">login_form = driver.find_element_by_id(<span class="string">'loginForm'</span>)</span><br><span class="line">username = driver.find_element_by_name(<span class="string">'username'</span>)</span><br><span class="line">continue_link = driver.find_element_by_link_text(<span class="string">'Continue'</span>)</span><br><span class="line">heading1 = driver.find_element_by_tag_name(<span class="string">'h1'</span>)</span><br><span class="line">content = driver.find_element_by_class_name(<span class="string">'content'</span>)</span><br><span class="line">content = driver.find_element_by_css_selector(<span class="string">'p.content'</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="3-等待"><a href="#3-等待" class="headerlink" title="3.等待"></a>3.等待</h4><p>有的时候元素的出现需要等待一段时间，等元素加载完成后才开始进行下一步的操作，或者为了防止操作过于频繁，这个时候就需要用到等待了</p>
+<h5 id="显示等待"><a href="#显示等待" class="headerlink" title="显示等待"></a>显示等待</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">driver = webdriver.Firefox()</span><br><span class="line">driver.get(<span class="string">"http://somedomain/url_that_delays_loading"</span>)</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    element = WebDriverWait(driver, <span class="number">10</span>).until(</span><br><span class="line">        EC.presence_of_element_located((By.ID, <span class="string">"myDynamicElement"</span>))</span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
+<p>上面这种情况就是等待ID为”myDynamicElement”的出现，如果等待10秒后没有出现，那么就报异常</p>
+<h5 id="隐示等待"><a href="#隐示等待" class="headerlink" title="隐示等待"></a>隐示等待</h5><p>隐式等待在执行动作或者定位元素之前，为浏览器对象创建一个等待时间，期间会一直刷新页面去寻找我们需要的元素</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">driver.implicitly_wait(<span class="number">10</span>)</span><br><span class="line">driver.find_element_by_name().send_keys()</span><br></pre></td></tr></table></figure>
+<p>上述这段代码为等待10秒</p>
+<h4 id="显示等待与隐式等待的区别？"><a href="#显示等待与隐式等待的区别？" class="headerlink" title="显示等待与隐式等待的区别？"></a>显示等待与隐式等待的区别？</h4><p>显示等待为有条件的等待<br>隐式等待为没有条件的等待<br>也就是显示等待会判断某个元素有没有满足我们的要求，也就是能不能定位，能不能可视化，而隐式等待适用于整个页面的元素有没有出现</p>
+<p>好了， 有了这上面的应该就够用了，其他的可以找selenium的API来查找，链接如下<a href="https://selenium-python.readthedocs.io/" target="_blank" rel="noopener">selenium-python文档</a></p>
+
                 
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li >
-                    02-12
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2020/02/12/爬虫运行遇到连接不上代理的解决办法/" style="color: #0085a1">
-                        <span>
-                            爬虫运行遇到连接不上代理的解决办法
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li >
-                    02-12
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2020/02/12/爬虫提取规则之正则表达式的使用/" style="color: #0085a1">
-                        <span>
-                            爬虫提取规则之正则表达式的使用
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li >
-                    02-12
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2020/02/12/爬虫提取规则之Beautiful Soup的使用/" style="color: #0085a1">
-                        <span>
-                            爬虫提取规则之Beautiful Soup的使用
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li >
-                    02-12
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2020/02/12/爬虫使用selenium浏览器出现Element is not clickable at point的解决办法总结/" style="color: #0085a1">
-                        <span>
-                            爬虫使用selenium浏览器出现Element is not clickable at point的解决办法总结
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li >
-                    02-12
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2020/02/12/爬虫代理的两种来源/" style="color: #0085a1">
-                        <span>
-                            爬虫代理的两种来源
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li >
-                    02-12
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2020/02/12/爬虫之selenium的使用/" style="color: #0085a1">
-                        <span>
-                            爬虫之selenium的使用
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li >
-                    02-12
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2020/02/12/爬虫Requests库的安装和使用/" style="color: #0085a1">
-                        <span>
-                            爬虫Requests库的安装和使用
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li >
-                    02-12
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2020/02/12/Xgboost算法详解/" style="color: #0085a1">
-                        <span>
-                            Xgboost算法详解
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2020/02/12/爬虫代理的两种来源/" data-toggle="tooltip" data-placement="top" title="爬虫代理的两种来源">&larr; Previous post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2020/02/12/爬虫Requests库的安装和使用/" data-toggle="tooltip" data-placement="top" title="爬虫Requests库的安装和使用">Next post &rarr;</a>
+                        </li>
+                    
                 </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+				
             </div>
-            
 
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
 
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">Tags</a></h5>
+                    <div class="tags">
+                       
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://www.sumoon.com" target="_blank">ACE theme</a></li>
+                    
+                </ul>
+                
+            </div>
         </div>
     </div>
-</div>
-            
+</article>
 
 
 
-                <!-- 如果开启评论功能 -->
-                
-            </div>
-
-          <!-- Sidebar Container -->
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-        <!-- Featured Tags -->
-
-<section>
-    <!-- no hr -->
-    <h5><a href="/tags/">Tags</a></h5>
-    <div class="tags">
-        
-    </div>
-</section>
-
-        <hr>
-    
-        <!-- Short About -->
-<section class="visible-md visible-lg">
-    <h5><a href="/about/">About me</a></h5>
-    <div class="short-about">
-
-        
-            <img id = "avatar_pic" src="/img/avatar/logo.png" />
-        
-
-        
-            <p>INNOVATION IS KING!</p>
-        
-
-        <!-- SNS Link -->
-        <ul class="list-inline">
-            
-            
-            
-
-            
-
-            
-
-            
-                <li>
-                    <a target="_blank"  href="https://github.com/kinggozhang">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-            
-            
-            
-            
-        </ul>
-    </div>
-</section>
-
-        <hr>
-    
-        
-  <h5>Recent posts</h3>
-  <div class="widget">
-    <ul>
-      
-        <li>
-          <a href="/2020/02/12/%E7%88%AC%E8%99%AB%E8%BF%90%E8%A1%8C%E9%81%87%E5%88%B0%E8%BF%9E%E6%8E%A5%E4%B8%8D%E4%B8%8A%E4%BB%A3%E7%90%86%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/">爬虫运行遇到连接不上代理的解决办法</a>
-        </li>
-      
-        <li>
-          <a href="/2020/02/12/%E7%88%AC%E8%99%AB%E6%8F%90%E5%8F%96%E8%A7%84%E5%88%99%E4%B9%8B%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E4%BD%BF%E7%94%A8/">爬虫提取规则之正则表达式的使用</a>
-        </li>
-      
-        <li>
-          <a href="/2020/02/12/%E7%88%AC%E8%99%AB%E6%8F%90%E5%8F%96%E8%A7%84%E5%88%99%E4%B9%8BBeautiful%20Soup%E7%9A%84%E4%BD%BF%E7%94%A8/">爬虫提取规则之Beautiful Soup的使用</a>
-        </li>
-      
-        <li>
-          <a href="/2020/02/12/%E7%88%AC%E8%99%AB%E4%BD%BF%E7%94%A8selenium%E6%B5%8F%E8%A7%88%E5%99%A8%E5%87%BA%E7%8E%B0Element%20is%20not%20clickable%20at%20point%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95%E6%80%BB%E7%BB%93/">爬虫使用selenium浏览器出现Element is not clickable at point的解决办法总结</a>
-        </li>
-      
-        <li>
-          <a href="/2020/02/12/%E7%88%AC%E8%99%AB%E4%BB%A3%E7%90%86%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%9D%A5%E6%BA%90/">爬虫代理的两种来源</a>
-        </li>
-      
-    </ul>
-  </div>
-
-        <hr>
-    
-        
-    <h5>Achives</h5>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">8</span></li></ul>
-    </div>
-
-        <hr>
-    
-        <!-- Friends Blog -->
-
-<h5>Friends</h5>
-<ul class="list-inline">
-
-    
-        <li><a href="http://www.sumoon.com" target="_blank">ACE theme</a></li>
-    
-</ul>
 
 
-        <hr>
-    
-</div>
 
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
 
-        
-    </div>
-</div>
 
 
     <!-- Footer -->
@@ -622,7 +488,7 @@
 <script>
     // only load tagcloud.js in tag.html
     if($('#tag_cloud').length !== 0){
-        async("http://yoursite.com/archives/index.html/js/jquery.tagcloud.js",function(){
+        async("http://yoursite.com/2020/02/12/%E7%88%AC%E8%99%AB%E4%B9%8Bselenium%E7%9A%84%E4%BD%BF%E7%94%A8/index.html/js/jquery.tagcloud.js",function(){
             $.fn.tagcloud.defaults = {
                 //size: {start: 1, end: 1, unit: 'em'},
                 color: {start: '#bbbbee', end: '#0085a1'},
