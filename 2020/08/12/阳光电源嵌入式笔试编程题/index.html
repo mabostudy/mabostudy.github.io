@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>知识分享</title>
+  <title>阳光电源嵌入式笔试编程题 | 知识分享</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-    
-    <!-- <meta name="keywords" content="">
-    <meta name="description" content=""> -->
-  
-  <meta property="og:type" content="website">
-<meta property="og:title" content="知识分享">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;index.html">
+  <meta name="description" content="阳光电源嵌入式笔试编程题">
+<meta name="keywords" content="tiku">
+<meta property="og:type" content="article">
+<meta property="og:title" content="阳光电源嵌入式笔试编程题">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;08&#x2F;12&#x2F;%E9%98%B3%E5%85%89%E7%94%B5%E6%BA%90%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%AC%94%E8%AF%95%E7%BC%96%E7%A8%8B%E9%A2%98&#x2F;index.html">
 <meta property="og:site_name" content="知识分享">
+<meta property="og:description" content="阳光电源嵌入式笔试编程题">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-08-12T12:30:13.373Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="知识分享" type="application/atom+xml">
@@ -192,348 +192,25 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-
-  
-    <article id="post-爬虫实战篇--更换请求头" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-阳光电源嵌入式笔试编程题" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/08/22/%E7%88%AC%E8%99%AB%E5%AE%9E%E6%88%98%E7%AF%87--%E6%9B%B4%E6%8D%A2%E8%AF%B7%E6%B1%82%E5%A4%B4/" target="_blank">爬虫实战篇--更换请求头</a>
-  
+    <h1 class="article-title" itemprop="name">
+      阳光电源嵌入式笔试编程题
     </h1>
   
 
 
   
   
-<a href="/2020/08/22/%E7%88%AC%E8%99%AB%E5%AE%9E%E6%88%98%E7%AF%87--%E6%9B%B4%E6%8D%A2%E8%AF%B7%E6%B1%82%E5%A4%B4/" class="archive-article-date">
-        <time datetime="2020-08-22T13:08:09.046Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-22</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>请求头是模拟浏览器时必备的操作。<br>加随机请求头也是为了模拟多用户访问浏览器而设置的操作。</p>
-<p><strong>更换请求头代码</strong>如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_user_agent</span><span class="params">()</span>:</span></span><br><span class="line">    MY_USER_AGENT = [</span><br><span class="line">        <span class="string">"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; AcooBrowser; .NET CLR 1.1.4322; .NET CLR 2.0.50727)"</span>,</span><br><span class="line">        <span class="string">"Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0; Acoo Browser; SLCC1; .NET CLR 2.0.50727; Media Center PC 5.0; .NET CLR 3.0.04506)"</span>,</span><br><span class="line">        <span class="string">"Mozilla/4.0 (compatible; MSIE 7.0; AOL 9.5; AOLBuild 4337.35; Windows NT 5.1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)"</span>,</span><br><span class="line">        <span class="string">"Mozilla/5.0 (Windows; U; MSIE 9.0; Windows NT 9.0; en-US)"</span>,</span><br><span class="line">        <span class="string">"Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident/5.0; .NET CLR 3.5.30729; .NET CLR 3.0.30729; .NET CLR 2.0.50727; Media Center PC 6.0)"</span>,</span><br><span class="line">        <span class="string">"Mozilla/5.0 (compatible; MSIE 8.0; Windows NT 6.0; Trident/4.0; WOW64; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; .NET CLR 1.0.3705; .NET CLR 1.1.4322)"</span>,</span><br><span class="line">        <span class="string">"Mozilla/4.0 (compatible; MSIE 7.0b; Windows NT 5.2; .NET CLR 1.1.4322; .NET CLR 2.0.50727; InfoPath.2; .NET CLR 3.0.04506.30)"</span>,</span><br><span class="line">        <span class="string">"Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN) AppleWebKit/523.15 (KHTML, like Gecko, Safari/419.3) Arora/0.3 (Change: 287 c9dfb30)"</span>,</span><br><span class="line">        <span class="string">"Mozilla/5.0 (X11; U; Linux; en-US) AppleWebKit/527+ (KHTML, like Gecko, Safari/419.3) Arora/0.6"</span>,</span><br><span class="line">        <span class="string">"Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.2pre) Gecko/20070215 K-Ninja/2.1.1"</span>,</span><br><span class="line">        <span class="string">"Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9) Gecko/20080705 Firefox/3.0 Kapiko/3.0"</span>,</span><br><span class="line">        <span class="string">"Mozilla/5.0 (X11; Linux i686; U;) Gecko/20070322 Kazehakase/0.4.5"</span>,</span><br><span class="line">        <span class="string">"Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.8) Gecko Fedora/1.9.0.8-1.fc10 Kazehakase/0.5.6"</span>,</span><br><span class="line">        <span class="string">"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11"</span>,</span><br><span class="line">        <span class="string">"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/535.20 (KHTML, like Gecko) Chrome/19.0.1036.7 Safari/535.20"</span>,</span><br><span class="line">        <span class="string">"Opera/9.80 (Macintosh; Intel Mac OS X 10.6.8; U; fr) Presto/2.9.168 Version/11.52"</span>,</span><br><span class="line">        <span class="string">"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.11 (KHTML, like Gecko) Chrome/20.0.1132.11 TaoBrowser/2.0 Safari/536.11"</span>,</span><br><span class="line">        <span class="string">"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.71 Safari/537.1 LBBROWSER"</span>,</span><br><span class="line">        <span class="string">"Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E; LBBROWSER)"</span>,</span><br><span class="line">        <span class="string">"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; QQDownload 732; .NET4.0C; .NET4.0E; LBBROWSER)"</span>,</span><br><span class="line">        <span class="string">"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.84 Safari/535.11 LBBROWSER"</span>,</span><br><span class="line">        <span class="string">"Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; WOW64; Trident/5.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E)"</span>,</span><br><span class="line">        <span class="string">"Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E; QQBrowser/7.0.3698.400)"</span>,</span><br><span class="line">        <span class="string">"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; QQDownload 732; .NET4.0C; .NET4.0E)"</span>,</span><br><span class="line">        <span class="string">"Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; Trident/4.0; SV1; QQDownload 732; .NET4.0C; .NET4.0E; 360SE)"</span>,</span><br><span class="line">        <span class="string">"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; QQDownload 732; .NET4.0C; .NET4.0E)"</span>,</span><br><span class="line">        <span class="string">"Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; WOW64; Trident/5.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E)"</span>,</span><br><span class="line">        <span class="string">"Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.89 Safari/537.1"</span>,</span><br><span class="line">        <span class="string">"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.89 Safari/537.1"</span>,</span><br><span class="line">        <span class="string">"Mozilla/5.0 (iPad; U; CPU OS 4_2_1 like Mac OS X; zh-cn) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8C148 Safari/6533.18.5"</span>,</span><br><span class="line">        <span class="string">"Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:2.0b13pre) Gecko/20110307 Firefox/4.0b13pre"</span>,</span><br><span class="line">        <span class="string">"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:16.0) Gecko/20100101 Firefox/16.0"</span>,</span><br><span class="line">        <span class="string">"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11"</span>,</span><br><span class="line">        <span class="string">"Mozilla/5.0 (X11; U; Linux x86_64; zh-CN; rv:1.9.2.10) Gecko/20100922 Ubuntu/10.10 (maverick) Firefox/3.6.10"</span>,</span><br><span class="line">        <span class="string">"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"</span>,</span><br><span class="line">    ]</span><br><span class="line">    <span class="keyword">return</span> MY_USER_AGENT</span><br></pre></td></tr></table></figure>
-
-<p><strong>调用更换请求头</strong>的代码如下,这里以安居客的请求头举例：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">headers = &#123;</span><br><span class="line">        <span class="string">'user-agent'</span>: random.choice(get_user_agent()),</span><br><span class="line">        <span class="string">'Accept-Encoding'</span>: <span class="string">'gzip, deflate'</span>,</span><br><span class="line">        <span class="string">'referer'</span>: <span class="string">'https://shanghai.anjuke.com/'</span>,</span><br><span class="line">        <span class="string">'Accept-Language'</span>: <span class="string">'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2'</span>, &#125;</span><br><span class="line">response = requests.get(<span class="string">'https://sh.fang.anjuke.com/'</span>,headers=headers)</span><br></pre></td></tr></table></figure>
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/08/22/%E7%88%AC%E8%99%AB%E5%AE%9E%E6%88%98%E7%AF%87--%E6%9B%B4%E6%8D%A2%E8%AF%B7%E6%B1%82%E5%A4%B4/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
         
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
 
-
-
-
-  
-    <article id="post-动态规划题目-凑硬币" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/08/14/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E9%A2%98%E7%9B%AE-%E5%87%91%E7%A1%AC%E5%B8%81/" target="_blank">动态规划-凑硬币</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/08/14/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E9%A2%98%E7%9B%AE-%E5%87%91%E7%A1%AC%E5%B8%81/" class="archive-article-date">
-        <time datetime="2020-08-14T02:31:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-14</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>你有三种硬币，面值分别为2元，5元，7元，每种硬币都足够多，买一本书需要27元。问：如何用最少的硬币组合正好付清，不需要对方找钱。</p>
-<h2 id="递归方法"><a href="#递归方法" class="headerlink" title="递归方法"></a>递归方法</h2><p>递归方法的思路是判断最后一步，如果最后一步的数不能被2、5、7整除的话，那么返回无穷大，只有钱刚好凑齐的情况下，返回0</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">a,b,c = map(int,input(<span class="string">'输入a,b空格隔开:'</span>).split())</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">coin</span><span class="params">(X)</span>:</span></span><br><span class="line">    res = float(<span class="string">'inf'</span>)   <span class="comment">##初始情况，将其赋予无穷大</span></span><br><span class="line">    <span class="keyword">if</span>(X == <span class="number">0</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>   <span class="comment">##钱刚好凑齐</span></span><br><span class="line">    <span class="keyword">if</span>(X&gt;=<span class="number">2</span>):</span><br><span class="line">        res = min(coin(X<span class="number">-2</span>)+<span class="number">1</span>,res)   </span><br><span class="line">    <span class="keyword">if</span>(X&gt;=<span class="number">5</span>):</span><br><span class="line">        res = min(coin(X<span class="number">-5</span>)+<span class="number">1</span>,res)</span><br><span class="line">    <span class="keyword">if</span>(X&gt;=<span class="number">7</span>):</span><br><span class="line">        res = min(coin(X<span class="number">-7</span>)+<span class="number">1</span>,res)</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">print(coin(<span class="number">27</span>))</span><br></pre></td></tr></table></figure>
-<p>但是用递归的话浪费的空间太多了，而且时间复杂度是2的N此方，如下图所示：<br><img src="https://img-blog.csdnimg.cn/20200813090829451.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><p>所以我们可以选择用动态规划来做。</p>
-<h3 id="首先确定状态"><a href="#首先确定状态" class="headerlink" title="首先确定状态"></a>首先确定状态</h3><h4 id="最后一步"><a href="#最后一步" class="headerlink" title="最后一步"></a>最后一步</h4><p><strong>最优策略必定是K枚硬币a1, a2,…, aK 面值加起来是27。</strong></p>
-<p>找出不影响最优策略的最后一个独立角色，这道问题中，那枚最后的硬币“aK”就是最后一步。把aK提取出来，硬币aK之前的所有硬币面值加总是27- aK<br>因为总体求最硬币数量最小策略，所以拼出27- aK 的硬币数也一定最少（重要设定）。<br><img src="https://img-blog.csdnimg.cn/20200814101620568.png#pic_center" alt="在这里插入图片描述"></p>
-<h4 id="分解成子问题"><a href="#分解成子问题" class="headerlink" title="分解成子问题"></a>分解成子问题</h4><p><strong>最后一步aK提出来之后，我们只要求出“最少用多少枚硬币可以拼出27- aK”就可以了。</strong></p>
-<p>这种与原问题内核一致，但是规模变小的问题，叫做子问题。</p>
-<p>为简化定义，我们设状态f(X)=最少用多少枚硬币拼出总面值X。</p>
-<p>我们目前还不知道最后的硬币aK面额多少，但它的面额一定只可能是2/5/7之一。</p>
-<p>如果aK是2，f(27)应该是f(27-2) + 1 (加上最后这一枚面值2的硬币）<br>如果aK是5，f(27)应该是f(27-5) + 1 (加上最后这一枚面值5的硬币）<br>如果aK是7，f(27)应该是f(27-7) + 1 (加上最后这一枚面值7的硬币）</p>
-<p>除此以外，没有其他的可能了。<br>至此，通过找到原问题最后一步，并将其转化为子问题。</p>
-<p>为求面值总额27的最小的硬币组合数的状态就形成了，用以下函数表示：<br>f(27) = min{f(27-2)+1, f(27-5)+1, f(27-7)+1}</p>
-<p><img src="https://img-blog.csdnimg.cn/20200814101743579.png#pic_center" alt="在这里插入图片描述"></p>
-<h3 id="其次确定转移方程"><a href="#其次确定转移方程" class="headerlink" title="其次确定转移方程"></a>其次确定转移方程</h3><p>为求面值总额27的最小的硬币组合数的状态就形成了，用以下函数表示：<br>f(27) = min{f(27-2)+1, f(27-5)+1, f(27-7)+1}</p>
-<h3 id="最后确定初始条件和边界情况"><a href="#最后确定初始条件和边界情况" class="headerlink" title="最后确定初始条件和边界情况"></a>最后确定初始条件和边界情况</h3><p>故对边界情况设定如下：<br><strong>如果硬币面值不能组合出Y，就定义f[Y]=正无穷</strong></p>
-<p>例如f[-1]=f[-2]=…=正无穷；<br>f[1] =min{f[-1]+1, f[-4]+1,f[-6]+1}=正无穷,</p>
-<p>特殊情况：本题的F[0]对应的情况为F[-2]、F[-5]、F[-7]，按照上文的边界情况设定结果是正无穷。<br>但是实际上F[0]的结果是存在的（即使用0个硬币的情况下），F[0]=0。</p>
-<p>可是按照我们刚刚的设定，F[0]=F[0-2]+1= F[-2]+1=正无穷。<br>岂不是矛盾？</p>
-<p>这种用转移方程无法计算，但是又实际存在的情况，就必须通过手动定义。<br><strong>这里手动强制定义初始条件为：F[0]=0.</strong></p>
-<p>而从0之后的数值是没矛盾的，比如F[1]= F[1-2]+1= F[-1]+1=正无穷（正无穷加任何数结果还是正无穷）；F[2]= F[2-2]+1= F[0]+1=1……</p>
-<p>实际面试中求解动态规划类问题，正确列出转移方程正确基本上就解决一半了。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##有三枚不同的硬币2、5、7凑成27，求最少的硬币组合</span></span><br><span class="line">nums = [<span class="number">2</span>,<span class="number">5</span>,<span class="number">7</span>]</span><br><span class="line">S = <span class="number">27</span></span><br><span class="line">first_list = [float(<span class="string">'inf'</span>) <span class="keyword">for</span> k <span class="keyword">in</span> range(S+<span class="number">1</span>)]  <span class="comment">##赋予初值</span></span><br><span class="line">first_list[<span class="number">0</span>] = <span class="number">0</span>  <span class="comment">##初始条件</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,S+<span class="number">1</span>):   <span class="comment">#由小到大F[0]、F[1]、F[2]...</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(len(nums)): <span class="comment">#F[0]-2、F[0]-5、F[0]-7 ....</span></span><br><span class="line">        <span class="keyword">if</span>((i-nums[j]&gt;=<span class="number">0</span>) <span class="keyword">and</span> (first_list[i-nums[j]]!=float(<span class="string">'inf'</span>))):  <span class="comment">##如果(剩下的钱够凑&amp;&amp;F[i]-j是不是无穷大)</span></span><br><span class="line">            first_list[i] = min(first_list[i-nums[j]]+<span class="number">1</span>,first_list[i])  <span class="comment">##比较次数</span></span><br><span class="line"><span class="keyword">if</span> first_list[S] == float(<span class="string">'inf'</span>):  <span class="comment">#类似爬楼梯算法，最后计算的是S的值（如图所示）</span></span><br><span class="line">    print(<span class="string">"没有这种硬币组合"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(first_list[S]) <span class="comment">#因为每一步都已经是最小的组合了，到最后一步只需要直接输出结果</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://img-blog.csdnimg.cn/20200814100403213.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<h2 id="两种方法的区别"><a href="#两种方法的区别" class="headerlink" title="两种方法的区别"></a>两种方法的区别</h2><p>递归不会保存每一初始值，所以重复的计算量很多。时间复杂度=2的N此方<br>而动态规划类似于爬山算法，是从小到大将每一个数保存在列表中从而进行计算，不需要进行重复计算，时间复杂度=硬币种类*凑成的总数字。</p>
-<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a href="https://juejin.im/post/6844904155299987464" target="_blank" rel="noopener">java实现的凑硬币版本</a></p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tiku</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/08/14/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E9%A2%98%E7%9B%AE-%E5%87%91%E7%A1%AC%E5%B8%81/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-遇到反爬时如何爬取拉勾网信息（非常详细）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/08/14/%E9%81%87%E5%88%B0%E5%8F%8D%E7%88%AC%E6%97%B6%E5%A6%82%E4%BD%95%E7%88%AC%E5%8F%96%E6%8B%89%E5%8B%BE%E7%BD%91%E4%BF%A1%E6%81%AF%EF%BC%88%E9%9D%9E%E5%B8%B8%E8%AF%A6%E7%BB%86%EF%BC%89/" target="_blank">遇到反爬时如何爬取拉勾网信息（非常详细）</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/08/14/%E9%81%87%E5%88%B0%E5%8F%8D%E7%88%AC%E6%97%B6%E5%A6%82%E4%BD%95%E7%88%AC%E5%8F%96%E6%8B%89%E5%8B%BE%E7%BD%91%E4%BF%A1%E6%81%AF%EF%BC%88%E9%9D%9E%E5%B8%B8%E8%AF%A6%E7%BB%86%EF%BC%89/" class="archive-article-date">
-        <time datetime="2020-08-14T01:51:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-14</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><p>我们知道百度其实就是一个爬虫，但是对方的服务器是没有对百度进行反爬的，所以为了防止对方服务器的反爬，我们在爬取网站的时候要尽可能地模拟我们使用的浏览器。</p>
-<h3 id="请求头"><a href="#请求头" class="headerlink" title="请求头"></a>请求头</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">'Origin'</span>: <span class="string">'https://www.lagou.com'</span>,</span><br><span class="line">    <span class="string">'Accept-Encoding'</span>: <span class="string">'gzip, deflate, br'</span>,</span><br><span class="line">    <span class="string">'Accept-Language'</span>: <span class="string">'zh-CN,zh;q=0.9,en;q=0.8'</span>,</span><br><span class="line">    <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/537.36'</span>,</span><br><span class="line">    <span class="string">'Content-Type'</span>: <span class="string">'application/x-www-form-urlencoded; charset=UTF-8'</span>,</span><br><span class="line">    <span class="string">'Accept'</span>: <span class="string">'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3'</span>,</span><br><span class="line">    <span class="string">'Referer'</span>: <span class="string">'https://www.lagou.com/utrack/trackMid.html?f=https%3A%2F%2Fwww.lagou.com%2Fjobs%2Flist_%3Fcity%3D%25E4%25B8%258A%25E6%25B5%25B7%26cl%3Dfalse%26fromSearch%3Dtrue%26labelWords%3D%26suginput%3D'</span>,</span><br><span class="line">    <span class="string">'Connection'</span>: <span class="string">'keep-alive'</span>,</span><br><span class="line">    <span class="string">'X-Anit-Forge-Token'</span>: <span class="string">'None'</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="Cookies"><a href="#Cookies" class="headerlink" title="Cookies"></a>Cookies</h3><p>我们开始给爬虫加登录信息。<br><strong>思路</strong>是这样的，我们首先获取未登录的cookies信息，然后手动获取登录之后的cookies，最后将网页的未登录的cookies来更新手动获取的cookies。</p>
-<p><strong>Cookies</strong>更新之前：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200817214848261.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<p><strong>Cookies更新</strong>之后：<br><img src="https://img-blog.csdnimg.cn/2020081721490733.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><p><strong>为什么我们要用登录之前的Cookies来替代未登录时候的Cookies，而不是直接用登录之后的Cookies呢？</strong><br>我们来进行下面的操作：</p>
-<p>我们用python获取未登录之前的Cookies，代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r = requests.utils.dict_from_cookiejar(response.cookies)  <span class="comment"># 获取未登录之前的cookies，并将其保存为字典形式</span></span><br></pre></td></tr></table></figure>
-<p>得到Cookies为：<br><code>{&#39;X_HTTP_TOKEN&#39;: &#39;42daf4b72327b2815391767951bf5e71415983ed09&#39;,       
- &#39;user_trace_token&#39;: &#39;20200817214535-246f31d4-af7a-4789-91aa-8b78a9968cc2&#39;,
-  &#39;JSESSIONID&#39;: &#39;ABAAABAABAGABFA4667C48E469AC7C13D950817DEE99E9E&#39;,
-   &#39;SEARCH_ID&#39;: &#39;bcce59f10c2f47e092507fc45937b092&#39;}</code></p>
-<p>  而登录之后的Cookies如下图：<br>  <img src="https://img-blog.csdnimg.cn/20200817215359158.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述">其中所包含的键值对比未登录之前的Cookies要多，如果我们用手动获取的Cookies来登录，代码是这样的：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">response = requests.post(<span class="string">'https://www.lagou.com/jobs/positionAjax.json'</span>, headers=headers, params=params,</span><br><span class="line">                             cookies=cookies, data=data)  <span class="comment">#</span></span><br></pre></td></tr></table></figure>
-<p>我们发现加了Cookies之后，还是获取不到我们想要的数据，还是会出现如下的图：<br><img src="https://img-blog.csdnimg.cn/20200817212349685.png#pic_center" alt="在这里插入图片描述"></p>
-<p>很多人到这一步如果再爬取不到数据，可能就要怀疑人生了。其实你只是有个小问题一直被你忽视了，那就是我们<strong>不能只用当前手动获取的Cookies</strong>，还是需要和程序获取的Cookies来结合。因为程序获得的Cookies是动态的，而我们手动获取的Cookies只能是静态的，所以这就导致了我们手动获取的Cookies在复制到了程序当中的时候出现了失效的情况了。</p>
-<h4 id="手动提取Cookies和自动Cookies相结合"><a href="#手动提取Cookies和自动Cookies相结合" class="headerlink" title="手动提取Cookies和自动Cookies相结合"></a>手动提取Cookies和自动Cookies相结合</h4><p>通过手动提取的Cookies和程序自动Cookies相结合的方式，我们顺利爬取到了页面信息。</p>
-<h5 id="自动提取Cookies实现"><a href="#自动提取Cookies实现" class="headerlink" title="自动提取Cookies实现"></a>自动提取Cookies实现</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">'Origin'</span>: <span class="string">'https://www.lagou.com'</span>,</span><br><span class="line">    <span class="string">'Accept-Encoding'</span>: <span class="string">'gzip, deflate, br'</span>,</span><br><span class="line">    <span class="string">'Accept-Language'</span>: <span class="string">'zh-CN,zh;q=0.9,en;q=0.8'</span>,</span><br><span class="line">    <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/537.36'</span>,</span><br><span class="line">    <span class="string">'Content-Type'</span>: <span class="string">'application/x-www-form-urlencoded; charset=UTF-8'</span>,</span><br><span class="line">    <span class="string">'Accept'</span>: <span class="string">'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3'</span>,</span><br><span class="line">    <span class="string">'Referer'</span>: <span class="string">'https://www.lagou.com/utrack/trackMid.html?f=https%3A%2F%2Fwww.lagou.com%2Fjobs%2Flist_%3Fcity%3D%25E4%25B8%258A%25E6%25B5%25B7%26cl%3Dfalse%26fromSearch%3Dtrue%26labelWords%3D%26suginput%3D'</span>,</span><br><span class="line">    <span class="string">'Connection'</span>: <span class="string">'keep-alive'</span>,</span><br><span class="line">    <span class="string">'X-Anit-Forge-Token'</span>: <span class="string">'None'</span>,</span><br><span class="line">&#125;</span><br><span class="line">response = requests.get(</span><br><span class="line">    <span class="string">'https://www.lagou.com/jobs/list_?city=%E4%B8%8A%E6%B5%B7&amp;cl=false&amp;fromSearch=true&amp;labelWords=&amp;suginput='</span>,   <span class="comment">##通过首页来提取未登录的Cookies</span></span><br><span class="line">    headers=headers)</span><br><span class="line">r = requests.utils.dict_from_cookiejar(response.cookies)  <span class="comment"># 获取未登录时cookies的字典形式</span></span><br></pre></td></tr></table></figure>
-<h4 id="手动提取Cookies实现"><a href="#手动提取Cookies实现" class="headerlink" title="手动提取Cookies实现"></a>手动提取Cookies实现</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">cookies = &#123;</span><br><span class="line">        <span class="string">'X_MIDDLE_TOKEN'</span>: <span class="string">'b378b95e10365bf661d07c4677d0796b'</span>,</span><br><span class="line">        <span class="string">'JSESSIONID'</span>: <span class="string">'ABAAAECABIEACCA21A19A7E6AC502D30F9E0C895A9D728F'</span>,</span><br><span class="line">        <span class="string">'_ga'</span>: <span class="string">'GA1.2.2029710160.1597402404'</span>,</span><br><span class="line">        <span class="string">'_gat'</span>: <span class="string">'1'</span>,</span><br><span class="line">        <span class="string">'Hm_lvt_4233e74dff0ae5bd0a3d81c6ccf756e6'</span>: <span class="string">'1597402405'</span>,</span><br><span class="line">        <span class="string">'user_trace_token'</span>: <span class="string">'20200814185324-964f6276-b305-42bc-ace0-b2d9281183be'</span>,</span><br><span class="line">        <span class="string">'LGSID'</span>: <span class="string">'20200817212759-d10cedcc-a8bf-4217-be81-dd076a492bef'</span>,</span><br><span class="line">        <span class="string">'PRE_UTM'</span>: <span class="string">''</span>,</span><br><span class="line">        <span class="string">'PRE_HOST'</span>: <span class="string">''</span>,</span><br><span class="line">        <span class="string">'PRE_SITE'</span>: <span class="string">''</span>,</span><br><span class="line">        <span class="string">'PRE_LAND'</span>: <span class="string">'https%3A%2F%2Fwww.lagou.com%2F%3F_from_mid%3D1'</span>,</span><br><span class="line">        <span class="string">'LGUID'</span>: <span class="string">'20200814185325-2014f63b-09d9-4803-bbe1-88d52f7e09be'</span>,</span><br><span class="line">        <span class="string">'_gid'</span>: <span class="string">'GA1.2.1977632940.1597402405'</span>,</span><br><span class="line">        <span class="string">'index_location_city'</span>: <span class="string">'%E4%B8%8A%E6%B5%B7'</span>,</span><br><span class="line">        <span class="string">'TG-TRACK-CODE'</span>: <span class="string">'index_hotjob'</span>,</span><br><span class="line">        <span class="string">'LGRID'</span>: <span class="string">'20200814192428-6a6ac31c-af6b-4a6f-8310-1710a2b061a4'</span>,</span><br><span class="line">        <span class="string">'Hm_lpvt_4233e74dff0ae5bd0a3d81c6ccf756e6'</span>: <span class="string">'1597404269'</span>,</span><br><span class="line">        <span class="string">'SEARCH_ID'</span>: <span class="string">'50341c0aa78d427cb85b609ca8a00308'</span>,</span><br><span class="line">        <span class="string">'X_HTTP_TOKEN'</span>:<span class="string">'42daf4b72327b2819780767951bf5e71415983ed09'</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="页面分析"><a href="#页面分析" class="headerlink" title="页面分析"></a>页面分析</h2><p>首先我们对<a href="https://www.lagou.com/jobs/list_?city=%E4%B8%8A%E6%B5%B7&cl=false&fromSearch=true&labelWords=&suginput=" target="_blank" rel="noopener">拉勾网</a>的网站进行分析，找到数据是在哪个api接口下。<strong>这里重点找一个带json的文本信息链接</strong>，如下图所示：<br><img src="https://img-blog.csdnimg.cn/20200817202006581.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<p>其次，<strong>构造参数</strong>；我们发现浏览器请求的链接是：<br><a href="https://www.lagou.com/jobs/positionAjax.json?city=%E4%B8%8A%E6%B5%B7&needAddtionalResult=false" target="_blank" rel="noopener">https://www.lagou.com/jobs/positionAjax.json?city=%E4%B8%8A%E6%B5%B7&amp;needAddtionalResult=false</a><br>我们直接访问这个网址，是得不到任何数据的，我们还需要给链接构造参数：<br><img src="https://img-blog.csdnimg.cn/20200817211920603.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><strong>这里有三个参数，通过对比分析得到first为true时为第一页，pn代表了第几页，kd代表搜索关键词。</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">cookies = &#123;</span><br><span class="line">        <span class="string">'X_MIDDLE_TOKEN'</span>: <span class="string">'b378b95e10365bf661d07c4677d0796b'</span>,</span><br><span class="line">        <span class="string">'JSESSIONID'</span>: <span class="string">'ABAAAECABIEACCA21A19A7E6AC502D30F9E0C895A9D728F'</span>,</span><br><span class="line">        <span class="string">'_ga'</span>: <span class="string">'GA1.2.2029710160.1597402404'</span>,</span><br><span class="line">        <span class="string">'_gat'</span>: <span class="string">'1'</span>,</span><br><span class="line">        <span class="string">'Hm_lvt_4233e74dff0ae5bd0a3d81c6ccf756e6'</span>: <span class="string">'1597402405'</span>,</span><br><span class="line">        <span class="string">'user_trace_token'</span>: <span class="string">'20200814185324-964f6276-b305-42bc-ace0-b2d9281183be'</span>,</span><br><span class="line">        <span class="string">'LGSID'</span>: <span class="string">'20200817212759-d10cedcc-a8bf-4217-be81-dd076a492bef'</span>,</span><br><span class="line">        <span class="string">'PRE_UTM'</span>: <span class="string">''</span>,</span><br><span class="line">        <span class="string">'PRE_HOST'</span>: <span class="string">''</span>,</span><br><span class="line">        <span class="string">'PRE_SITE'</span>: <span class="string">''</span>,</span><br><span class="line">        <span class="string">'PRE_LAND'</span>: <span class="string">'https%3A%2F%2Fwww.lagou.com%2F%3F_from_mid%3D1'</span>,</span><br><span class="line">        <span class="string">'LGUID'</span>: <span class="string">'20200814185325-2014f63b-09d9-4803-bbe1-88d52f7e09be'</span>,</span><br><span class="line">        <span class="string">'_gid'</span>: <span class="string">'GA1.2.1977632940.1597402405'</span>,</span><br><span class="line">        <span class="string">'index_location_city'</span>: <span class="string">'%E4%B8%8A%E6%B5%B7'</span>,</span><br><span class="line">        <span class="string">'TG-TRACK-CODE'</span>: <span class="string">'index_hotjob'</span>,</span><br><span class="line">        <span class="string">'LGRID'</span>: <span class="string">'20200814192428-6a6ac31c-af6b-4a6f-8310-1710a2b061a4'</span>,</span><br><span class="line">        <span class="string">'Hm_lpvt_4233e74dff0ae5bd0a3d81c6ccf756e6'</span>: <span class="string">'1597404269'</span>,</span><br><span class="line">        <span class="string">'SEARCH_ID'</span>: <span class="string">'50341c0aa78d427cb85b609ca8a00308'</span>,</span><br><span class="line">        <span class="string">'X_HTTP_TOKEN'</span>:<span class="string">'42daf4b72327b2819780767951bf5e71415983ed09'</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"><span class="string">'''参数的解释放在后面</span></span><br><span class="line"><span class="string">params = (</span></span><br><span class="line"><span class="string">        ('px', 'default'),</span></span><br><span class="line"><span class="string">        ('city',city),</span></span><br><span class="line"><span class="string">        ('needAddtionalResult', 'false'),</span></span><br><span class="line"><span class="string">    )</span></span><br><span class="line"><span class="string">data = &#123;"first":"true",    </span></span><br><span class="line"><span class="string">        'kd': '数据分析',</span></span><br><span class="line"><span class="string">        'pn': pn&#125;</span></span><br><span class="line"><span class="string">      </span></span><br><span class="line"><span class="string">if pn&gt;1:</span></span><br><span class="line"><span class="string">    data["first"] = "false"</span></span><br><span class="line"><span class="string">代码运行时候需要取消注释'''</span></span><br><span class="line">response = requests.post(<span class="string">'https://www.lagou.com/jobs/positionAjax.json'</span>, headers=headers, params=params,data=data)  <span class="comment"># 请求接口</span></span><br></pre></td></tr></table></figure>
-<p>于是乎我们开始访问，却得到了这样的链接，等等，我们刚不是已经将参数构造完成了吗？为什么还是出现这样的情况？<br><img src="https://img-blog.csdnimg.cn/20200817212349685.png#pic_center" alt="在这里插入图片描述"><br>我们考虑可能是没有带cookies访问，我们开始尝试加Cookies，<strong>这里回到上一节的Cookies</strong>。<br>尝试加了Cookies之后对页面爬取，代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> response = requests.post(<span class="string">'https://www.lagou.com/jobs/positionAjax.json'</span>, headers=headers, params=params,</span><br><span class="line">                          cookies=cookies, data=data) </span><br><span class="line"><span class="keyword">return</span> response.json()</span><br></pre></td></tr></table></figure>
-<p>顺利输出：<br><img src="https://img-blog.csdnimg.cn/20200818091515696.png#pic_center" alt="在这里插入图片描述"></p>
-<p>但是这里的数据没有结构化显示出来，所以我们需要使用以下代码来获得结构化数据：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response_json = json.dumps(response_json,indent=<span class="number">4</span>,ensure_ascii=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/20200818091946962.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>通过字典形式来获取我们想要的数据：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">position_list = response_json[<span class="string">"content"</span>][ <span class="string">'positionResult'</span>][<span class="string">"result"</span>]</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://img-blog.csdnimg.cn/20200818092453713.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>至此，我们就完成了页面的分析</p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_cookie</span><span class="params">()</span>:</span></span><br><span class="line">    headers = &#123;</span><br><span class="line">    <span class="string">'Connection'</span>: <span class="string">'keep-alive'</span>,</span><br><span class="line">    <span class="string">'Cache-Control'</span>: <span class="string">'max-age=0'</span>,</span><br><span class="line">    <span class="string">'Upgrade-Insecure-Requests'</span>: <span class="string">'1'</span>,</span><br><span class="line">    <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/537.36'</span>,</span><br><span class="line">    <span class="string">'Accept'</span>: <span class="string">'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8'</span>,</span><br><span class="line">    <span class="string">'Accept-Encoding'</span>: <span class="string">'gzip, deflate, br'</span>,</span><br><span class="line">    <span class="string">'Accept-Language'</span>: <span class="string">'zh-CN,zh;q=0.9,en;q=0.8'</span>,</span><br><span class="line">&#125;</span><br><span class="line">    response = requests.get(</span><br><span class="line">        <span class="string">'https://www.lagou.com/jobs/list_?city=%E4%B8%8A%E6%B5%B7&amp;cl=false&amp;fromSearch=true&amp;labelWords=&amp;suginput='</span>,</span><br><span class="line">        headers=headers)  <span class="comment"># 请求原网页</span></span><br><span class="line">    r = requests.utils.dict_from_cookiejar(response.cookies)  <span class="comment"># 获取cookies</span></span><br><span class="line">    print(r)</span><br><span class="line">    cookies = &#123;</span><br><span class="line">        <span class="string">'X_MIDDLE_TOKEN'</span>: <span class="string">'b378b95e10365bf661d07c4677d0796b'</span>,</span><br><span class="line">        <span class="string">'JSESSIONID'</span>: <span class="string">'ABAAAECABIEACCA21A19A7E6AC502D30F9E0C895A9D728F'</span>,</span><br><span class="line">        <span class="string">'_ga'</span>: <span class="string">'GA1.2.2029710160.1597402404'</span>,</span><br><span class="line">        <span class="string">'_gat'</span>: <span class="string">'1'</span>,</span><br><span class="line">        <span class="string">'Hm_lvt_4233e74dff0ae5bd0a3d81c6ccf756e6'</span>: <span class="string">'1597402405'</span>,</span><br><span class="line">        <span class="string">'user_trace_token'</span>: <span class="string">'20200814185324-964f6276-b305-42bc-ace0-b2d9281183be'</span>,</span><br><span class="line">        <span class="string">'LGSID'</span>: <span class="string">'20200817212759-d10cedcc-a8bf-4217-be81-dd076a492bef'</span>,</span><br><span class="line">        <span class="string">'PRE_UTM'</span>: <span class="string">''</span>,</span><br><span class="line">        <span class="string">'PRE_HOST'</span>: <span class="string">''</span>,</span><br><span class="line">        <span class="string">'PRE_SITE'</span>: <span class="string">''</span>,</span><br><span class="line">        <span class="string">'PRE_LAND'</span>: <span class="string">'https%3A%2F%2Fwww.lagou.com%2F%3F_from_mid%3D1'</span>,</span><br><span class="line">        <span class="string">'LGUID'</span>: <span class="string">'20200814185325-2014f63b-09d9-4803-bbe1-88d52f7e09be'</span>,</span><br><span class="line">        <span class="string">'_gid'</span>: <span class="string">'GA1.2.1977632940.1597402405'</span>,</span><br><span class="line">        <span class="string">'index_location_city'</span>: <span class="string">'%E4%B8%8A%E6%B5%B7'</span>,</span><br><span class="line">        <span class="string">'TG-TRACK-CODE'</span>: <span class="string">'index_hotjob'</span>,</span><br><span class="line">        <span class="string">'LGRID'</span>: <span class="string">'20200814192428-6a6ac31c-af6b-4a6f-8310-1710a2b061a4'</span>,</span><br><span class="line">        <span class="string">'Hm_lpvt_4233e74dff0ae5bd0a3d81c6ccf756e6'</span>: <span class="string">'1597404269'</span>,</span><br><span class="line">        <span class="string">'SEARCH_ID'</span>: <span class="string">'50341c0aa78d427cb85b609ca8a00308'</span>,</span><br><span class="line">        <span class="string">'X_HTTP_TOKEN'</span>:<span class="string">'42daf4b72327b2819780767951bf5e71415983ed09'</span></span><br><span class="line">    &#125;</span><br><span class="line">    cookies.update(r)  <span class="comment"># 更新接口的cookies  #以r为准</span></span><br><span class="line">    print(cookies)  </span><br><span class="line">    <span class="keyword">return</span> cookies</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">crawl</span><span class="params">(city = <span class="string">""</span>, pn = <span class="number">1</span>, cookies = None)</span>:</span></span><br><span class="line">    headers = &#123;</span><br><span class="line">        <span class="string">'Origin'</span>: <span class="string">'https://www.lagou.com'</span>,</span><br><span class="line">        <span class="string">'X-Anit-Forge-Code'</span>: <span class="string">'0'</span>,</span><br><span class="line">        <span class="string">'Accept-Encoding'</span>: <span class="string">'gzip, deflate, br'</span>,</span><br><span class="line">        <span class="string">'Accept-Language'</span>: <span class="string">'zh-CN,zh;q=0.9,en;q=0.8'</span>,</span><br><span class="line">        <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/537.36'</span>,</span><br><span class="line">        <span class="string">'Content-Type'</span>: <span class="string">'application/x-www-form-urlencoded; charset=UTF-8'</span>,</span><br><span class="line">        <span class="string">'Accept'</span>: <span class="string">'application/json, text/javascript, */*; q=0.01'</span>,</span><br><span class="line">        <span class="string">'Referer'</span>: <span class="string">'https://www.lagou.com/jobs/list_java?px=new&amp;city=%E4%B8%8A%E6%B5%B7'</span>,</span><br><span class="line">        <span class="string">'X-Requested-With'</span>: <span class="string">'XMLHttpRequest'</span>,</span><br><span class="line">        <span class="string">'Connection'</span>: <span class="string">'keep-alive'</span>,</span><br><span class="line">        <span class="string">'X-Anit-Forge-Token'</span>: <span class="string">'None'</span>,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    params = (</span><br><span class="line">        (<span class="string">'px'</span>, <span class="string">'default'</span>),</span><br><span class="line">        (<span class="string">'city'</span>,city),</span><br><span class="line">        (<span class="string">'needAddtionalResult'</span>, <span class="string">'false'</span>),</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    data = &#123;<span class="string">"first"</span>:<span class="string">"true"</span>,</span><br><span class="line">            <span class="string">'kd'</span>: <span class="string">'数据分析'</span>,</span><br><span class="line">            <span class="string">'pn'</span>: pn&#125;</span><br><span class="line">    <span class="keyword">if</span> pn&gt;<span class="number">1</span>:</span><br><span class="line">        data[<span class="string">"first"</span>] = <span class="string">"false"</span></span><br><span class="line">    response = requests.post(<span class="string">'https://www.lagou.com/jobs/positionAjax.json'</span>, headers=headers, params=params,</span><br><span class="line">                             cookies=cookies, data=data)  <span class="comment"># 请求接口</span></span><br><span class="line">    <span class="keyword">return</span> response.json()</span><br><span class="line">city_list = [<span class="string">"北京"</span>,<span class="string">"上海"</span>,<span class="string">"深圳"</span>,<span class="string">"广州"</span>,<span class="string">"杭州"</span>,<span class="string">"成都"</span>,<span class="string">"南京"</span>,<span class="string">"武汉"</span>,<span class="string">"西安"</span>,<span class="string">"厦门"</span>,<span class="string">"长沙"</span>,<span class="string">"苏州"</span>,<span class="string">"天津"</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> city <span class="keyword">in</span> city_list:</span><br><span class="line">    print(<span class="string">"*"</span>*<span class="number">60</span>)</span><br><span class="line">    print(<span class="string">"&#123;city&#125; start"</span>.format(city=city))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">31</span>):</span><br><span class="line">        <span class="keyword">if</span> (i<span class="number">-1</span>)%<span class="number">5</span>==<span class="number">0</span>:</span><br><span class="line">            cookies = get_cookie()  <span class="comment">##因为Cookies是有时效性的，每隔一段时间Cookies就会动态地发生变化</span></span><br><span class="line">        time.sleep(random.random()+random.randint(<span class="number">1</span>,<span class="number">2</span>))  <span class="comment">##很重要！！加随机时间防止反爬</span></span><br><span class="line">        response_json = crawl(city=city,pn=i,cookies=cookies) <span class="comment">##pn是第几页</span></span><br><span class="line">        time.sleep(<span class="number">1.2</span>)</span><br><span class="line">        <span class="comment"># response_json = json.dumps(response_json,indent=4,ensure_ascii=False)</span></span><br><span class="line">        <span class="comment"># print('response_json',response_json)   ##输出结构化数据</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            position_list = response_json[<span class="string">"content"</span>][ <span class="string">'positionResult'</span>][<span class="string">"result"</span>]</span><br><span class="line">            print(position_list)</span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            print(response_json)</span><br><span class="line">        <span class="keyword">if</span> len(position_list)&lt;<span class="number">1</span>:</span><br><span class="line">            print(<span class="string">"&#123;city&#125; start"</span>.format(city=city))</span><br><span class="line">            print(<span class="string">"*"</span>*<span class="number">60</span>)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    print(<span class="string">"&#123;city&#125; end"</span>.format(city=city))</span><br><span class="line">    print(<span class="string">"*"</span>*<span class="number">60</span>)</span><br></pre></td></tr></table></figure>
-
-<p>至此，我们就完成了对拉勾网数据的爬取了，需要注意的有以下几点：</p>
-<ol>
-<li>在爬取网页之前要尽可能让你的爬虫伪装成浏览器的访问。这里加了Cookies和Headers。</li>
-<li>在批量爬取时候要加随机时间，<strong>特别重要！！！</strong></li>
-<li>Cookies是有时效的，<strong>切忌将手动提取的登陆之后的Cookies来替代未登陆时的Cookies</strong>。</li>
-</ol>
-<p>小贴士：根据经验来看，网页的数据一般是在json链接中，所以我们一般情况下重点关注带json的链接信息。</p>
-<p>至此，我们的数据爬取任务就完成了，后面会专门写一个清洗和写入数据库，以及通过爬取的数据来分析就业的文章，有需要的可以继续关注别的博客。</p>
-<p><strong>如有转载请注明出处！！！</strong></p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spider</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/08/14/%E9%81%87%E5%88%B0%E5%8F%8D%E7%88%AC%E6%97%B6%E5%A6%82%E4%BD%95%E7%88%AC%E5%8F%96%E6%8B%89%E5%8B%BE%E7%BD%91%E4%BF%A1%E6%81%AF%EF%BC%88%E9%9D%9E%E5%B8%B8%E8%AF%A6%E7%BB%86%EF%BC%89/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-阳光电源嵌入式笔试编程题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/08/12/%E9%98%B3%E5%85%89%E7%94%B5%E6%BA%90%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%AC%94%E8%AF%95%E7%BC%96%E7%A8%8B%E9%A2%98/" target="_blank">阳光电源嵌入式笔试编程题</a>
-  
-    </h1>
-  
-
-
-  
-  
 <a href="/2020/08/12/%E9%98%B3%E5%85%89%E7%94%B5%E6%BA%90%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%AC%94%E8%AF%95%E7%BC%96%E7%A8%8B%E9%A2%98/" class="archive-article-date">
         <time datetime="2020-08-12T12:30:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-12</time>
 </a>
@@ -541,6 +218,27 @@
   
   
     
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">150字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">1分</span>
+    </span>
+  </span>
+</div>
+
 
   
   </header>
@@ -554,7 +252,59 @@
     
 
     
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/alipay.jpg">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/weixin.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
 
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          Ma Bo
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="http://yoursite.com/2020/08/12/阳光电源嵌入式笔试编程题/" title="阳光电源嵌入式笔试编程题" target="_blank">http://yoursite.com/2020/08/12/阳光电源嵌入式笔试编程题/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
     
 
   </div>
@@ -575,16 +325,85 @@
     
 
     
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/08/12/%E9%98%B3%E5%85%89%E7%94%B5%E6%BA%90%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%AC%94%E8%AF%95%E7%BC%96%E7%A8%8B%E9%A2%98/">展开全文 >></a>
-    </p>
+
     
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/08/12/%E9%98%B3%E5%85%89%E7%94%B5%E6%BA%90%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%AC%94%E8%AF%95%E7%BC%96%E7%A8%8B%E9%A2%98/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
 
     
     <div class="clearfix"></div>
   </div>
   </div>
 </article>
+
+
+<nav id="article-nav">
+  
+    <a href="/2020/08/14/%E9%81%87%E5%88%B0%E5%8F%8D%E7%88%AC%E6%97%B6%E5%A6%82%E4%BD%95%E7%88%AC%E5%8F%96%E6%8B%89%E5%8B%BE%E7%BD%91%E4%BF%A1%E6%81%AF%EF%BC%88%E9%9D%9E%E5%B8%B8%E8%AF%A6%E7%BB%86%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          遇到反爬时如何爬取拉勾网信息（非常详细）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/31/%E7%A7%91%E5%A4%A7%E8%AE%AF%E9%A3%9E2021%E5%B1%8A%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%8F%90%E5%89%8D%E6%89%B9%E4%B8%89%E9%81%93%E7%AC%94%E8%AF%95%E9%A2%98/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">科大讯飞2021届算法工程师提前批三道笔试题解析</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -605,658 +424,14 @@
 
 
 
-  
-    <article id="post-科大讯飞2021届算法工程师提前批三道笔试题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/07/31/%E7%A7%91%E5%A4%A7%E8%AE%AF%E9%A3%9E2021%E5%B1%8A%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%8F%90%E5%89%8D%E6%89%B9%E4%B8%89%E9%81%93%E7%AC%94%E8%AF%95%E9%A2%98/" target="_blank">科大讯飞2021届算法工程师提前批三道笔试题解析</a>
-  
-    </h1>
-  
 
 
-  
-  
-<a href="/2020/07/31/%E7%A7%91%E5%A4%A7%E8%AE%AF%E9%A3%9E2021%E5%B1%8A%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%8F%90%E5%89%8D%E6%89%B9%E4%B8%89%E9%81%93%E7%AC%94%E8%AF%95%E9%A2%98/" class="archive-article-date">
-        <time datetime="2020-07-31T12:24:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-31</time>
-</a>
 
-  
-  
-    
 
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>科大讯飞2021届算法工程师提前批三道笔试题<br> <strong><em>题目</em></strong><br><img src="https://img-blog.csdnimg.cn/20200731162101749.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong><em>思路</em></strong>：首先分析题目得到几个关键点</p>
-<ol>
-<li>输入描述为无，那么没有其他输入了，只需要对题目中给出的几个点进行拟合就可以。</li>
-<li>需要利用到均方误差的公式。</li>
-<li>输出的形式是包含一位小数，想到如果按照range进行遍历的话，那么出来的都只会是整数，不能够满足要求。</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">	start = time.time()   <span class="comment">##这里是为了满足题目中的条件，</span></span><br><span class="line">	min = <span class="number">10</span>**<span class="number">4</span></span><br><span class="line">	list1 = [i / <span class="number">10</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">100</span>)]   <span class="comment">##区间在[0,10]，从0.1开始扩增</span></span><br><span class="line">	<span class="keyword">for</span> a <span class="keyword">in</span> list1:</span><br><span class="line">	    <span class="keyword">for</span> b <span class="keyword">in</span> list1:</span><br><span class="line">	        loss_fuc = ((a+b<span class="number">-6</span>)**<span class="number">2</span> +(<span class="number">2</span>*a+b<span class="number">-5</span>)**<span class="number">2</span> +(<span class="number">3</span>*a+b<span class="number">-7</span>)**<span class="number">2</span> +(<span class="number">4</span>*a+b<span class="number">-10</span>)**<span class="number">2</span>)/<span class="number">4</span> <span class="comment">##这里可以看成是损失函数，将数值代入到均方误差的公式中</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">###比较大小，遇到更小的就赋值给min</span></span><br><span class="line">	        <span class="keyword">if</span> loss_fuc &lt; min:</span><br><span class="line">	            print(fuc)</span><br><span class="line">	            c = a</span><br><span class="line">	            d = b</span><br><span class="line">	            min = loss_fuc</span><br><span class="line">  <span class="comment">###</span></span><br><span class="line">	print(<span class="string">'c=&#123;&#125;'</span>.format(c))</span><br><span class="line">	print(<span class="string">'d=&#123;&#125;'</span>.format(c))</span><br><span class="line">	end = time.time()</span><br><span class="line">	print(end-start)</span><br></pre></td></tr></table></figure>
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-<p><img src="https://img-blog.csdnimg.cn/20200731201425845.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p><strong><em>思路</em></strong><br> 本题从字符串的中间出发，按照字符串的长度为奇数或者偶数来分析。通过保留符合要求的字符，最后相减得到本题中需要删除的子字符串的个数。</p>
-<ol>
-<li>如果字符串的长度是奇数，计数器从1开始，从中间出发，如果遇到不对称的字符那么直接退出循环；如果遇到对称的字符，那么计数器加2，继续执行循环。</li>
-<li>如果字符串的长度是偶数，计数器从0开始，同理可得。</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    s = input()</span><br><span class="line">    n = len(s)</span><br><span class="line">    <span class="keyword">if</span> n%<span class="number">2</span> ==<span class="number">0</span>:</span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(int(n/<span class="number">2</span>),n):</span><br><span class="line">            <span class="keyword">if</span> s[i] == s[n<span class="number">-1</span>-i]:</span><br><span class="line">                count +=<span class="number">2</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                count +=<span class="number">0</span></span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        count = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(int(n/<span class="number">2</span>)+<span class="number">1</span>,n):</span><br><span class="line">            <span class="keyword">if</span> s[j] == s[n<span class="number">-1</span>-j]:</span><br><span class="line">                count +=<span class="number">2</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                count +=<span class="number">0</span></span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">    del_len = n - count</span><br><span class="line">    print(del_len)</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-<p><img src="https://img-blog.csdnimg.cn/20200731201442804.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p>第三道暂时没想到什么合适的解法，如果有大佬有不错的方法，也可以在下面提出来，欢迎补充！</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tiku</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/07/31/%E7%A7%91%E5%A4%A7%E8%AE%AF%E9%A3%9E2021%E5%B1%8A%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%8F%90%E5%89%8D%E6%89%B9%E4%B8%89%E9%81%93%E7%AC%94%E8%AF%95%E9%A2%98/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Leetcode第739题--每日温度" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/07/30/Leetcode%E7%AC%AC739%E9%A2%98--%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6/" target="_blank">Leetcode第739题--每日温度</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/07/30/Leetcode%E7%AC%AC739%E9%A2%98--%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6/" class="archive-article-date">
-        <time datetime="2020-07-30T03:24:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-30</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p><strong><em>题目</em></strong><br>请根据每日 气温 列表，重新生成一个列表。对应位置的输出为：要想观测到更高的气温，至少需要等待的天数。如果气温在这之后都不会升高，请在该位置用 0 来代替。</p>
-<p>例如，给定一个列表 temperatures = [73, 74, 75, 71, 69, 72, 76, 73]，你的输出应该是 [1, 1, 4, 2, 1, 1, 0, 0]。</p>
-<p>提示：气温 列表长度的范围是 [1, 30000]。每个气温的值的均为华氏度，都是在 [30, 100] 范围内的整数。</p>
-<p><strong><em>思路</em></strong><br>受到排序算法的影响，将序列分为可分的和不可分的。</p>
-<ol>
-<li>先固定第一个元素i，然后将后面的元素放在一个单独的列表中，判断这个列表中有无比前面的这个元素大的元素。</li>
-<li>如果后面没有比前面的元素更大了，那么跳出本层的循环，此时i+1；如果有，那么后面进行判断。</li>
-<li>构建一个计数器，如果前面的数比后面的数大，那么还没有到达符合要求的位置，计数器加一；如果前面的数往后数比第一个遇到的数要小，那么计数器加一后退出本轮循环。</li>
-</ol>
-<p><img src="https://img-blog.csdnimg.cn/2020073019092689.JPG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dailyTemperatures</span><span class="params">(self, T: List[int])</span> -&gt; List[int]:</span></span><br><span class="line">        count_list=[]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(T)):  <span class="comment">#i相当于移动的指针</span></span><br><span class="line">            count = <span class="number">0</span></span><br><span class="line">            a=sorted([T[k] <span class="keyword">for</span> k <span class="keyword">in</span> range(i,len(T))]) <span class="comment">##每轮将后面的位置放在一个列表中进行存储</span></span><br><span class="line">            maxmium = a[<span class="number">-1</span>]</span><br><span class="line">            <span class="keyword">if</span> T[i] == maxmium:</span><br><span class="line">                count_list.append(count)</span><br><span class="line">                <span class="keyword">continue</span>      <span class="comment">#如果后面没有比前面更大的了,count=0,continue是跳出本层循环，break是跳出全部循环</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(i+<span class="number">1</span>,len(T)):</span><br><span class="line">                <span class="keyword">if</span> T[i] &gt;= T[j]:</span><br><span class="line">                    count +=<span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    count +=<span class="number">1</span></span><br><span class="line">                    count_list.append(count)</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">return</span> count_list</span><br></pre></td></tr></table></figure>
-
-<p><strong>但是</strong>这样运行的话时间复杂度是超时的，所以我们使用了栈的概念进行了操作（后面会加以解释）</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dailyTemperatures</span><span class="params">(self, T: List[int])</span> -&gt; List[int]:</span></span><br><span class="line">        length = len(T)  <span class="comment"># length of total days</span></span><br><span class="line">        res = [<span class="number">0</span>] * length</span><br><span class="line">        stack = []</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(length):</span><br><span class="line">            <span class="keyword">while</span> stack <span class="keyword">and</span> T[i] &gt; T[stack[<span class="number">-1</span>]]:  <span class="comment">###列表后面的数大于前面的数</span></span><br><span class="line">                small = stack.pop()             <span class="comment">##将前面的索引弹出</span></span><br><span class="line">                print(small)</span><br><span class="line">                res[small] = i - small  <span class="comment">####前面的索引 </span></span><br><span class="line">                </span><br><span class="line">            stack.append(i)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tiku</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/07/30/Leetcode%E7%AC%AC739%E9%A2%98--%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Leetcode第24题--两两交换链接中的节点" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/07/30/Leetcode%E7%AC%AC24%E9%A2%98--%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E6%8E%A5%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9/" target="_blank">Leetcode第24题--两两交换链接中的节点</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/07/30/Leetcode%E7%AC%AC24%E9%A2%98--%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E6%8E%A5%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9/" class="archive-article-date">
-        <time datetime="2020-07-30T03:24:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-30</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p><strong><em>题目描述</em></strong><br>给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。</p>
-<p>你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。</p>
-<p>示例:</p>
-<p>给定 1-&gt;2-&gt;3-&gt;4, 你应该返回 2-&gt;1-&gt;4-&gt;3.</p>
-<p>思路：通过引入两个指针，来进行结点之间的交换。<br><strong>*错误示范</strong>：*</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">swapPairs</span><span class="params">(self, head: ListNode)</span> -&gt; ListNode:</span></span><br><span class="line">        pre, pre.next = self, head   <span class="comment">##构建一个指向头结点的指针，是当前指针的头一个指针</span></span><br><span class="line">        cur = head                   <span class="comment">##构建一个和头结点的指向相同的指针</span></span><br><span class="line">        <span class="keyword">while</span> cur <span class="keyword">and</span> cur.next:      </span><br><span class="line">            pre.next.next.next = cur.next.next </span><br><span class="line">            cur.next.next = cur</span><br><span class="line">            cur.next = pre.next.next</span><br><span class="line">            pre = cur</span><br><span class="line">            cur = cur.next</span><br><span class="line">        <span class="keyword">return</span> head</span><br></pre></td></tr></table></figure>
-<p>但是这样的方式出现的结果是超时，所以判断是里面的cur指针出现问题，导致循环不能跳出。</p>
-<p>下面演示<strong>正确的</strong>示例：<br>通过建立一个指向原来头结点的伪头结点，然后将后面的元素带着head结点一起进行交换，到最后</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">swapPairs</span><span class="params">(self, head: ListNode)</span> -&gt; ListNode:</span></span><br><span class="line">        thead = ListNode(<span class="number">-1</span>)</span><br><span class="line">        thead.next = head</span><br><span class="line">        c = thead</span><br><span class="line">        <span class="keyword">while</span> c.next <span class="keyword">and</span> c.next.next:</span><br><span class="line">            a, b=c.next, c.next.next   <span class="comment">#将伪头结点的值赋值给之后的两个结点，分别用a，b来表示。</span></span><br><span class="line">            c.next, a.next = b, b.next <span class="comment">#</span></span><br><span class="line">            b.next = a</span><br><span class="line">            c = c.next.next</span><br><span class="line">        <span class="keyword">return</span> thead.next</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/20200731094602492.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p><strong><em>区别</em></strong><br>这两种方法的区别在于第一种方法的指针是采用了两个指针的方法。<br>而第二种方法的核心在于采用了伪结点的方法来实现的，并且将两个结点赋值给不同的值，也就是两种不同的指针。</p>
-<p><strong><em>总结</em></strong></p>
-<ol>
-<li>对这种问题，不要思维受限制；采用几个指针，采用什么指针都是看题目来决定的，而不是只有cur和pre两个结点的。</li>
-<li>为了不进入死循环，尽量保留一个基准结点的位置，通过这种基准来判断结点当前的参考位置。</li>
-</ol>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tiku</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/07/30/Leetcode%E7%AC%AC24%E9%A2%98--%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E6%8E%A5%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-科大讯飞算法工程师笔试题解析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/07/30/%E7%A7%91%E5%A4%A7%E8%AE%AF%E9%A3%9E%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%AC%94%E8%AF%95%E9%A2%98%E8%A7%A3%E6%9E%90/" target="_blank">科大讯飞算法工程师笔试题解析</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/07/30/%E7%A7%91%E5%A4%A7%E8%AE%AF%E9%A3%9E%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%AC%94%E8%AF%95%E9%A2%98%E8%A7%A3%E6%9E%90/" class="archive-article-date">
-        <time datetime="2020-07-30T03:24:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-30</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p><strong>题目描述</strong><br> 华老师的n个学生参加了一次模拟测验，考出来的分数很糟糕，但是华老师可以将成绩修改为[0,100]中的任意值，所以他想知道，如果要使所有人的成绩的平均分不少于X分，至少要改动多少个人的分数？</p>
-<p><strong><em>输入</em></strong><br> 第一行一个数T，共T组数据（T≤10）<br> 接下来对于每组数据：<br> 第一行两个整数n和X。（1≤n≤1000, 0≤X≤100）<br> 第二行n个整数，第i个数Ai表示第i个学生的成绩。（0≤Ai≤100）<br> <strong><em>输出</em></strong><br> 共T行，每行一个整数，代表最少的人数。<br> <strong><em>样例输入</em></strong><br> 2<br> 5 60<br> 59 20 30 90 100<br> 5 60<br> 59 20 10 10 100<br> <strong><em>样例输出</em></strong><br> 1<br> 2<br> Hint<br> 对于第一组数据，将59改成60即可</p>
-<p>思路解析：</p>
-<ol>
-<li>拿到这种需要处理多输入的问题，需要<code>sys.stdin.readline().strip()</code>函数，并用list(map()))函数将其转换为列表形式。</li>
-<li>题目的题眼是分数的总和，利用差值进行突破，<br> 2.1 如果最大的值与100的差大于等于总分数的差值，那么只需要变换一次。<br> 2.2 如果最大的值与100的差小于总分数的差值，那么需要继续进行遍历做差，其中目标差值需要减少，次数需要增加一次。</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">num = int(sys.stdin.readline().strip())  <span class="comment">##处理多输入 并将其转换为整形</span></span><br><span class="line">count_list = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(num):</span><br><span class="line">    line = sys.stdin.readline().strip() <span class="comment">##处理多输入</span></span><br><span class="line">    two = list(map(int,line.split()))</span><br><span class="line">    line = sys.stdin.readline().strip()</span><br><span class="line">    num_list = list(map(int,line.split()))</span><br><span class="line">    num_list = sorted(num_list)</span><br><span class="line">    tar_cha =  two[<span class="number">0</span>] *two[<span class="number">1</span>] - sum(num_list)</span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line">    cha_list=sorted([<span class="number">100</span> -j <span class="keyword">for</span> j <span class="keyword">in</span> num_list])</span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> range(len(cha_list)<span class="number">-1</span>,<span class="number">0</span>,<span class="number">-1</span>):</span><br><span class="line">        a = tar_cha - cha_list[k]</span><br><span class="line">        tar_cha = tar_cha - cha_list[k]</span><br><span class="line">        count +=<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> a &lt;=<span class="number">0</span>:</span><br><span class="line">            count_list.append(count)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"><span class="keyword">for</span> cou <span class="keyword">in</span> count_list:</span><br><span class="line">    print(cou)</span><br></pre></td></tr></table></figure>
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tiku</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/07/30/%E7%A7%91%E5%A4%A7%E8%AE%AF%E9%A3%9E%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%AC%94%E8%AF%95%E9%A2%98%E8%A7%A3%E6%9E%90/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-神经网络训练心得" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/05/06/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E8%AE%AD%E7%BB%83%E5%BF%83%E5%BE%97/" target="_blank">神经网络训练心得</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/05/06/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E8%AE%AD%E7%BB%83%E5%BF%83%E5%BE%97/" class="archive-article-date">
-        <time datetime="2020-05-06T11:14:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-06</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>在这里给大家分享一下我在训练神经网络时候遇到的困难，以及走的一些弯路之后自己总结得经验。</p>
-<p>1.<strong>学会正确地debug</strong>，神经网络最困难的我觉得不是建立模型，而是数据转换，所以需要你对numpy包非常熟悉。</p>
-<p>2.<strong>将训练量调小一些</strong>，刚开始不知道性能，不知道程序是不是往正确的方向发展，那么我们可以将迭代次数取小一点，将数据量调小一点。</p>
-<p>3.<strong>分批次运行代码</strong>，节约运行时间，如果数据量很大，那么训练完一段代码之后，将它注释掉，继续跑下面的代码。</p>
-<p>4.<strong>错误提示</strong>是很好的指示，根据错误提示进行定位，并尝试看源代码。</p>
-<p>5.<strong>用gpu进行训练</strong>会大大加快你的训练速度，性能的提升往往是几十倍的。网上有各种框架进行加速的代码，需要注意的是，需要卸载tensorflow包，安装tensorflow-gpu包，否则还是会用cpu进行训练的。</p>
-<p>6.如果数据类型出现问题，先把数据的类型打印出来。再reshape成指定的类型，如果数据类型的错误始终解决不了，那就要考虑深层次的也就是输入数据的问题。</p>
-<p>7.<strong>数据量不够</strong>时，一般采用数据增强的方法对其进行补充，或者采用滑动平均的方法对数值进行补充。</p>
-<p>8.<strong>数据预判断</strong>；有数据需要处理的时候，用excel来拟合特征和输出之间的关系，确保输入和输出之间是有关系的，也就是要确保你选取的特征是对输出有影响的。</p>
-<p>9.如果你需要对<strong>神经网络进行改进</strong>，或者在论文中对深度学习模型进行深入描述，那么你需要将模型的原理，结构都得弄懂。</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">keyan</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/05/06/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E8%AE%AD%E7%BB%83%E5%BF%83%E5%BE%97/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-带你一步步讲解RNN" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/04/23/%E5%B8%A6%E4%BD%A0%E4%B8%80%E6%AD%A5%E6%AD%A5%E8%AE%B2%E8%A7%A3RNN/" target="_blank">带你一步步讲解RNN</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/04/23/%E5%B8%A6%E4%BD%A0%E4%B8%80%E6%AD%A5%E6%AD%A5%E8%AE%B2%E8%A7%A3RNN/" class="archive-article-date">
-        <time datetime="2020-04-23T08:17:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-23</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p> 最近用到了RNN来做预测，在这里给大家讲解下为什么要使用RNN：</p>
-<h2 id="前馈神经网络"><a href="#前馈神经网络" class="headerlink" title="前馈神经网络"></a>前馈神经网络</h2><pre><code>前馈神经网络是一种最简单的神经网络，是目前应用最广泛、发展最迅速的人工神经网络之一。
-各神经元分层排列，第一层是输入层；然后是隐藏层，其中隐藏层可能会有多层；最后一层为输出层。
-层与层之间是全连接的，每层的节点之间是无链接的。
-每层的神经元只与前一层的神经元相连，只接受前一层的输出，并传给下一层，各层间没有反馈。
-每一层的神经元之间都是相互独立的，如输入层的神经元是彼此独立的。
-常见的前馈神经网络有单层前馈神经网络、多层前馈神经网络(DNN、多层感知器)、CNN等。</code></pre><h3 id="前馈神经网络的缺陷"><a href="#前馈神经网络的缺陷" class="headerlink" title="前馈神经网络的缺陷"></a>前馈神经网络的缺陷</h3><p>前馈神经网络只能单独处理一个个的输入，前一个输入与后一个输入之间没有任何关系，如果碰到需要处理输入之间关系的数据，它们将无法正确的预测输入值，比如下列样例：</p>
-<pre><code>1.球的轨迹(移动过程点的集合)
-2.现有一个球在平面上移动，我们想要预测球的移动方向。
-3.如果使用前馈网络，那么我们把点集输入模型，但是由于它只能处理单独一个个的输入，那么我们就无法根据上一个的信息来预测下一个点的方向(即球的移动方向)。
-4.只能根据被动的根据所有的输入(点)的来预测方向，不清楚点位于第几步，就无法正确的预测方向。如下图：我们知道球的轨迹，却不清楚此时球位于哪一点的位置。
-5.自然语言处理
-6. 如果我们输入一句话我吃苹果，想要预测它的语义，那么它会被拆成一个个词输入模型</code></pre><p>   <img src="https://img-blog.csdnimg.cn/20200821155708544.png#pic_center" alt="在这里插入图片描述"></p>
-<h2 id="RNN的定义"><a href="#RNN的定义" class="headerlink" title="RNN的定义"></a>RNN的定义</h2><p>针对上述需要需要按照顺序处理的数据，在原有全连接神经网络的基础上添加了一个时间轴的概念，即诞生了循环神经网络（RNN。<br>循环神经网络（RNN）是一类用于处理序列数据的神经网络。RNN拥有记忆模块，可以获取以及计算过的信息，记住执行的顺序。即使是同样的输入，如果输入的顺序不同也会产生不同的输出。 </p>
-<h3 id="RNN的基本结构"><a href="#RNN的基本结构" class="headerlink" title="RNN的基本结构"></a>RNN的基本结构</h3><p>神经网络的结构分为输入层、隐藏层、输出层。输入与输出层是处理数据的输入输出的；而隐藏层则对数据进行计算、预测处理。前馈网络与循环网络(RNN)的主要区别就是在隐藏层。<br><img src="https://img-blog.csdnimg.cn/20200821160210518.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<h3 id="最简前馈神经网络"><a href="#最简前馈神经网络" class="headerlink" title="最简前馈神经网络"></a>最简前馈神经网络</h3><p>前馈网络的隐藏层，如果只有一个神经元，则直接处理；如果有多个神经元，每个神经元都单独运行，互不相关，没有任何顺序、引用、传值的关系。<br><img src="https://img-blog.csdnimg.cn/20200821160256425.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<h3 id="RNN的结构"><a href="#RNN的结构" class="headerlink" title="RNN的结构"></a>RNN的结构</h3><p>而RNN的结构则是在前馈网络隐藏层上添加了时间轴的概念，让每一个单元都按照输入的顺序进行处理，上一个处理的输出作为下一个处理的输入与当前的输入一起计算，综合前几个输入的计算结果与当前输入一起进行预测。<br><img src="https://img-blog.csdnimg.cn/20200821160330550.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<h3 id="RNN的种类-结构的四种形式"><a href="#RNN的种类-结构的四种形式" class="headerlink" title="RNN的种类(结构的四种形式)"></a>RNN的种类(结构的四种形式)</h3><h4 id="1-to-N"><a href="#1-to-N" class="headerlink" title="1 to N"></a>1 to N</h4><p>这种形式一是只在序列开始把输入信息输入模型计算(左)；二是把输入信息作为每个阶段的输入(右)，这种结构可以处理如: 输入图像的特征，输出y的序列是一段句子或者从别的类别生成语音；输入一个类别，输出一段描述文字这类问题。<br><img src="https://img-blog.csdnimg.cn/20200821160401642.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"> </p>
-<h4 id="N-to-1"><a href="#N-to-1" class="headerlink" title="N to 1"></a>N to 1</h4><p>输入的是一个序列，输出的是一个单独的值。这种结构常用于处理分类问题，如：输入一段文字判断类别、输入句子判断感情倾向、输入图片判断类别。<br><img src="https://img-blog.csdnimg.cn/20200821160434865.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<h4 id="N-to-N"><a href="#N-to-N" class="headerlink" title="N to N"></a>N to N</h4><p>输入和输出序列是等长的。这种可以作为简单的Char RNN可以用来生成文章，诗歌，甚至是代码。<br><img src="https://img-blog.csdnimg.cn/20200821160503595.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<h4 id="N-to-M"><a href="#N-to-M" class="headerlink" title="N to M"></a>N to M</h4><p>这种结构又称Encoder-Decoder、Seq2Seq模型，它会将输入数据编码成一个上下文向量c，之后通过c输出预测序列。它广泛应用于机器翻译、文本摘要、阅读理解、对话生成等领域。<br><img src="https://img-blog.csdnimg.cn/20200821160534492.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<h3 id="RNN的实现"><a href="#RNN的实现" class="headerlink" title="RNN的实现"></a>RNN的实现</h3><p>准备数据集，提取特征信息最为输入数据</p>
-<p>实现RNN的第一步需要准备数据集，下列是对图像进行分类的数据处理格式 。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">(x_train, y_train) = dealImage()</span><br><span class="line"><span class="comment"># 处理数据格式，将图片数据x转化到-1到1之间(除以像素点最大值255)，提高精确度</span></span><br><span class="line">x_train = x_train.reshape(x_train.shape[<span class="number">0</span>], <span class="number">56</span>, <span class="number">-1</span>).astype(<span class="string">'float'</span>) / <span class="number">255.0</span></span><br><span class="line"><span class="comment"># 转换labels为one hot格式</span></span><br><span class="line">y_train = np_utils.to_categorical(y_train, num_classes=num_classes)</span><br><span class="line"><span class="comment"># 同样的方法加载测试数据</span></span><br><span class="line">(x_test, y_test) = dealTestImage()</span><br><span class="line">复制代码</span><br><span class="line"><span class="comment"># deal.py 处理图片分类时的数据预处理，读取图片数据和对应类别</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dealImage</span><span class="params">()</span>:</span></span><br><span class="line"> result = [(src, label)....] <span class="comment"># 路径和类别的对应关系可以保存到本地文件或者数据库中，需要使用的时候在读取</span></span><br><span class="line"> images = []</span><br><span class="line"> labels = []</span><br><span class="line"> <span class="keyword">for</span> row <span class="keyword">in</span> result:</span><br><span class="line"> imsrc = cv2.imread(row[<span class="number">0</span>], <span class="number">0</span>)</span><br><span class="line"> im = cv2.resize(imsrc, (<span class="number">56</span>, <span class="number">56</span>), interpolation=cv2.INTER_AREA) <span class="comment"># 转换数据格式(按自己需要的格式转换) </span></span><br><span class="line"> imgData = np.array(im) <span class="comment"># numpy array化</span></span><br><span class="line"> images.append(imgData)</span><br><span class="line"> labels.append(row[<span class="number">1</span>])</span><br><span class="line"> images = np.array(images)</span><br><span class="line"> labels = np.array(labels)</span><br><span class="line"> <span class="keyword">return</span> (images, labels)</span><br></pre></td></tr></table></figure>
-<h4 id="搭建神经网络结构-从输入到输出"><a href="#搭建神经网络结构-从输入到输出" class="headerlink" title="搭建神经网络结构(从输入到输出)"></a>搭建神经网络结构(从输入到输出)</h4><p>根据前向传播算法的理论，搭建RNN神经网络，选择恰当的神经网络的层数、神经元数目</p>
-<pre><code>创建模型
-创建模型 keras模型分为顺序模型和函数式API模型
-顺序模型是多个网络层的线性堆叠，可以帮助我们快速创建一些简单的模型，是我们最常使用的模型
-函数式API模型是用来定义复杂模型(多输出模型、有向无环图、具有共享层的模型)的方法</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment"># 创建模型，当前模型比较简单无复杂的结构，使用顺序模型即可</span></span><br><span class="line">model = Sequential()</span><br><span class="line">cell_size = <span class="number">300</span></span><br></pre></td></tr></table></figure>
-
-<pre><code>搭建神经网络
-如果当前层的输入维度与前一层的输出维度一致，可以不写输入维度
-(如果创建多层)每层SimpleRNN之间必须设置return_sequences=True(默认是False)
-激活函数也是神经网络中一个很重的部分。每一层的网络输出都要经过激活函数。
-常用激活函数有：softmax、Softplus、Relu、tanh、sigmod、hard_sigmoid、linear
-经过调试，当前模型的SimpleRNN适合使用tanh函数，输出Dense层适合采用softmax进行分类</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 循环神经网络</span></span><br><span class="line">model.add(SimpleRNN(</span><br><span class="line"> units=cell_size, <span class="comment"># 输出数据的维度(当前层神经元的数目)</span></span><br><span class="line"> activation=<span class="string">'tanh'</span>, <span class="comment"># 激活函数，默认即tanh</span></span><br><span class="line"> return_sequences=<span class="literal">True</span>,</span><br><span class="line"> input_shape=(<span class="number">56</span>, <span class="number">56</span>) <span class="comment"># 输入数据的维度(shape)</span></span><br><span class="line">))</span><br><span class="line">model.add(SimpleRNN(units=cell_size, return_sequences=<span class="literal">True</span>))</span><br><span class="line">model.add(SimpleRNN(units=cell_size, return_sequences=<span class="literal">True</span>))</span><br><span class="line"><span class="comment"># 每层SimpleRNN之间必须设置return_sequences=True(默认是False)</span></span><br><span class="line"><span class="comment"># return_sequences 是返回输出序列的最后一个输出(False)，还是返回全部序列(True)</span></span><br><span class="line"><span class="comment"># return_sequences=True 表示我们需要完整的编码序列，而不仅仅是最终总结状态</span></span><br><span class="line"><span class="comment"># return_sequences=True 返回的是个多维数组，如果下一层无法接收该种多维数组，则层需要设置为return_sequences=True或者不设置取默认值</span></span><br><span class="line">model.add(SimpleRNN(units=cell_size))</span><br><span class="line"><span class="comment"># 添加全连接层作为输出层 </span></span><br><span class="line">model.add(Dense(num_classes, activation=<span class="string">'softmax'</span>))</span><br></pre></td></tr></table></figure>
-<p>大量特征数据输入神经网络，优化神经网络参数，训练模型</p>
-<p>使用反向传播算法迭代训练模型，根据每次训练结果优化参数后再次训练直到得到能尽可能好的预测结果的模型。</p>
-<pre><code>反向传播算法tensorflow与keras都有封装，直接调用方法即可
-
-第一步需要定义模型的优化器、损失函数
-机器学习分为构建模型、训练模型两部分。优化器和损失函数是模型训练时两个最重要的参数
-优化器是用来更新和计算影响模型训练和输出的参数，是模型的输出逼近或达到最优值，从而最小(大)化损失函数的值
-优化器有：SGD、Adagrad、RMSprop、Adam
-本例采用的是常用的Adam算法
-损失函数是用来评估模型好坏程度的，即预测值与真实值的不一致程度
-损失函数有mse、mae、mape、msle、hinge、categorical_crossentropy等等
-本例采用适合分类的交叉熵categorical_crossentropy函数</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 初始化优化器</span></span><br><span class="line">adam = Adam(lr=<span class="number">1e-4</span>)</span><br><span class="line"><span class="comment"># 定义优化器，loss function，训练过程中计算准确率</span></span><br><span class="line">model.compile(</span><br><span class="line"> optimizer=adam, <span class="comment"># 优化器</span></span><br><span class="line"> loss=<span class="string">'categorical_crossentropy'</span>, <span class="comment"># 损失函数 mse 均方差 categorical_crossentropy 交叉熵(多分类)</span></span><br><span class="line"> metrics=[<span class="string">'accuracy'</span>] <span class="comment"># 训练和测试期间的模型评估标准</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 开始训练模型，调用model.fit()方法，方法采用时序后向传播算法训练模型</span></span><br><span class="line"><span class="comment"># 以给的数目的轮次训练模型，到第epochs轮结束训练，每轮多个批次，每批次大小batch_size</span></span><br><span class="line">model.fit(x_train, y_train, batch_size=<span class="number">32</span>, epochs=<span class="number">20</span>)</span><br><span class="line"><span class="comment"># 预测模型的损失值和准确率</span></span><br><span class="line">loss, accuracy = model.evaluate(x_test, y_test)</span><br><span class="line"><span class="comment"># 保存模型，以便使用时加载</span></span><br><span class="line">model.save(<span class="string">'myfile/rnn.hdf5'</span>)</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
-
-<p>训练结果如图所示<br><img src="https://img-blog.csdnimg.cn/20200821160745520.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br> 使用模型预测和分类数据，加载已保存的模型，输入待预测的，输出最可能的结果 。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 加载模型</span></span><br><span class="line">model = load_model(<span class="string">'myfile/rnn.hdf5'</span>)</span><br><span class="line"><span class="comment"># 使用模型预测结果</span></span><br><span class="line">pred = model.predict(data) <span class="comment"># data 是numpy的array格式</span></span><br><span class="line"><span class="comment"># 取出可能性最大的值作为预测结果</span></span><br><span class="line">print([final.argmax() <span class="keyword">for</span> final <span class="keyword">in</span> pred])</span><br></pre></td></tr></table></figure>
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">algo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/04/23/%E5%B8%A6%E4%BD%A0%E4%B8%80%E6%AD%A5%E6%AD%A5%E8%AE%B2%E8%A7%A3RNN/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
-    </nav>
-  
 
 
           </div>
@@ -1296,8 +471,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
