@@ -195,6 +195,143 @@
             
 
   
+    <article id="post-带你一步步讲解RNN" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/04/23/%E5%B8%A6%E4%BD%A0%E4%B8%80%E6%AD%A5%E6%AD%A5%E8%AE%B2%E8%A7%A3RNN/" target="_blank">带你一步步讲解RNN</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/04/23/%E5%B8%A6%E4%BD%A0%E4%B8%80%E6%AD%A5%E6%AD%A5%E8%AE%B2%E8%A7%A3RNN/" class="archive-article-date">
+        <time datetime="2020-04-23T08:17:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-23</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p> 最近用到了RNN来做预测，在这里给大家讲解下为什么要使用RNN：</p>
+<h2 id="前馈神经网络"><a href="#前馈神经网络" class="headerlink" title="前馈神经网络"></a>前馈神经网络</h2><pre><code>前馈神经网络是一种最简单的神经网络，是目前应用最广泛、发展最迅速的人工神经网络之一。
+各神经元分层排列，第一层是输入层；然后是隐藏层，其中隐藏层可能会有多层；最后一层为输出层。
+层与层之间是全连接的，每层的节点之间是无链接的。
+每层的神经元只与前一层的神经元相连，只接受前一层的输出，并传给下一层，各层间没有反馈。
+每一层的神经元之间都是相互独立的，如输入层的神经元是彼此独立的。
+常见的前馈神经网络有单层前馈神经网络、多层前馈神经网络(DNN、多层感知器)、CNN等。</code></pre><h3 id="前馈神经网络的缺陷"><a href="#前馈神经网络的缺陷" class="headerlink" title="前馈神经网络的缺陷"></a>前馈神经网络的缺陷</h3><p>前馈神经网络只能单独处理一个个的输入，前一个输入与后一个输入之间没有任何关系，如果碰到需要处理输入之间关系的数据，它们将无法正确的预测输入值，比如下列样例：</p>
+<pre><code>1.球的轨迹(移动过程点的集合)
+2.现有一个球在平面上移动，我们想要预测球的移动方向。
+3.如果使用前馈网络，那么我们把点集输入模型，但是由于它只能处理单独一个个的输入，那么我们就无法根据上一个的信息来预测下一个点的方向(即球的移动方向)。
+4.只能根据被动的根据所有的输入(点)的来预测方向，不清楚点位于第几步，就无法正确的预测方向。如下图：我们知道球的轨迹，却不清楚此时球位于哪一点的位置。
+5.自然语言处理
+6. 如果我们输入一句话我吃苹果，想要预测它的语义，那么它会被拆成一个个词输入模型</code></pre><p>   <img src="https://img-blog.csdnimg.cn/20200821155708544.png#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="RNN的定义"><a href="#RNN的定义" class="headerlink" title="RNN的定义"></a>RNN的定义</h2><p>针对上述需要需要按照顺序处理的数据，在原有全连接神经网络的基础上添加了一个时间轴的概念，即诞生了循环神经网络（RNN。<br>循环神经网络（RNN）是一类用于处理序列数据的神经网络。RNN拥有记忆模块，可以获取以及计算过的信息，记住执行的顺序。即使是同样的输入，如果输入的顺序不同也会产生不同的输出。 </p>
+<h3 id="RNN的基本结构"><a href="#RNN的基本结构" class="headerlink" title="RNN的基本结构"></a>RNN的基本结构</h3><p>神经网络的结构分为输入层、隐藏层、输出层。输入与输出层是处理数据的输入输出的；而隐藏层则对数据进行计算、预测处理。前馈网络与循环网络(RNN)的主要区别就是在隐藏层。<br><img src="https://img-blog.csdnimg.cn/20200821160210518.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h3 id="最简前馈神经网络"><a href="#最简前馈神经网络" class="headerlink" title="最简前馈神经网络"></a>最简前馈神经网络</h3><p>前馈网络的隐藏层，如果只有一个神经元，则直接处理；如果有多个神经元，每个神经元都单独运行，互不相关，没有任何顺序、引用、传值的关系。<br><img src="https://img-blog.csdnimg.cn/20200821160256425.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h3 id="RNN的结构"><a href="#RNN的结构" class="headerlink" title="RNN的结构"></a>RNN的结构</h3><p>而RNN的结构则是在前馈网络隐藏层上添加了时间轴的概念，让每一个单元都按照输入的顺序进行处理，上一个处理的输出作为下一个处理的输入与当前的输入一起计算，综合前几个输入的计算结果与当前输入一起进行预测。<br><img src="https://img-blog.csdnimg.cn/20200821160330550.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h3 id="RNN的种类-结构的四种形式"><a href="#RNN的种类-结构的四种形式" class="headerlink" title="RNN的种类(结构的四种形式)"></a>RNN的种类(结构的四种形式)</h3><h4 id="1-to-N"><a href="#1-to-N" class="headerlink" title="1 to N"></a>1 to N</h4><p>这种形式一是只在序列开始把输入信息输入模型计算(左)；二是把输入信息作为每个阶段的输入(右)，这种结构可以处理如: 输入图像的特征，输出y的序列是一段句子或者从别的类别生成语音；输入一个类别，输出一段描述文字这类问题。<br><img src="https://img-blog.csdnimg.cn/20200821160401642.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"> </p>
+<h4 id="N-to-1"><a href="#N-to-1" class="headerlink" title="N to 1"></a>N to 1</h4><p>输入的是一个序列，输出的是一个单独的值。这种结构常用于处理分类问题，如：输入一段文字判断类别、输入句子判断感情倾向、输入图片判断类别。<br><img src="https://img-blog.csdnimg.cn/20200821160434865.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h4 id="N-to-N"><a href="#N-to-N" class="headerlink" title="N to N"></a>N to N</h4><p>输入和输出序列是等长的。这种可以作为简单的Char RNN可以用来生成文章，诗歌，甚至是代码。<br><img src="https://img-blog.csdnimg.cn/20200821160503595.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h4 id="N-to-M"><a href="#N-to-M" class="headerlink" title="N to M"></a>N to M</h4><p>这种结构又称Encoder-Decoder、Seq2Seq模型，它会将输入数据编码成一个上下文向量c，之后通过c输出预测序列。它广泛应用于机器翻译、文本摘要、阅读理解、对话生成等领域。<br><img src="https://img-blog.csdnimg.cn/20200821160534492.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h3 id="RNN的实现"><a href="#RNN的实现" class="headerlink" title="RNN的实现"></a>RNN的实现</h3><p>准备数据集，提取特征信息最为输入数据</p>
+<p>实现RNN的第一步需要准备数据集，下列是对图像进行分类的数据处理格式 。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">(x_train, y_train) = dealImage()</span><br><span class="line"><span class="comment"># 处理数据格式，将图片数据x转化到-1到1之间(除以像素点最大值255)，提高精确度</span></span><br><span class="line">x_train = x_train.reshape(x_train.shape[<span class="number">0</span>], <span class="number">56</span>, <span class="number">-1</span>).astype(<span class="string">'float'</span>) / <span class="number">255.0</span></span><br><span class="line"><span class="comment"># 转换labels为one hot格式</span></span><br><span class="line">y_train = np_utils.to_categorical(y_train, num_classes=num_classes)</span><br><span class="line"><span class="comment"># 同样的方法加载测试数据</span></span><br><span class="line">(x_test, y_test) = dealTestImage()</span><br><span class="line">复制代码</span><br><span class="line"><span class="comment"># deal.py 处理图片分类时的数据预处理，读取图片数据和对应类别</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dealImage</span><span class="params">()</span>:</span></span><br><span class="line"> result = [(src, label)....] <span class="comment"># 路径和类别的对应关系可以保存到本地文件或者数据库中，需要使用的时候在读取</span></span><br><span class="line"> images = []</span><br><span class="line"> labels = []</span><br><span class="line"> <span class="keyword">for</span> row <span class="keyword">in</span> result:</span><br><span class="line"> imsrc = cv2.imread(row[<span class="number">0</span>], <span class="number">0</span>)</span><br><span class="line"> im = cv2.resize(imsrc, (<span class="number">56</span>, <span class="number">56</span>), interpolation=cv2.INTER_AREA) <span class="comment"># 转换数据格式(按自己需要的格式转换) </span></span><br><span class="line"> imgData = np.array(im) <span class="comment"># numpy array化</span></span><br><span class="line"> images.append(imgData)</span><br><span class="line"> labels.append(row[<span class="number">1</span>])</span><br><span class="line"> images = np.array(images)</span><br><span class="line"> labels = np.array(labels)</span><br><span class="line"> <span class="keyword">return</span> (images, labels)</span><br></pre></td></tr></table></figure>
+<h4 id="搭建神经网络结构-从输入到输出"><a href="#搭建神经网络结构-从输入到输出" class="headerlink" title="搭建神经网络结构(从输入到输出)"></a>搭建神经网络结构(从输入到输出)</h4><p>根据前向传播算法的理论，搭建RNN神经网络，选择恰当的神经网络的层数、神经元数目</p>
+<pre><code>创建模型
+创建模型 keras模型分为顺序模型和函数式API模型
+顺序模型是多个网络层的线性堆叠，可以帮助我们快速创建一些简单的模型，是我们最常使用的模型
+函数式API模型是用来定义复杂模型(多输出模型、有向无环图、具有共享层的模型)的方法</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment"># 创建模型，当前模型比较简单无复杂的结构，使用顺序模型即可</span></span><br><span class="line">model = Sequential()</span><br><span class="line">cell_size = <span class="number">300</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>搭建神经网络
+如果当前层的输入维度与前一层的输出维度一致，可以不写输入维度
+(如果创建多层)每层SimpleRNN之间必须设置return_sequences=True(默认是False)
+激活函数也是神经网络中一个很重的部分。每一层的网络输出都要经过激活函数。
+常用激活函数有：softmax、Softplus、Relu、tanh、sigmod、hard_sigmoid、linear
+经过调试，当前模型的SimpleRNN适合使用tanh函数，输出Dense层适合采用softmax进行分类</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 循环神经网络</span></span><br><span class="line">model.add(SimpleRNN(</span><br><span class="line"> units=cell_size, <span class="comment"># 输出数据的维度(当前层神经元的数目)</span></span><br><span class="line"> activation=<span class="string">'tanh'</span>, <span class="comment"># 激活函数，默认即tanh</span></span><br><span class="line"> return_sequences=<span class="literal">True</span>,</span><br><span class="line"> input_shape=(<span class="number">56</span>, <span class="number">56</span>) <span class="comment"># 输入数据的维度(shape)</span></span><br><span class="line">))</span><br><span class="line">model.add(SimpleRNN(units=cell_size, return_sequences=<span class="literal">True</span>))</span><br><span class="line">model.add(SimpleRNN(units=cell_size, return_sequences=<span class="literal">True</span>))</span><br><span class="line"><span class="comment"># 每层SimpleRNN之间必须设置return_sequences=True(默认是False)</span></span><br><span class="line"><span class="comment"># return_sequences 是返回输出序列的最后一个输出(False)，还是返回全部序列(True)</span></span><br><span class="line"><span class="comment"># return_sequences=True 表示我们需要完整的编码序列，而不仅仅是最终总结状态</span></span><br><span class="line"><span class="comment"># return_sequences=True 返回的是个多维数组，如果下一层无法接收该种多维数组，则层需要设置为return_sequences=True或者不设置取默认值</span></span><br><span class="line">model.add(SimpleRNN(units=cell_size))</span><br><span class="line"><span class="comment"># 添加全连接层作为输出层 </span></span><br><span class="line">model.add(Dense(num_classes, activation=<span class="string">'softmax'</span>))</span><br></pre></td></tr></table></figure>
+<p>大量特征数据输入神经网络，优化神经网络参数，训练模型</p>
+<p>使用反向传播算法迭代训练模型，根据每次训练结果优化参数后再次训练直到得到能尽可能好的预测结果的模型。</p>
+<pre><code>反向传播算法tensorflow与keras都有封装，直接调用方法即可
+
+第一步需要定义模型的优化器、损失函数
+机器学习分为构建模型、训练模型两部分。优化器和损失函数是模型训练时两个最重要的参数
+优化器是用来更新和计算影响模型训练和输出的参数，是模型的输出逼近或达到最优值，从而最小(大)化损失函数的值
+优化器有：SGD、Adagrad、RMSprop、Adam
+本例采用的是常用的Adam算法
+损失函数是用来评估模型好坏程度的，即预测值与真实值的不一致程度
+损失函数有mse、mae、mape、msle、hinge、categorical_crossentropy等等
+本例采用适合分类的交叉熵categorical_crossentropy函数</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 初始化优化器</span></span><br><span class="line">adam = Adam(lr=<span class="number">1e-4</span>)</span><br><span class="line"><span class="comment"># 定义优化器，loss function，训练过程中计算准确率</span></span><br><span class="line">model.compile(</span><br><span class="line"> optimizer=adam, <span class="comment"># 优化器</span></span><br><span class="line"> loss=<span class="string">'categorical_crossentropy'</span>, <span class="comment"># 损失函数 mse 均方差 categorical_crossentropy 交叉熵(多分类)</span></span><br><span class="line"> metrics=[<span class="string">'accuracy'</span>] <span class="comment"># 训练和测试期间的模型评估标准</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 开始训练模型，调用model.fit()方法，方法采用时序后向传播算法训练模型</span></span><br><span class="line"><span class="comment"># 以给的数目的轮次训练模型，到第epochs轮结束训练，每轮多个批次，每批次大小batch_size</span></span><br><span class="line">model.fit(x_train, y_train, batch_size=<span class="number">32</span>, epochs=<span class="number">20</span>)</span><br><span class="line"><span class="comment"># 预测模型的损失值和准确率</span></span><br><span class="line">loss, accuracy = model.evaluate(x_test, y_test)</span><br><span class="line"><span class="comment"># 保存模型，以便使用时加载</span></span><br><span class="line">model.save(<span class="string">'myfile/rnn.hdf5'</span>)</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>训练结果如图所示<br><img src="https://img-blog.csdnimg.cn/20200821160745520.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br> 使用模型预测和分类数据，加载已保存的模型，输入待预测的，输出最可能的结果 。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 加载模型</span></span><br><span class="line">model = load_model(<span class="string">'myfile/rnn.hdf5'</span>)</span><br><span class="line"><span class="comment"># 使用模型预测结果</span></span><br><span class="line">pred = model.predict(data) <span class="comment"># data 是numpy的array格式</span></span><br><span class="line"><span class="comment"># 取出可能性最大的值作为预测结果</span></span><br><span class="line">print([final.argmax() <span class="keyword">for</span> final <span class="keyword">in</span> pred])</span><br></pre></td></tr></table></figure>
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">algo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/04/23/%E5%B8%A6%E4%BD%A0%E4%B8%80%E6%AD%A5%E6%AD%A5%E8%AE%B2%E8%A7%A3RNN/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Latex安装教程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1068,113 +1205,6 @@
 
 
   
-    <article id="post-Java第一讲——基础知识" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2019/09/26/Java%E7%AC%AC%E4%B8%80%E8%AE%B2%E2%80%94%E2%80%94%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" target="_blank">Java第一讲——基础知识</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2019/09/26/Java%E7%AC%AC%E4%B8%80%E8%AE%B2%E2%80%94%E2%80%94%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="archive-article-date">
-        <time datetime="2019-09-26T10:57:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-26</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>java的特点:<br>简单的、面向对象、分布式、解释性、健壮、安全与系统无关、可移植、高性能、多线程和动态的语言。</p>
-<p>java开发环境的安装<br>需要先安装JDK再安装Eclipse等开发环境，因为jdk是java的开发工具，而Eclipse只是帮你集成了这种环境。安装之后再配置环境变量就可以写一个java程序了，写好了java程序之后需要进行编译和执行，两个指令分别为<br>javac *.java 用来编译JAVA源程序，java 类名 用来执行JAVA的字节码文件</p>
-<p>JDK与JRE的区别：<br>JRE是Java Runtime Environment 的缩写，为java运行环境<br>JDK是Java Development Toolkit的缩写，为java的开发包<br>从不同角度来说，JRE偏向用户侧，而JDK偏向开发者层面</p>
-<p>JVM是什么？<br>JAVA程序运行在JVM上，JVM不是跨平台，不同的操作系统安装不同版本的JVM，但是class文件是跨平台的。也就 是说，由JVM去负责与操作系统交互并调用操作系统的API， JVM负责JAVA程序的内存分配，和内存释放，其中有著名的 垃圾回收机制。 简单一句话，JAVA程序的运行环境就好比一台虚拟的计算机中，而这个虚拟环境就是JVM。</p>
-<p>使用eclipse创建项目的方法可以看下面的链接<br><a href="https://www.jb51.net/article/160236.htm" target="_blank" rel="noopener">https://www.jb51.net/article/160236.htm</a></p>
-<p>创建java程序需要注意的问题？<br>每一个java程序中可以有多个类，但是只能有一个public类<br>Java标识符由数字，字母和下划线（_），美元符号（$）组 成。在Java中是区分大小写的，而且还要求首位不能是数字 。同时Java的标识符不能是Java中的关键字。</p>
-<p>JAVA和C语言的不同？<br>a.JAVA的基本组成是类，而C的基本组成是函数。<br>b.JAVA的基本数据类型中char型占两个字节，C语言中是一个字节，因为java采用的是unicode字符集，C语言采用的是ASCii字符集，所以java是可以输出中文的。<br>c.JAVA的判断只有True和False这两种布尔类型，C语言非0即真。<br>d.JAVA中每一个类中都可以有main()方法，但是c语言中只能有一个main()方法。</p>
-<p>JAVA中的数据类型转换:<br>由低精度的数据向高精度的数据进行转换的时候是不需要强制转换类型的。但是相反则需要进行强制转换，比如<br>double c=123.456;<br>int a = (int)c;</p>
-<p>JAVA中的输入和输出：<br>System.out.println换行输出，System.out.println不换行输出</p>
-<p>import java.util.Scanner;</p>
-<p>public class InputTest {<br>    public static void main(String[] args) {<br>        int num;<br>        Scanner input = new Scanner(System.in);<br>        System.out.println(“请输入一个整数：”);<br>        num = input.nextInt();  //将输入的数字赋值给nu</p>
-<p>Java中的数制转换:<br>二进制与十进制的转换基本都用凑幂法，凑出几个2的次方的整数相加。<br>而八进制，十进制，十六进制的转换通常都是将其转换为二进制，利用二进制来进行转换的。</p>
-<p>二进制转换为八进制和十六进制的方法：<br>二进制转换为八进制是从末位开始，三个数为一组，不够的用0来补齐，比如1110011 补为011 110 011(3 6 3)所以转换为八进制为363<br>二进制转换为十六进制是从末位开始，四个数为一组，不够的用0来补齐，同上面一样.</p>
-<p>数制转换的三个API函数:<br>Integer.toBinaryString(n); //转换为二进制<br>Integer.toHexString(i); //转换为十六进制<br>Integer.toOctalString(i); //转换为八进制</p>
-<p>JAVA的几种运算符<br>1.算术运算符：+,-,*,/,%，其中求模运算的正负是由分子的正负来确定的。<br>自增自减运算符：x++ 表示先取值，再运算，++x表示先运算，再取值。<br>2.关系运算符：&gt; ，&lt; ，&gt;= ， &lt;= ，== ，!=<br>3.逻辑运算符：与(&amp;&amp;)，或(| |)，非(!)<br>4.位运算符:&amp;(按位与) ，|(按位或)，~(按位取反),^(按位异或)，&gt;&gt;(右移),&lt;&lt;(左移)<br>5.赋值运算符</p>
-<p>程序的三种基本结构<br>顺序，选择，循环</p>
-<p>if-else的三种形式<br>简单if-else语句，多重if-else if-else语句，嵌套if-else语句<br>switch-case语句:也是用于判断，具体的看<br><a href="https://www.runoob.com/java/java-switch-case.html要注意的是case匹配一个成功之后，如果这个里面没有break的话，那么会继续往下面进行匹配。" target="_blank" rel="noopener">https://www.runoob.com/java/java-switch-case.html要注意的是case匹配一个成功之后，如果这个里面没有break的话，那么会继续往下面进行匹配。</a></p>
-<p>if-else 与switch-case 的区别?<br>if-else适合一个范围的判断，而switch-case适合值进行判断</p>
-<p>循环的三种方式？<br>do-while，while，for循环<br>这三种形式分别为<br>do{<br>while(条件);</p>
-<p>while(条件)<br>{<br>}</p>
-<p>for(语句1;循环条件;语句3)<br>{<br>语句2;<br>}<br>其中for循环执行的顺序是先执行语句1，再判断循环条件，如果条件成立的话执行语句2，语句2执行结束后，执行语句3，再判断循环条件，不满足条件则退出循环体。</p>
-<p>三种循环的区别是<br>1.do-while循环至少执行一次循环体的内容，而while和for循环可能一次循环体都不执行。<br>2.如果知道循环次数的话，选择for循环。<br>3.因为for循环比较简单，直接，所以大部分都是采用这种循环的方法。</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">suibi</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2019/09/26/Java%E7%AC%AC%E4%B8%80%E8%AE%B2%E2%80%94%E2%80%94%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
@@ -1321,10 +1351,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spider</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
