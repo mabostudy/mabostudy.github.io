@@ -717,6 +717,104 @@
 
 
   
+    <article id="post-Leetcode第739题--每日温度" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/07/30/Leetcode%E7%AC%AC739%E9%A2%98--%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6/" target="_blank">Leetcode第739题--每日温度</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/07/30/Leetcode%E7%AC%AC739%E9%A2%98--%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6/" class="archive-article-date">
+        <time datetime="2020-07-30T03:24:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-30</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p><strong><em>题目</em></strong><br>请根据每日 气温 列表，重新生成一个列表。对应位置的输出为：要想观测到更高的气温，至少需要等待的天数。如果气温在这之后都不会升高，请在该位置用 0 来代替。</p>
+<p>例如，给定一个列表 temperatures = [73, 74, 75, 71, 69, 72, 76, 73]，你的输出应该是 [1, 1, 4, 2, 1, 1, 0, 0]。</p>
+<p>提示：气温 列表长度的范围是 [1, 30000]。每个气温的值的均为华氏度，都是在 [30, 100] 范围内的整数。</p>
+<p><strong><em>思路</em></strong><br>受到排序算法的影响，将序列分为可分的和不可分的。</p>
+<ol>
+<li>先固定第一个元素i，然后将后面的元素放在一个单独的列表中，判断这个列表中有无比前面的这个元素大的元素。</li>
+<li>如果后面没有比前面的元素更大了，那么跳出本层的循环，此时i+1；如果有，那么后面进行判断。</li>
+<li>构建一个计数器，如果前面的数比后面的数大，那么还没有到达符合要求的位置，计数器加一；如果前面的数往后数比第一个遇到的数要小，那么计数器加一后退出本轮循环。</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/2020073019092689.JPG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dailyTemperatures</span><span class="params">(self, T: List[int])</span> -&gt; List[int]:</span></span><br><span class="line">        count_list=[]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(T)):  <span class="comment">#i相当于移动的指针</span></span><br><span class="line">            count = <span class="number">0</span></span><br><span class="line">            a=sorted([T[k] <span class="keyword">for</span> k <span class="keyword">in</span> range(i,len(T))]) <span class="comment">##每轮将后面的位置放在一个列表中进行存储</span></span><br><span class="line">            maxmium = a[<span class="number">-1</span>]</span><br><span class="line">            <span class="keyword">if</span> T[i] == maxmium:</span><br><span class="line">                count_list.append(count)</span><br><span class="line">                <span class="keyword">continue</span>      <span class="comment">#如果后面没有比前面更大的了,count=0,continue是跳出本层循环，break是跳出全部循环</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(i+<span class="number">1</span>,len(T)):</span><br><span class="line">                <span class="keyword">if</span> T[i] &gt;= T[j]:</span><br><span class="line">                    count +=<span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    count +=<span class="number">1</span></span><br><span class="line">                    count_list.append(count)</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">return</span> count_list</span><br></pre></td></tr></table></figure>
+
+<p><strong>但是</strong>这样运行的话时间复杂度是超时的，所以我们使用了栈的概念进行了操作（后面会加以解释）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dailyTemperatures</span><span class="params">(self, T: List[int])</span> -&gt; List[int]:</span></span><br><span class="line">        length = len(T)  <span class="comment"># length of total days</span></span><br><span class="line">        res = [<span class="number">0</span>] * length</span><br><span class="line">        stack = []</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(length):</span><br><span class="line">            <span class="keyword">while</span> stack <span class="keyword">and</span> T[i] &gt; T[stack[<span class="number">-1</span>]]:  <span class="comment">###列表后面的数大于前面的数</span></span><br><span class="line">                small = stack.pop()             <span class="comment">##将前面的索引弹出</span></span><br><span class="line">                print(small)</span><br><span class="line">                res[small] = i - small  <span class="comment">####前面的索引 </span></span><br><span class="line">                </span><br><span class="line">            stack.append(i)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tiku</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/07/30/Leetcode%E7%AC%AC739%E9%A2%98--%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Leetcode第24题--两两交换链接中的节点" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -789,104 +887,6 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/2020/07/30/Leetcode%E7%AC%AC24%E9%A2%98--%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E6%8E%A5%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Leetcode第739题--每日温度" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/07/30/Leetcode%E7%AC%AC739%E9%A2%98--%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6/" target="_blank">Leetcode第739题--每日温度</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/07/30/Leetcode%E7%AC%AC739%E9%A2%98--%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6/" class="archive-article-date">
-        <time datetime="2020-07-30T03:24:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-30</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p><strong><em>题目</em></strong><br>请根据每日 气温 列表，重新生成一个列表。对应位置的输出为：要想观测到更高的气温，至少需要等待的天数。如果气温在这之后都不会升高，请在该位置用 0 来代替。</p>
-<p>例如，给定一个列表 temperatures = [73, 74, 75, 71, 69, 72, 76, 73]，你的输出应该是 [1, 1, 4, 2, 1, 1, 0, 0]。</p>
-<p>提示：气温 列表长度的范围是 [1, 30000]。每个气温的值的均为华氏度，都是在 [30, 100] 范围内的整数。</p>
-<p><strong><em>思路</em></strong><br>受到排序算法的影响，将序列分为可分的和不可分的。</p>
-<ol>
-<li>先固定第一个元素i，然后将后面的元素放在一个单独的列表中，判断这个列表中有无比前面的这个元素大的元素。</li>
-<li>如果后面没有比前面的元素更大了，那么跳出本层的循环，此时i+1；如果有，那么后面进行判断。</li>
-<li>构建一个计数器，如果前面的数比后面的数大，那么还没有到达符合要求的位置，计数器加一；如果前面的数往后数比第一个遇到的数要小，那么计数器加一后退出本轮循环。</li>
-</ol>
-<p><img src="https://img-blog.csdnimg.cn/2020073019092689.JPG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dailyTemperatures</span><span class="params">(self, T: List[int])</span> -&gt; List[int]:</span></span><br><span class="line">        count_list=[]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(T)):  <span class="comment">#i相当于移动的指针</span></span><br><span class="line">            count = <span class="number">0</span></span><br><span class="line">            a=sorted([T[k] <span class="keyword">for</span> k <span class="keyword">in</span> range(i,len(T))]) <span class="comment">##每轮将后面的位置放在一个列表中进行存储</span></span><br><span class="line">            maxmium = a[<span class="number">-1</span>]</span><br><span class="line">            <span class="keyword">if</span> T[i] == maxmium:</span><br><span class="line">                count_list.append(count)</span><br><span class="line">                <span class="keyword">continue</span>      <span class="comment">#如果后面没有比前面更大的了,count=0,continue是跳出本层循环，break是跳出全部循环</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(i+<span class="number">1</span>,len(T)):</span><br><span class="line">                <span class="keyword">if</span> T[i] &gt;= T[j]:</span><br><span class="line">                    count +=<span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    count +=<span class="number">1</span></span><br><span class="line">                    count_list.append(count)</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">return</span> count_list</span><br></pre></td></tr></table></figure>
-
-<p><strong>但是</strong>这样运行的话时间复杂度是超时的，所以我们使用了栈的概念进行了操作（后面会加以解释）</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dailyTemperatures</span><span class="params">(self, T: List[int])</span> -&gt; List[int]:</span></span><br><span class="line">        length = len(T)  <span class="comment"># length of total days</span></span><br><span class="line">        res = [<span class="number">0</span>] * length</span><br><span class="line">        stack = []</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(length):</span><br><span class="line">            <span class="keyword">while</span> stack <span class="keyword">and</span> T[i] &gt; T[stack[<span class="number">-1</span>]]:  <span class="comment">###列表后面的数大于前面的数</span></span><br><span class="line">                small = stack.pop()             <span class="comment">##将前面的索引弹出</span></span><br><span class="line">                print(small)</span><br><span class="line">                res[small] = i - small  <span class="comment">####前面的索引 </span></span><br><span class="line">                </span><br><span class="line">            stack.append(i)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tiku</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/07/30/Leetcode%E7%AC%AC739%E9%A2%98--%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6/">展开全文 >></a>
     </p>
     
 
@@ -1128,7 +1128,7 @@
 
 
   
-    <article id="post-关于Python的一些注意事项" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Python分析数据分析师行情" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -1136,7 +1136,7 @@
   
     <h1 itemprop="name">
 	
-	  <a class="article-title" href="/2020/05/15/%E5%85%B3%E4%BA%8EPython%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" target="_blank">关于Python调试的注意事项</a>
+	  <a class="article-title" href="/2020/05/23/Python%E5%88%86%E6%9E%90%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%B8%88%E8%A1%8C%E6%83%85/" target="_blank">Python分析数据分析师行情</a>
   
     </h1>
   
@@ -1144,8 +1144,8 @@
 
   
   
-<a href="/2020/05/15/%E5%85%B3%E4%BA%8EPython%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" class="archive-article-date">
-        <time datetime="2020-05-15T14:47:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-15</time>
+<a href="/2020/05/23/Python%E5%88%86%E6%9E%90%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%B8%88%E8%A1%8C%E6%83%85/" class="archive-article-date">
+        <time datetime="2020-05-23T09:30:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-23</time>
 </a>
 
   
@@ -1157,20 +1157,55 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p><strong>神经网络环境配置：</strong></p>
-<p>神经网络版本如果适配得不合适，那么会出现很多问题。这里提供一套配置方案：</p>
-<p>建议安装python3.6，否则可能导致tensorflow安装失败</p>
-<p>电脑无显卡：tensorflow==1.14 keras==2.2.5</p>
-<p>电脑有显卡:cuda 10.0 cudnn 7.4版本 tensorflow==1.14 keras==2.2.5，官网下载</p>
-<p><strong>python包安装有三种方法:</strong></p>
-<p>1.终端使用pip install xxx(包名)</p>
-<p>2.从官网下载whl文件，然后手动安装</p>
-<p><a href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyqt4" target="_blank" rel="noopener"><strong>https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyqt4</strong></a></p>
-<p>这里贴出一个有各种包的whl网站。</p>
-<p>3.如果是 pycharm，在settings-project-project Interpreter 里面进行安装</p>
-<p>如果是anaconda，可以在anaconda prompt终端使用conda/pip install xxx(包名)</p>
-<p><strong>pycharm激活码获取网址</strong>：<a href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyqt4" target="_blank" rel="noopener"><strong>http://idea.medeming.com/jets/</strong></a></p>
+    <h2 id="确定目标"><a href="#确定目标" class="headerlink" title="确定目标"></a>确定目标</h2><p>我们在之前的博客中已经获取了拉勾网上数据分析师的岗位信息，现在我们需要确定我们分析的目标，从而进行数据清洗。</p>
+<ol>
+<li>各城市对数据分析岗位的需求情况</li>
+<li>不同细分领域对数据分析岗的需求情况</li>
+<li>数据分析岗位的薪资状况</li>
+<li>工作经验与薪水的关系</li>
+<li>公司都要求什么，需要掌握什么技能</li>
+<li>岗位的学历要求高吗</li>
+<li>不同规模的企业对工资经验的要求以及提供的薪资水平</li>
+</ol>
+<h2 id="数据清洗"><a href="#数据清洗" class="headerlink" title="数据清洗"></a>数据清洗</h2><h3 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd </span><br><span class="line">path = <span class="string">'./lagou.csv'</span></span><br><span class="line">df = pd.read_csv(path)</span><br></pre></td></tr></table></figure>
 
+<h3 id="清洗数据"><a href="#清洗数据" class="headerlink" title="清洗数据"></a>清洗数据</h3><h4 id="缩小列读取范围"><a href="#缩小列读取范围" class="headerlink" title="缩小列读取范围"></a>缩小列读取范围</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">columns = [<span class="string">"positionName"</span>, <span class="string">"companyShortName"</span>, <span class="string">"city"</span>, <span class="string">"companySize"</span>, <span class="string">"education"</span>, <span class="string">"financeStage"</span>,</span><br><span class="line">           <span class="string">"industryField"</span>, <span class="string">"salary"</span>, <span class="string">"workYear"</span>, <span class="string">"hitags"</span>, <span class="string">"companyLabelList"</span>, <span class="string">"job_detail"</span>]  <span class="comment">##只需要这么多列数据即可</span></span><br><span class="line">df = df[columns].drop_duplicates() <span class="comment">#去重</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="职位筛选"><a href="#职位筛选" class="headerlink" title="职位筛选"></a>职位筛选</h4><p>我们研究的仅仅是数据分析这一岗位，所以我们去除数据分析之外的以及实习的工作，因为这不是我们研究的重点，代码如下：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200820215933107.png#pic_center" alt="在这里插入图片描述"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cond_1 = df[<span class="string">"positionName"</span>].str.contains(<span class="string">"数据分析"</span>)  <span class="comment"># 职位名中含有数据分析字眼的</span></span><br><span class="line">cond_2 = ~df[<span class="string">"positionName"</span>].str.contains(<span class="string">"实习"</span>)  <span class="comment"># 剔除掉带实习字眼的</span></span><br><span class="line">len(df[cond_1 &amp; cond_2][<span class="string">"positionName"</span>])  <span class="comment">###限制搜索条件</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200820220056444.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>这里看到我们把关于数据分析的内容全部提取出来了。</p>
+<h4 id="工资清洗"><a href="#工资清洗" class="headerlink" title="工资清洗"></a>工资清洗</h4><p>我们将工资进行输出，发现全部都是区间形式，单位都是k或者K，如下图所示：<br><img src="https://img-blog.csdnimg.cn/20200820220429807.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>处理过程大致如下：</p>
+<ol>
+<li>将字母全部改为小写。</li>
+<li>用正则表达式提取数字。</li>
+<li>将提取出来的数字转换为整形（非常重要！！！）</li>
+<li>用首末端的平均值替代工资的区间。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">"salary"</span>] = df[<span class="string">"salary"</span>].str.lower()\           <span class="comment">## 将字母全部改为小写</span></span><br><span class="line">               .str.extract(<span class="string">r'(\d+)[k]-(\d+)k'</span>)\  <span class="comment">##正则表达式提取数字</span></span><br><span class="line">               .applymap(<span class="keyword">lambda</span> x:int(x))\  <span class="comment">##applymap(func)将函数func做用于DataFrame中的所有元素(elements)，并将提取出来的数字转换为整形</span></span><br><span class="line">               .mean(axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p>得到的工资平均值如下所示：<br><img src="https://img-blog.csdnimg.cn/20200821084835420.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h4 id="技能要求"><a href="#技能要求" class="headerlink" title="技能要求"></a>技能要求</h4><p>因为我们要统计技能的个数占职位个数的频率，所以我们这里以Python/R、SQL、Tableau、Excel为准</p>
+<p>如果job_detail中含有上述四类，则赋值为1，不含有则为0。</p>
+<p>代码如下所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">"job_detail"</span>] = df[<span class="string">"job_detail"</span>].str.lower().fillna(<span class="string">""</span>)  <span class="comment">#将字符串小写化，并将缺失值赋值为空字符串</span></span><br><span class="line"></span><br><span class="line">df[<span class="string">"Python/R"</span>] = df[<span class="string">"job_detail"</span>].map(<span class="keyword">lambda</span> x:<span class="number">1</span> <span class="keyword">if</span> (<span class="string">'python'</span> <span class="keyword">in</span> x) <span class="keyword">or</span> (<span class="string">'r'</span> <span class="keyword">in</span> x) <span class="keyword">else</span> <span class="number">0</span>)</span><br><span class="line">df[<span class="string">"SQL"</span>] = df[<span class="string">"job_detail"</span>].map(<span class="keyword">lambda</span> x:<span class="number">1</span> <span class="keyword">if</span> (<span class="string">'sql'</span> <span class="keyword">in</span> x) <span class="keyword">or</span> (<span class="string">'hive'</span> <span class="keyword">in</span> x)  <span class="keyword">else</span> <span class="number">0</span>)</span><br><span class="line">df[<span class="string">"Tableau"</span>] = df[<span class="string">"job_detail"</span>].map(<span class="keyword">lambda</span> x:<span class="number">1</span> <span class="keyword">if</span> <span class="string">'tableau'</span> <span class="keyword">in</span> x  <span class="keyword">else</span> <span class="number">0</span>)</span><br><span class="line">df[<span class="string">"Excel"</span>] = df[<span class="string">"job_detail"</span>].map(<span class="keyword">lambda</span> x:<span class="number">1</span> <span class="keyword">if</span> <span class="string">'excel'</span> <span class="keyword">in</span> x  <span class="keyword">else</span> <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<p>结果是增加了四列，每一列的结果是频率的大小，如下所示：<br><img src="https://img-blog.csdnimg.cn/20200821085302991.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h4 id="行业信息统计"><a href="#行业信息统计" class="headerlink" title="行业信息统计"></a>行业信息统计</h4><p>目标：只出现一个行业，如果有多个行业，以第二个行业为准：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">clean_industry</span><span class="params">(industry)</span>:</span></span><br><span class="line">    industry = industry.split(<span class="string">","</span>)</span><br><span class="line">    <span class="keyword">if</span> industry[<span class="number">0</span>]==<span class="string">"移动互联网"</span> <span class="keyword">and</span> len(industry)&gt;<span class="number">1</span>:  <span class="comment">#如果有关键字，重点选取第二个关键词</span></span><br><span class="line">        <span class="keyword">return</span> industry[<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> industry[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">df[<span class="string">"industryField"</span>] = df.industryField.map(clean_industry)</span><br></pre></td></tr></table></figure>
+
+<h2 id="数据可视化"><a href="#数据可视化" class="headerlink" title="数据可视化"></a>数据可视化</h2><h4 id="各城市数据分析岗位需求量"><a href="#各城市数据分析岗位需求量" class="headerlink" title="各城市数据分析岗位需求量"></a>各城市数据分析岗位需求量</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">fig, ax = plt.subplots(figsize=(<span class="number">12</span>,<span class="number">8</span>))</span><br><span class="line">sns.countplot(y=<span class="string">"city"</span>,order= df[<span class="string">"city"</span>].value_counts().index,data=df,color=<span class="string">'#3c7f99'</span>)<span class="comment">### 统计每个城市数据分析师岗位的数目</span></span><br><span class="line">plt.box(<span class="literal">False</span>)</span><br><span class="line">fig.text(x=<span class="number">0.04</span>, y=<span class="number">0.90</span>, s=<span class="string">'           各城市数据分析岗位的需求量           '</span>, </span><br><span class="line">         fontsize=<span class="number">32</span>, weight=<span class="string">'bold'</span>, color=<span class="string">'white'</span>, backgroundcolor=<span class="string">'#c5b783'</span>)</span><br><span class="line">plt.tick_params(axis=<span class="string">'both'</span>, which=<span class="string">'major'</span>, labelsize=<span class="number">16</span>)  <span class="comment">##which中的both表示主刻度线</span></span><br><span class="line">ax.xaxis.grid(which=<span class="string">'both'</span>, linewidth=<span class="number">0.5</span>, color=<span class="string">'#3c7f99'</span>)</span><br><span class="line">plt.xlabel(<span class="string">''</span>)</span><br><span class="line">plt.ylabel(<span class="string">''</span>)</span><br></pre></td></tr></table></figure>
+
+<p>得到的需求量统计如下图所示：<br><img src="https://img-blog.csdnimg.cn/20200821090233236.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h4 id="不同领域对数据分析岗位的需求量"><a href="#不同领域对数据分析岗位的需求量" class="headerlink" title="不同领域对数据分析岗位的需求量"></a>不同领域对数据分析岗位的需求量</h4><p>这里面和地域不同的是，我们取前十个领域的需求量来进行可视化呈现，代码如下所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">industry_index = df[<span class="string">"industryField"</span>].value_counts()[:<span class="number">10</span>].index   <span class="comment">##统计个数，并返回表格索引</span></span><br><span class="line">industry =df.loc[df[<span class="string">"industryField"</span>].isin(industry_index),<span class="string">"industryField"</span>]  <span class="comment">##根据表格索引，获取某一行和列</span></span><br><span class="line">fig, ax = plt.subplots(figsize=(<span class="number">12</span>,<span class="number">8</span>))</span><br><span class="line">sns.countplot(y=industry.values,order = industry_index,color=<span class="string">'#3c7f99'</span>)</span><br><span class="line">plt.box(<span class="literal">False</span>)</span><br><span class="line">fig.text(x=<span class="number">0</span>, y=<span class="number">0.90</span>, s=<span class="string">'         细分领域数据分析岗位的需求量（取前十）     '</span>, </span><br><span class="line">         fontsize=<span class="number">32</span>, weight=<span class="string">'bold'</span>, color=<span class="string">'white'</span>, backgroundcolor=<span class="string">'#c5b783'</span>)</span><br><span class="line">plt.tick_params(axis=<span class="string">'both'</span>, which=<span class="string">'major'</span>, labelsize=<span class="number">16</span>)</span><br><span class="line">ax.xaxis.grid(which=<span class="string">'both'</span>, linewidth=<span class="number">0.5</span>, color=<span class="string">'#3c7f99'</span>)</span><br><span class="line">plt.xlabel(<span class="string">''</span>)</span><br><span class="line">plt.ylabel(<span class="string">''</span>)</span><br></pre></td></tr></table></figure>
+<p>结果如下图所示：<br><img src="https://img-blog.csdnimg.cn/20200821090645572.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h4 id="各城市相应岗位的薪资情况"><a href="#各城市相应岗位的薪资情况" class="headerlink" title="各城市相应岗位的薪资情况"></a>各城市相应岗位的薪资情况</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">fig,ax = plt.subplots(figsize=(<span class="number">12</span>,<span class="number">8</span>))</span><br><span class="line">city_order = df.groupby(<span class="string">"city"</span>)[<span class="string">"salary"</span>].mean()\</span><br><span class="line">               .sort_values()\</span><br><span class="line">               .index.tolist()</span><br><span class="line">sns.barplot(x=<span class="string">"city"</span>, y=<span class="string">"salary"</span>, order=city_order, data=df, ci=<span class="number">95</span>,palette=<span class="string">"RdBu_r"</span>)</span><br><span class="line">fig.text(x=<span class="number">0.04</span>, y=<span class="number">0.90</span>, s=<span class="string">'              各城市的薪资水平对比              '</span>, </span><br><span class="line">         fontsize=<span class="number">32</span>, weight=<span class="string">'bold'</span>, color=<span class="string">'white'</span>, backgroundcolor=<span class="string">'#3c7f99'</span>)</span><br><span class="line">plt.tick_params(axis=<span class="string">"both"</span>,labelsize=<span class="number">16</span>,)</span><br><span class="line">ax.yaxis.grid(which=<span class="string">'both'</span>, linewidth=<span class="number">0.5</span>, color=<span class="string">'black'</span>)</span><br><span class="line">ax.set_yticklabels([<span class="string">" "</span>,<span class="string">"5k"</span>,<span class="string">"10k"</span>,<span class="string">"15k"</span>,<span class="string">"20k"</span>])   <span class="comment">##设定区间</span></span><br><span class="line">plt.box(<span class="literal">False</span>)</span><br><span class="line">plt.xlabel(<span class="string">''</span>)</span><br><span class="line">plt.ylabel(<span class="string">''</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200823172414137.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h4 id="一线城市薪资分布对比"><a href="#一线城市薪资分布对比" class="headerlink" title="一线城市薪资分布对比"></a>一线城市薪资分布对比</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">fig,ax = plt.subplots(figsize=(<span class="number">12</span>,<span class="number">8</span>))</span><br><span class="line">fig.text(x=<span class="number">0.04</span>, y=<span class="number">0.90</span>, s=<span class="string">'           一线城市的薪资分布对比             '</span>, </span><br><span class="line">         fontsize=<span class="number">32</span>, weight=<span class="string">'bold'</span>, color=<span class="string">'white'</span>, backgroundcolor=<span class="string">'#c5b783'</span>)</span><br><span class="line">sns.kdeplot(df[df[<span class="string">"city"</span>]==<span class="string">'北京'</span>][<span class="string">"salary"</span>],shade=<span class="literal">True</span>,label=<span class="string">"北京"</span>)</span><br><span class="line">sns.kdeplot(df[df[<span class="string">"city"</span>]==<span class="string">'上海'</span>][<span class="string">"salary"</span>],shade=<span class="literal">True</span>,label=<span class="string">"上海"</span>)</span><br><span class="line">sns.kdeplot(df[df[<span class="string">"city"</span>]==<span class="string">'广州'</span>][<span class="string">"salary"</span>],shade=<span class="literal">True</span>,label=<span class="string">"广州"</span>)</span><br><span class="line">sns.kdeplot(df[df[<span class="string">"city"</span>]==<span class="string">'深圳'</span>][<span class="string">"salary"</span>],shade=<span class="literal">True</span>,label=<span class="string">"深圳"</span>)</span><br><span class="line">plt.tick_params(axis=<span class="string">'both'</span>, which=<span class="string">'major'</span>, labelsize=<span class="number">16</span>)</span><br><span class="line">plt.box(<span class="literal">False</span>)</span><br><span class="line">plt.xticks(np.arange(<span class="number">0</span>,<span class="number">61</span>,<span class="number">10</span>), [str(i)+<span class="string">"k"</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">61</span>,<span class="number">10</span>)])</span><br><span class="line">plt.yticks([])</span><br><span class="line">plt.legend(fontsize = <span class="string">'xx-large'</span>,fancybox=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20200823172520413.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h4 id="工作经验与薪水关系"><a href="#工作经验与薪水关系" class="headerlink" title="工作经验与薪水关系"></a>工作经验与薪水关系</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">corr = df.pivot_table(index=<span class="string">"city"</span>,columns=<span class="string">"workYear"</span>,values=<span class="string">"salary"</span>)</span><br><span class="line">corr = corr[[<span class="string">"应届毕业生"</span>,<span class="string">"1-3年"</span>,<span class="string">"3-5年"</span>,<span class="string">"5-10年"</span>]]</span><br><span class="line">corr.loc[city_order]</span><br><span class="line">fig,ax = plt.subplots(figsize=(<span class="number">10</span>,<span class="number">8</span>))</span><br><span class="line">sns.heatmap(corr.loc[df[<span class="string">"city"</span>].value_counts().index],cmap=<span class="string">"RdBu_r"</span>,center=<span class="number">20</span>,annot=<span class="literal">True</span>,annot_kws=&#123;<span class="string">'fontsize'</span>:<span class="number">14</span>&#125;)</span><br><span class="line">plt.tick_params(axis=<span class="string">'x'</span>, which=<span class="string">'major'</span>, labelsize=<span class="number">16</span>)</span><br><span class="line">plt.tick_params(axis=<span class="string">'y'</span>, which=<span class="string">'major'</span>, labelsize=<span class="number">16</span>,labelrotation=<span class="number">0</span>)</span><br><span class="line">plt.xlabel(<span class="string">""</span>),plt.ylabel(<span class="string">""</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/2020082317273451.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h4 id=""><a href="#" class="headerlink" title=""></a></h4>
     
 
     
@@ -1186,7 +1221,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">suibi</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spider</a>
         		</li>
       		
 		</ul>
@@ -1196,7 +1231,7 @@
 
     
     <p class="article-more-link">
-      <a class="article-more-a" href="/2020/05/15/%E5%85%B3%E4%BA%8EPython%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">展开全文 >></a>
+      <a class="article-more-a" href="/2020/05/23/Python%E5%88%86%E6%9E%90%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%B8%88%E8%A1%8C%E6%83%85/">展开全文 >></a>
     </p>
     
 
@@ -1363,11 +1398,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">algo</a>
+                <a href="javascript:void(0)" class="js-tag color5">tiku</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">tiku</a>
+                <a href="javascript:void(0)" class="js-tag color5">algo</a>
               </li>
              
               <li class="article-tag-list-item">

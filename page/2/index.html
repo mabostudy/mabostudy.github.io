@@ -183,6 +183,104 @@
             
 
   
+    <article id="post-关于Python的一些注意事项" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/05/15/%E5%85%B3%E4%BA%8EPython%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" target="_blank">关于Python调试的注意事项</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/05/15/%E5%85%B3%E4%BA%8EPython%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" class="archive-article-date">
+        <time datetime="2020-05-15T14:47:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-15</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p><strong>神经网络环境配置：</strong></p>
+<p>神经网络版本如果适配得不合适，那么会出现很多问题。这里提供一套配置方案：</p>
+<p>建议安装python3.6，否则可能导致tensorflow安装失败</p>
+<p>电脑无显卡：tensorflow==1.14 keras==2.2.5</p>
+<p>电脑有显卡:cuda 10.0 cudnn 7.4版本 tensorflow==1.14 keras==2.2.5，官网下载</p>
+<p><strong>python包安装有三种方法:</strong></p>
+<p>1.终端使用pip install xxx(包名)</p>
+<p>2.从官网下载whl文件，然后手动安装</p>
+<p><a href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyqt4" target="_blank" rel="noopener"><strong>https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyqt4</strong></a></p>
+<p>这里贴出一个有各种包的whl网站。</p>
+<p>3.如果是 pycharm，在settings-project-project Interpreter 里面进行安装</p>
+<p>如果是anaconda，可以在anaconda prompt终端使用conda/pip install xxx(包名)</p>
+<p><strong>pycharm激活码获取网址</strong>：<a href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyqt4" target="_blank" rel="noopener"><strong>http://idea.medeming.com/jets/</strong></a></p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">suibi</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/05/15/%E5%85%B3%E4%BA%8EPython%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-神经网络训练心得" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1101,98 +1199,6 @@
 
 
   
-    <article id="post-Java第二讲——数组和函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2019/09/27/Java%E7%AC%AC%E4%BA%8C%E8%AE%B2%E2%80%94%E2%80%94%E6%95%B0%E7%BB%84%E5%92%8C%E5%87%BD%E6%95%B0/" target="_blank">Java第二讲——数组与函数</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2019/09/27/Java%E7%AC%AC%E4%BA%8C%E8%AE%B2%E2%80%94%E2%80%94%E6%95%B0%E7%BB%84%E5%92%8C%E5%87%BD%E6%95%B0/" class="archive-article-date">
-        <time datetime="2019-09-27T06:58:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-27</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>数组就是一个程序中充当容器功能的一种数据类型，所谓的容器就是用来装数据的。<br>数组的三大特征是：<br>连续，数据类型要完全相同，大小固定</p>
-<p>数组的初始化分为静态初始化和动态初始化两种<br>所谓静态初始化就是在数组的初始赋值的时候就给定了数值，后面除非对初始化的值进行修改，其他情况改变不了数组的值，这个类似于python中元组的概念。<br>动态初始化就是在给定数组的值之后，后面还可以继续对数组的值进行修改，相当与python中列表的概念。</p>
-<p>数组的基本操作分为三种：<br>遍历，CRUD，排序<br>其中CRUD中<br>C：就是创建（Create），<br>R：就是查找（Retrieve），<br>U：就是更改（Update），<br>D：就是删除（Delete）<br>数组的初始化为int[] arr =new int[10];<br>进行排序的函数是Arrays.sort(arr)</p>
-<p>函数的概念：<br>函数是具有独立功能的一段代码，函数最大的优势就是能够提高代码的复用性。</p>
-<p>函数的四大组成部分:<br>返回类型，函数名字，参数列表，函数体<br>其中除了返回类型，参数列表，其他两个一个函数中必须存在的。</p>
-<p>实参和形参:<br>函数调用处的参数为实参，被调用处的参数为形参，其中形参有个形象的比喻就是做饭的食材。函数调用的本质是实参把自己的副本拷贝给形参。</p>
-<p>函数的递归:<br>函数的递归就是自己调用自己的过程。</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">suibi</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2019/09/27/Java%E7%AC%AC%E4%BA%8C%E8%AE%B2%E2%80%94%E2%80%94%E6%95%B0%E7%BB%84%E5%92%8C%E5%87%BD%E6%95%B0/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
@@ -1330,11 +1336,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">algo</a>
+                <a href="javascript:void(0)" class="js-tag color5">tiku</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">tiku</a>
+                <a href="javascript:void(0)" class="js-tag color5">algo</a>
               </li>
              
               <li class="article-tag-list-item">
