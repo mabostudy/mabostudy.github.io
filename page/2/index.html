@@ -183,6 +183,101 @@
             
 
   
+    <article id="post-神经网络训练心得" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/05/06/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E8%AE%AD%E7%BB%83%E5%BF%83%E5%BE%97/" target="_blank">神经网络训练心得</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/05/06/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E8%AE%AD%E7%BB%83%E5%BF%83%E5%BE%97/" class="archive-article-date">
+        <time datetime="2020-05-06T11:14:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-06</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>在这里给大家分享一下我在训练神经网络时候遇到的困难，以及走的一些弯路之后自己总结得经验。</p>
+<p>1.<strong>学会正确地debug</strong>，神经网络最困难的我觉得不是建立模型，而是数据转换，所以需要你对numpy包非常熟悉。</p>
+<p>2.<strong>将训练量调小一些</strong>，刚开始不知道性能，不知道程序是不是往正确的方向发展，那么我们可以将迭代次数取小一点，将数据量调小一点。</p>
+<p>3.<strong>分批次运行代码</strong>，节约运行时间，如果数据量很大，那么训练完一段代码之后，将它注释掉，继续跑下面的代码。</p>
+<p>4.<strong>错误提示</strong>是很好的指示，根据错误提示进行定位，并尝试看源代码。</p>
+<p>5.<strong>用gpu进行训练</strong>会大大加快你的训练速度，性能的提升往往是几十倍的。网上有各种框架进行加速的代码，需要注意的是，需要卸载tensorflow包，安装tensorflow-gpu包，否则还是会用cpu进行训练的。</p>
+<p>6.如果数据类型出现问题，先把数据的类型打印出来。再reshape成指定的类型，如果数据类型的错误始终解决不了，那就要考虑深层次的也就是输入数据的问题。</p>
+<p>7.<strong>数据量不够</strong>时，一般采用数据增强的方法对其进行补充，或者采用滑动平均的方法对数值进行补充。</p>
+<p>8.<strong>数据预判断</strong>；有数据需要处理的时候，用excel来拟合特征和输出之间的关系，确保输入和输出之间是有关系的，也就是要确保你选取的特征是对输出有影响的。</p>
+<p>9.如果你需要对<strong>神经网络进行改进</strong>，或者在论文中对深度学习模型进行深入描述，那么你需要将模型的原理，结构都得弄懂。</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">keyan</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/05/06/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E8%AE%AD%E7%BB%83%E5%BF%83%E5%BE%97/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-带你一步步讲解RNN" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1069,101 +1164,6 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/2019/09/27/Java%E7%AC%AC%E4%BA%8C%E8%AE%B2%E2%80%94%E2%80%94%E6%95%B0%E7%BB%84%E5%92%8C%E5%87%BD%E6%95%B0/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-爬虫实战篇--更换代理ip" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2019/09/26/%E7%88%AC%E8%99%AB%E5%AE%9E%E6%88%98%E7%AF%87--%E6%9B%B4%E6%8D%A2%E4%BB%A3%E7%90%86ip/" target="_blank">Python爬虫实战篇-更换代理ip</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2019/09/26/%E7%88%AC%E8%99%AB%E5%AE%9E%E6%88%98%E7%AF%87--%E6%9B%B4%E6%8D%A2%E4%BB%A3%E7%90%86ip/" class="archive-article-date">
-        <time datetime="2019-09-26T15:50:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-26</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p><strong>背景</strong><br>我们在爬取网站数据，防止被对方服务器发现的一个最重要的操作是更换代理ip，因为你的电脑主机在局域网下的ip是固定的，所以你经常使用一个代理ip对网站进行大规模爬取，就容易被对方服务器检测出来是非人为操作，那么你的主机ip会被他们拉入到ip黑名单池，导致爬取不到想要的数据了。</p>
-<p>目前市面上有很多免费和收费的代理ip。对于免费和付费的代理，不妨依次使用，先用免费代理尝试，如果需要更高阶的爬取，那么可以考虑付费代理。需要提醒的是，代理的选择最好使用高匿名代理IP，不然你的主机IP可能还是会被对方服务器检测出来。</p>
-<p><strong>免费代理使用</strong><br>对于需要维护免费的ip代理池的朋友可以参考下面的链接进行配置：<br><a href="https://github.com/Python3WebSpider/ProxyPool" target="_blank" rel="noopener">免费代理池项目</a></p>
-<p><strong>付费代理使用</strong><br><a href="https://zhuanlan.zhihu.com/p/33576641" target="_blank" rel="noopener">付费代理测评</a></p>
-<p><strong>提取代理代码编写</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re,requests</span><br><span class="line">ips1=[]</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_ips</span><span class="params">()</span>:</span></span><br><span class="line">    url=<span class="string">""</span>   <span class="comment">##这里需要填写的是你的API链接</span></span><br><span class="line">    response=requests.get(url)</span><br><span class="line">    ips=re.findall(<span class="string">'\\d+\\.\\d+\\.\\d+\\.\\d*\\:\\d+'</span>,response.text,re.S) <span class="comment">##正则表达式提取代理ip</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(ips)):</span><br><span class="line">        ip = ips[i]</span><br><span class="line">        proxies = &#123;</span><br><span class="line">                   <span class="string">'http'</span>: <span class="string">"http://"</span> + ip</span><br><span class="line">                   &#125;    <span class="comment">##可选，http或者https</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            test_ip_response = requests.get(<span class="string">'https://sh.fang.anjuke.com/'</span>,proxies=proxies)<span class="comment">##这里以访问安居客为例</span></span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            print(<span class="string">"此代理异常"</span>)</span><br><span class="line">        print(test_ip_response.status_code)</span><br><span class="line">        <span class="keyword">if</span> test_ip_response.status_code == <span class="number">200</span>:  <span class="comment">##，如果能够访问安居客，状态码是200，那么就将代理加入到列表中</span></span><br><span class="line">            ips1.append(proxies)</span><br><span class="line">    <span class="keyword">return</span> ips1</span><br></pre></td></tr></table></figure>
-
-<p><strong>调用代理ip代码编写</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ip_list=get_ips()</span><br><span class="line"><span class="comment">##请求网站信息</span></span><br><span class="line">response = requests.get(<span class="string">'https://sh.fang.anjuke.com,proxies=random.choice(ip_list)) ##加请求头，更换ip,</span></span><br></pre></td></tr></table></figure>
-<p>通过这种操作就成功地把代理加到请求链接啦。</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spider</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2019/09/26/%E7%88%AC%E8%99%AB%E5%AE%9E%E6%88%98%E7%AF%87--%E6%9B%B4%E6%8D%A2%E4%BB%A3%E7%90%86ip/">展开全文 >></a>
     </p>
     
 
