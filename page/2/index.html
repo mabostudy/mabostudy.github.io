@@ -187,6 +187,139 @@
             
 
   
+    <article id="post-Python分析数据分析师行情" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/05/23/Python%E5%88%86%E6%9E%90%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%B8%88%E8%A1%8C%E6%83%85/" target="_blank">Python分析数据分析师行情</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/05/23/Python%E5%88%86%E6%9E%90%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%B8%88%E8%A1%8C%E6%83%85/" class="archive-article-date">
+        <time datetime="2020-05-23T09:30:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-23</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="确定目标"><a href="#确定目标" class="headerlink" title="确定目标"></a>确定目标</h2><p>我们在之前的博客中已经获取了拉勾网上数据分析师的岗位信息，现在我们需要确定我们分析的目标，从而进行数据清洗。</p>
+<ol>
+<li>各城市对数据分析岗位的需求情况</li>
+<li>不同细分领域对数据分析岗的需求情况</li>
+<li>数据分析岗位的薪资状况</li>
+<li>工作经验与薪水的关系</li>
+<li>公司都要求什么，需要掌握什么技能</li>
+<li>岗位的学历要求高吗</li>
+<li>不同规模的企业对工资经验的要求以及提供的薪资水平</li>
+</ol>
+<h2 id="数据清洗"><a href="#数据清洗" class="headerlink" title="数据清洗"></a>数据清洗</h2><h3 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd </span><br><span class="line">path = <span class="string">'./lagou.csv'</span></span><br><span class="line">df = pd.read_csv(path)</span><br></pre></td></tr></table></figure>
+
+<h3 id="清洗数据"><a href="#清洗数据" class="headerlink" title="清洗数据"></a>清洗数据</h3><h4 id="缩小列读取范围"><a href="#缩小列读取范围" class="headerlink" title="缩小列读取范围"></a>缩小列读取范围</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">columns = [<span class="string">"positionName"</span>, <span class="string">"companyShortName"</span>, <span class="string">"city"</span>, <span class="string">"companySize"</span>, <span class="string">"education"</span>, <span class="string">"financeStage"</span>,</span><br><span class="line">           <span class="string">"industryField"</span>, <span class="string">"salary"</span>, <span class="string">"workYear"</span>, <span class="string">"hitags"</span>, <span class="string">"companyLabelList"</span>, <span class="string">"job_detail"</span>]  <span class="comment">##只需要这么多列数据即可</span></span><br><span class="line">df = df[columns].drop_duplicates() <span class="comment">#去重</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="职位筛选"><a href="#职位筛选" class="headerlink" title="职位筛选"></a>职位筛选</h4><p>我们研究的仅仅是数据分析这一岗位，所以我们去除数据分析之外的以及实习的工作，因为这不是我们研究的重点，代码如下：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200820215933107.png#pic_center" alt="在这里插入图片描述"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cond_1 = df[<span class="string">"positionName"</span>].str.contains(<span class="string">"数据分析"</span>)  <span class="comment"># 职位名中含有数据分析字眼的</span></span><br><span class="line">cond_2 = ~df[<span class="string">"positionName"</span>].str.contains(<span class="string">"实习"</span>)  <span class="comment"># 剔除掉带实习字眼的</span></span><br><span class="line">len(df[cond_1 &amp; cond_2][<span class="string">"positionName"</span>])  <span class="comment">###限制搜索条件</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200820220056444.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>这里看到我们把关于数据分析的内容全部提取出来了。</p>
+<h4 id="工资清洗"><a href="#工资清洗" class="headerlink" title="工资清洗"></a>工资清洗</h4><p>我们将工资进行输出，发现全部都是区间形式，单位都是k或者K，如下图所示：<br><img src="https://img-blog.csdnimg.cn/20200820220429807.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>处理过程大致如下：</p>
+<ol>
+<li>将字母全部改为小写。</li>
+<li>用正则表达式提取数字。</li>
+<li>将提取出来的数字转换为整形（非常重要！！！）</li>
+<li>用首末端的平均值替代工资的区间。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">"salary"</span>] = df[<span class="string">"salary"</span>].str.lower()\           <span class="comment">## 将字母全部改为小写</span></span><br><span class="line">               .str.extract(<span class="string">r'(\d+)[k]-(\d+)k'</span>)\  <span class="comment">##正则表达式提取数字</span></span><br><span class="line">               .applymap(<span class="keyword">lambda</span> x:int(x))\  <span class="comment">##applymap(func)将函数func做用于DataFrame中的所有元素(elements)，并将提取出来的数字转换为整形</span></span><br><span class="line">               .mean(axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p>得到的工资平均值如下所示：<br><img src="https://img-blog.csdnimg.cn/20200821084835420.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h4 id="技能要求"><a href="#技能要求" class="headerlink" title="技能要求"></a>技能要求</h4><p>因为我们要统计技能的个数占职位个数的频率，所以我们这里以Python/R、SQL、Tableau、Excel为准</p>
+<p>如果job_detail中含有上述四类，则赋值为1，不含有则为0。</p>
+<p>代码如下所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">"job_detail"</span>] = df[<span class="string">"job_detail"</span>].str.lower().fillna(<span class="string">""</span>)  <span class="comment">#将字符串小写化，并将缺失值赋值为空字符串</span></span><br><span class="line"></span><br><span class="line">df[<span class="string">"Python/R"</span>] = df[<span class="string">"job_detail"</span>].map(<span class="keyword">lambda</span> x:<span class="number">1</span> <span class="keyword">if</span> (<span class="string">'python'</span> <span class="keyword">in</span> x) <span class="keyword">or</span> (<span class="string">'r'</span> <span class="keyword">in</span> x) <span class="keyword">else</span> <span class="number">0</span>)</span><br><span class="line">df[<span class="string">"SQL"</span>] = df[<span class="string">"job_detail"</span>].map(<span class="keyword">lambda</span> x:<span class="number">1</span> <span class="keyword">if</span> (<span class="string">'sql'</span> <span class="keyword">in</span> x) <span class="keyword">or</span> (<span class="string">'hive'</span> <span class="keyword">in</span> x)  <span class="keyword">else</span> <span class="number">0</span>)</span><br><span class="line">df[<span class="string">"Tableau"</span>] = df[<span class="string">"job_detail"</span>].map(<span class="keyword">lambda</span> x:<span class="number">1</span> <span class="keyword">if</span> <span class="string">'tableau'</span> <span class="keyword">in</span> x  <span class="keyword">else</span> <span class="number">0</span>)</span><br><span class="line">df[<span class="string">"Excel"</span>] = df[<span class="string">"job_detail"</span>].map(<span class="keyword">lambda</span> x:<span class="number">1</span> <span class="keyword">if</span> <span class="string">'excel'</span> <span class="keyword">in</span> x  <span class="keyword">else</span> <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<p>结果是增加了四列，每一列的结果是频率的大小，如下所示：<br><img src="https://img-blog.csdnimg.cn/20200821085302991.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h4 id="行业信息统计"><a href="#行业信息统计" class="headerlink" title="行业信息统计"></a>行业信息统计</h4><p>目标：只出现一个行业，如果有多个行业，以第二个行业为准：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">clean_industry</span><span class="params">(industry)</span>:</span></span><br><span class="line">    industry = industry.split(<span class="string">","</span>)</span><br><span class="line">    <span class="keyword">if</span> industry[<span class="number">0</span>]==<span class="string">"移动互联网"</span> <span class="keyword">and</span> len(industry)&gt;<span class="number">1</span>:  <span class="comment">#如果有关键字，重点选取第二个关键词</span></span><br><span class="line">        <span class="keyword">return</span> industry[<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> industry[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">df[<span class="string">"industryField"</span>] = df.industryField.map(clean_industry)</span><br></pre></td></tr></table></figure>
+
+<h2 id="数据可视化"><a href="#数据可视化" class="headerlink" title="数据可视化"></a>数据可视化</h2><h4 id="各城市数据分析岗位需求量"><a href="#各城市数据分析岗位需求量" class="headerlink" title="各城市数据分析岗位需求量"></a>各城市数据分析岗位需求量</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">fig, ax = plt.subplots(figsize=(<span class="number">12</span>,<span class="number">8</span>))</span><br><span class="line">sns.countplot(y=<span class="string">"city"</span>,order= df[<span class="string">"city"</span>].value_counts().index,data=df,color=<span class="string">'#3c7f99'</span>)<span class="comment">### 统计每个城市数据分析师岗位的数目</span></span><br><span class="line">plt.box(<span class="literal">False</span>)</span><br><span class="line">fig.text(x=<span class="number">0.04</span>, y=<span class="number">0.90</span>, s=<span class="string">'           各城市数据分析岗位的需求量           '</span>, </span><br><span class="line">         fontsize=<span class="number">32</span>, weight=<span class="string">'bold'</span>, color=<span class="string">'white'</span>, backgroundcolor=<span class="string">'#c5b783'</span>)</span><br><span class="line">plt.tick_params(axis=<span class="string">'both'</span>, which=<span class="string">'major'</span>, labelsize=<span class="number">16</span>)  <span class="comment">##which中的both表示主刻度线</span></span><br><span class="line">ax.xaxis.grid(which=<span class="string">'both'</span>, linewidth=<span class="number">0.5</span>, color=<span class="string">'#3c7f99'</span>)</span><br><span class="line">plt.xlabel(<span class="string">''</span>)</span><br><span class="line">plt.ylabel(<span class="string">''</span>)</span><br></pre></td></tr></table></figure>
+
+<p>得到的需求量统计如下图所示：<br><img src="https://img-blog.csdnimg.cn/20200821090233236.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h4 id="不同领域对数据分析岗位的需求量"><a href="#不同领域对数据分析岗位的需求量" class="headerlink" title="不同领域对数据分析岗位的需求量"></a>不同领域对数据分析岗位的需求量</h4><p>这里面和地域不同的是，我们取前十个领域的需求量来进行可视化呈现，代码如下所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">industry_index = df[<span class="string">"industryField"</span>].value_counts()[:<span class="number">10</span>].index   <span class="comment">##统计个数，并返回表格索引</span></span><br><span class="line">industry =df.loc[df[<span class="string">"industryField"</span>].isin(industry_index),<span class="string">"industryField"</span>]  <span class="comment">##根据表格索引，获取某一行和列</span></span><br><span class="line">fig, ax = plt.subplots(figsize=(<span class="number">12</span>,<span class="number">8</span>))</span><br><span class="line">sns.countplot(y=industry.values,order = industry_index,color=<span class="string">'#3c7f99'</span>)</span><br><span class="line">plt.box(<span class="literal">False</span>)</span><br><span class="line">fig.text(x=<span class="number">0</span>, y=<span class="number">0.90</span>, s=<span class="string">'         细分领域数据分析岗位的需求量（取前十）     '</span>, </span><br><span class="line">         fontsize=<span class="number">32</span>, weight=<span class="string">'bold'</span>, color=<span class="string">'white'</span>, backgroundcolor=<span class="string">'#c5b783'</span>)</span><br><span class="line">plt.tick_params(axis=<span class="string">'both'</span>, which=<span class="string">'major'</span>, labelsize=<span class="number">16</span>)</span><br><span class="line">ax.xaxis.grid(which=<span class="string">'both'</span>, linewidth=<span class="number">0.5</span>, color=<span class="string">'#3c7f99'</span>)</span><br><span class="line">plt.xlabel(<span class="string">''</span>)</span><br><span class="line">plt.ylabel(<span class="string">''</span>)</span><br></pre></td></tr></table></figure>
+<p>结果如下图所示：<br><img src="https://img-blog.csdnimg.cn/20200821090645572.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h4 id="各城市相应岗位的薪资情况"><a href="#各城市相应岗位的薪资情况" class="headerlink" title="各城市相应岗位的薪资情况"></a>各城市相应岗位的薪资情况</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">fig,ax = plt.subplots(figsize=(<span class="number">12</span>,<span class="number">8</span>))</span><br><span class="line">city_order = df.groupby(<span class="string">"city"</span>)[<span class="string">"salary"</span>].mean()\</span><br><span class="line">               .sort_values()\</span><br><span class="line">               .index.tolist()</span><br><span class="line">sns.barplot(x=<span class="string">"city"</span>, y=<span class="string">"salary"</span>, order=city_order, data=df, ci=<span class="number">95</span>,palette=<span class="string">"RdBu_r"</span>)</span><br><span class="line">fig.text(x=<span class="number">0.04</span>, y=<span class="number">0.90</span>, s=<span class="string">'              各城市的薪资水平对比              '</span>, </span><br><span class="line">         fontsize=<span class="number">32</span>, weight=<span class="string">'bold'</span>, color=<span class="string">'white'</span>, backgroundcolor=<span class="string">'#3c7f99'</span>)</span><br><span class="line">plt.tick_params(axis=<span class="string">"both"</span>,labelsize=<span class="number">16</span>,)</span><br><span class="line">ax.yaxis.grid(which=<span class="string">'both'</span>, linewidth=<span class="number">0.5</span>, color=<span class="string">'black'</span>)</span><br><span class="line">ax.set_yticklabels([<span class="string">" "</span>,<span class="string">"5k"</span>,<span class="string">"10k"</span>,<span class="string">"15k"</span>,<span class="string">"20k"</span>])   <span class="comment">##设定区间</span></span><br><span class="line">plt.box(<span class="literal">False</span>)</span><br><span class="line">plt.xlabel(<span class="string">''</span>)</span><br><span class="line">plt.ylabel(<span class="string">''</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200823172414137.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h4 id="一线城市薪资分布对比"><a href="#一线城市薪资分布对比" class="headerlink" title="一线城市薪资分布对比"></a>一线城市薪资分布对比</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">fig,ax = plt.subplots(figsize=(<span class="number">12</span>,<span class="number">8</span>))</span><br><span class="line">fig.text(x=<span class="number">0.04</span>, y=<span class="number">0.90</span>, s=<span class="string">'           一线城市的薪资分布对比             '</span>, </span><br><span class="line">         fontsize=<span class="number">32</span>, weight=<span class="string">'bold'</span>, color=<span class="string">'white'</span>, backgroundcolor=<span class="string">'#c5b783'</span>)</span><br><span class="line">sns.kdeplot(df[df[<span class="string">"city"</span>]==<span class="string">'北京'</span>][<span class="string">"salary"</span>],shade=<span class="literal">True</span>,label=<span class="string">"北京"</span>)</span><br><span class="line">sns.kdeplot(df[df[<span class="string">"city"</span>]==<span class="string">'上海'</span>][<span class="string">"salary"</span>],shade=<span class="literal">True</span>,label=<span class="string">"上海"</span>)</span><br><span class="line">sns.kdeplot(df[df[<span class="string">"city"</span>]==<span class="string">'广州'</span>][<span class="string">"salary"</span>],shade=<span class="literal">True</span>,label=<span class="string">"广州"</span>)</span><br><span class="line">sns.kdeplot(df[df[<span class="string">"city"</span>]==<span class="string">'深圳'</span>][<span class="string">"salary"</span>],shade=<span class="literal">True</span>,label=<span class="string">"深圳"</span>)</span><br><span class="line">plt.tick_params(axis=<span class="string">'both'</span>, which=<span class="string">'major'</span>, labelsize=<span class="number">16</span>)</span><br><span class="line">plt.box(<span class="literal">False</span>)</span><br><span class="line">plt.xticks(np.arange(<span class="number">0</span>,<span class="number">61</span>,<span class="number">10</span>), [str(i)+<span class="string">"k"</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">61</span>,<span class="number">10</span>)])</span><br><span class="line">plt.yticks([])</span><br><span class="line">plt.legend(fontsize = <span class="string">'xx-large'</span>,fancybox=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20200823172520413.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h4 id="工作经验与薪水关系"><a href="#工作经验与薪水关系" class="headerlink" title="工作经验与薪水关系"></a>工作经验与薪水关系</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">corr = df.pivot_table(index=<span class="string">"city"</span>,columns=<span class="string">"workYear"</span>,values=<span class="string">"salary"</span>)</span><br><span class="line">corr = corr[[<span class="string">"应届毕业生"</span>,<span class="string">"1-3年"</span>,<span class="string">"3-5年"</span>,<span class="string">"5-10年"</span>]]</span><br><span class="line">corr.loc[city_order]</span><br><span class="line">fig,ax = plt.subplots(figsize=(<span class="number">10</span>,<span class="number">8</span>))</span><br><span class="line">sns.heatmap(corr.loc[df[<span class="string">"city"</span>].value_counts().index],cmap=<span class="string">"RdBu_r"</span>,center=<span class="number">20</span>,annot=<span class="literal">True</span>,annot_kws=&#123;<span class="string">'fontsize'</span>:<span class="number">14</span>&#125;)</span><br><span class="line">plt.tick_params(axis=<span class="string">'x'</span>, which=<span class="string">'major'</span>, labelsize=<span class="number">16</span>)</span><br><span class="line">plt.tick_params(axis=<span class="string">'y'</span>, which=<span class="string">'major'</span>, labelsize=<span class="number">16</span>,labelrotation=<span class="number">0</span>)</span><br><span class="line">plt.xlabel(<span class="string">""</span>),plt.ylabel(<span class="string">""</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/2020082317273451.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h4 id=""><a href="#" class="headerlink" title=""></a></h4>
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spider</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/05/23/Python%E5%88%86%E6%9E%90%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%B8%88%E8%A1%8C%E6%83%85/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-关于Python的一些注意事项" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1074,106 +1207,6 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/2019/09/29/Java%E7%AC%AC%E5%9B%9B%E8%AE%B2%E2%80%94%E2%80%94JAVA%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Java第三讲——类和对象" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2019/09/28/Java%E7%AC%AC%E4%B8%89%E8%AE%B2%E2%80%94%E2%80%94%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/" target="_blank">Java第三讲——类和对象</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2019/09/28/Java%E7%AC%AC%E4%B8%89%E8%AE%B2%E2%80%94%E2%80%94%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/" class="archive-article-date">
-        <time datetime="2019-09-28T07:47:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-28</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>什么是对象?<br>世界上任何一种客观存在的事物都是对象。(“万物皆对象”)</p>
-<p>什么是类？<br>类是具有相同特征的一组对象的集合和抽象。(“物以类聚，人以群分”)</p>
-<p>什么是构造方法？<br>名字与类名相同，但是没有返回类型的方法。</p>
-<p>构造方法的作用?<br>用来初始化对象，并且如果用户没有进行初始化构造方法的话，那么系统会默认生成一个与类名字相同的没有参数，没有返回类型，方法体为空的函数。</p>
-<p>什么是引用？<br>引用是一种数据类型，是一个对象的别名。比如李明的外号叫小明，那么小明就是对象李明的引用。</p>
-<p>Java的数据类型有哪几种？<br>引用数据类型和基本数据类型。</p>
-<p>其中计算机的内存模型分为栈内存和堆内存，其中栈内存为顺序结构，堆内存为离散结构。<br>其中基本数据类型都是在栈内存中分配，引用数据类型都是在堆内存中分配。</p>
-<p>类的组成部分？<br>类由两种部分组成，属性和方法。属性是类具有的静态特征，方法是类具有的动态特征。</p>
-<p>类与对象的关系？<br>类是对象的抽象，对象是类的具体，所以类与对象是具体和抽象的关系。</p>
-<p>Person p =new Person(‘zhangsan’,”25”)<br>其中第一个Person是类的名字，new Person(‘zhangsan’,”25”)是对象<br>p是引用，Person(‘zhangsan’,”25”)是构造方法</p>
-<p>JAVA中的几种内部类：<br>1.在类体中定义的类称为内部类。<br>2.类体中定义的普通类<br>3.类体中定义的静态类<br>4.成员方法中定义的内部类<br>5.静态方法中定义的内部</p>
-<p>设计类时需要注意的几个问题：<br>1.先设计属性再设计方法。<br>2.属性使用名词<br>3.方法使用动词<br>4.考虑构造方法的重载<br>5.设计类一定要合理，适当的颗粒度，不能太粗 ，也不能太细。</p>
-<p>String类：<br>String类属于引用数据类型，它的初始化可以分为静态初始化和动态初始化<br>静态初始化为:String s = “hello”; //在字符串常量池中分配空间<br>动态初始化为String s =new String(“hello”);//在堆内存中分配空间</p>
-<p>String类常用方法介绍：</p>
-<p>charAt(int index)  //返回指定下标的字符<br>compareTo(String s) //字符串比较<br>concat(String s) //字符串拼接<br>contain() //字符串包含<br>equals() //判断两个字符串内容是否相同<br>getBytes() //返回字节数组<br>indexOf() //查找子串下标<br>lastIndexOf() //查找最后子串下标<br>split() //分隔字符串返回字符串数组    与StringTokenizer有相似功能<br>subString() //获取子串<br>toString() //对象转换为字符串<br>toUpperCase() //转换为大写字母<br>toLowerCase() //转换为小写字母</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">suibi</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2019/09/28/Java%E7%AC%AC%E4%B8%89%E8%AE%B2%E2%80%94%E2%80%94%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/">展开全文 >></a>
     </p>
     
 

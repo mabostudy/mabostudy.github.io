@@ -187,6 +187,106 @@
             
 
   
+    <article id="post-Java第三讲——类和对象" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2019/09/28/Java%E7%AC%AC%E4%B8%89%E8%AE%B2%E2%80%94%E2%80%94%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/" target="_blank">Java第三讲——类和对象</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2019/09/28/Java%E7%AC%AC%E4%B8%89%E8%AE%B2%E2%80%94%E2%80%94%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/" class="archive-article-date">
+        <time datetime="2019-09-28T07:47:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-28</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>什么是对象?<br>世界上任何一种客观存在的事物都是对象。(“万物皆对象”)</p>
+<p>什么是类？<br>类是具有相同特征的一组对象的集合和抽象。(“物以类聚，人以群分”)</p>
+<p>什么是构造方法？<br>名字与类名相同，但是没有返回类型的方法。</p>
+<p>构造方法的作用?<br>用来初始化对象，并且如果用户没有进行初始化构造方法的话，那么系统会默认生成一个与类名字相同的没有参数，没有返回类型，方法体为空的函数。</p>
+<p>什么是引用？<br>引用是一种数据类型，是一个对象的别名。比如李明的外号叫小明，那么小明就是对象李明的引用。</p>
+<p>Java的数据类型有哪几种？<br>引用数据类型和基本数据类型。</p>
+<p>其中计算机的内存模型分为栈内存和堆内存，其中栈内存为顺序结构，堆内存为离散结构。<br>其中基本数据类型都是在栈内存中分配，引用数据类型都是在堆内存中分配。</p>
+<p>类的组成部分？<br>类由两种部分组成，属性和方法。属性是类具有的静态特征，方法是类具有的动态特征。</p>
+<p>类与对象的关系？<br>类是对象的抽象，对象是类的具体，所以类与对象是具体和抽象的关系。</p>
+<p>Person p =new Person(‘zhangsan’,”25”)<br>其中第一个Person是类的名字，new Person(‘zhangsan’,”25”)是对象<br>p是引用，Person(‘zhangsan’,”25”)是构造方法</p>
+<p>JAVA中的几种内部类：<br>1.在类体中定义的类称为内部类。<br>2.类体中定义的普通类<br>3.类体中定义的静态类<br>4.成员方法中定义的内部类<br>5.静态方法中定义的内部</p>
+<p>设计类时需要注意的几个问题：<br>1.先设计属性再设计方法。<br>2.属性使用名词<br>3.方法使用动词<br>4.考虑构造方法的重载<br>5.设计类一定要合理，适当的颗粒度，不能太粗 ，也不能太细。</p>
+<p>String类：<br>String类属于引用数据类型，它的初始化可以分为静态初始化和动态初始化<br>静态初始化为:String s = “hello”; //在字符串常量池中分配空间<br>动态初始化为String s =new String(“hello”);//在堆内存中分配空间</p>
+<p>String类常用方法介绍：</p>
+<p>charAt(int index)  //返回指定下标的字符<br>compareTo(String s) //字符串比较<br>concat(String s) //字符串拼接<br>contain() //字符串包含<br>equals() //判断两个字符串内容是否相同<br>getBytes() //返回字节数组<br>indexOf() //查找子串下标<br>lastIndexOf() //查找最后子串下标<br>split() //分隔字符串返回字符串数组    与StringTokenizer有相似功能<br>subString() //获取子串<br>toString() //对象转换为字符串<br>toUpperCase() //转换为大写字母<br>toLowerCase() //转换为小写字母</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">suibi</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2019/09/28/Java%E7%AC%AC%E4%B8%89%E8%AE%B2%E2%80%94%E2%80%94%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Java第二讲——数组和函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -672,6 +772,104 @@
 
 
   
+    <article id="post-Xgboost算法详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2019/09/05/Xgboost%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3/" target="_blank">Xgboost算法详解</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2019/09/05/Xgboost%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
+        <time datetime="2019-09-05T02:22:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-05</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>因为Xgboost算法常常用于有监督学习，关于有监督学习我们在前面已经介绍过来，但是有监督学习的要素有哪些呢？Xgboost算法为什么经常用于有监督学习呢？</p>
+<p><strong>有监督学习的要素</strong>包含两大块:</p>
+<h3 id="模型和参数"><a href="#模型和参数" class="headerlink" title="模型和参数"></a>模型和参数</h3><p><strong>模型</strong>通常是给定输入Xi，找出和输出y之间的关系，如线性模型<img src="https://img-blog.csdnimg.cn/20191108093352142.png" alt=""><br><strong>参数</strong>通常是我们需要从数据中学习的未确定部分。在线性回归模型中，参数是系数Wj。</p>
+<h3 id="损失函数和正则化"><a href="#损失函数和正则化" class="headerlink" title="损失函数和正则化"></a>损失函数和正则化</h3><p>我们在对数据进行训练的时候，总是要有一个评价指标，判断训练的好坏程度，这时候就引入了目标函数的概念，其中:<br>目标函数=损失函数L(θ)+正则化Ω(θ)</p>
+<p><strong>损失函数</strong><br>损失函数L(θ)是描述预测值和真实值的偏差有多少，衡量我们的数据对训练数据的预测性，数学表达式用l(Y-Yi)来表示,其中l(x)可以是均方误差，逻辑回归损失。</p>
+<p><strong>正则化</strong><br>正则化Ω(θ)控制模型的复杂性，这有助于避免过拟合。</p>
+<p>简单来说就是损失函数判断模型的好坏，正则化判断模型的复杂程度，我们当然需要一个既简单又可以预测的模型。如果数据量无限多的话，训练最好的情况下此时的模型拟合误差记为bias。如果在有限数据量的条件下进行拟合的话，那么此时的误差记为variance。</p>
+<h4 id="树集成"><a href="#树集成" class="headerlink" title="树集成"></a>树集成</h4><p>现在有五个人，要研究的是他们去打电脑游戏的可能性，最后的结果越大表明去打游戏的可能性也就越大。<br><img src="https://img-blog.csdnimg.cn/20191108103017885.png" alt=""><br><img src="https://img-blog.csdnimg.cn/20191108102900457.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt=""></p>
+<p>如果只用上图左边根据性别和年龄来进行分类的话，采用的是单棵树。如果加上上图右边的树将使用电脑频率进行分类的话，两棵树的结果相加最后得到每个人会去打电脑游戏的可能性，这样的方法称为树集成。而Xgboost本质上就是树集成。</p>
+<p>有了上面的基础之后，我们再来讨论，当我们既有了一棵树，我们还得添加哪些树?添加多少树呢？</p>
+<p><strong>添加哪些树？</strong><br>Xgboost里面的树是一个一个添加的，每一个树都可以看作是一个函数<br><img src="https://img-blog.csdnimg.cn/20191108104234681.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt=""><br><strong>所以我们添加的树必须要保证预测效果是比不加树之前的效果要好的。</strong></p>
+<p><strong>添加多少树?</strong><br>有可能到最后树的性能是提升了，但是提升的增益很小，甚至会带来过拟合情况的产生。这个时候就引入了惩罚函数<br><img src="https://img-blog.csdnimg.cn/20191108105042316.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt="">)比如<img src="https://img-blog.csdnimg.cn/20191108105112704.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt=""><strong>对目标函数进行优化</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/20191108172735542.png" alt=""><br>利用均方误差对目标函数进行展开之后<br><img src="https://img-blog.csdnimg.cn/20191108172751261.png" alt=""><br>将均方误差的泰勒展示式展开到二阶之后<br><img src="https://img-blog.csdnimg.cn/20191108172855627.png" alt=""><br>因为损失函数最后是一个具体的值，和输入xi没有什么关系，所以除去损失函数和常量的值<br><img src="https://img-blog.csdnimg.cn/20191108171644887.png" alt=""><br>其中<br><img src="https://img-blog.csdnimg.cn/20191108171705562.png" alt=""><br><img src="https://img-blog.csdnimg.cn/20191108172641106.png" alt=""><br><img src="https://img-blog.csdnimg.cn/20191108172654248.png" alt=""><br>在二次函数的基础上满足以下条件可以使得目标函数最小，<br><img src="https://img-blog.csdnimg.cn/2019110817270710.png" alt=""><br><strong>信息增益:</strong><br>对于每次扩展，我们依旧要枚举所有可能的方案。对于某个特定的分割，我们要计算出这个分割的左子树的导数和和右子数导数和之和，然后和划分前的进行比较（基于损失，看分割后的损失和分割前的损失有没有发生变化，变化了多少）。遍历所有分割，选择变化最大的作为最合适的分割。<br><img src="https://img-blog.csdnimg.cn/20191108174320355.png" alt=""></p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">algo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2019/09/05/Xgboost%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-ubuntu下创建定时任务的两种方式及常见问题解决方案" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -774,104 +972,6 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/2019/09/05/ubuntu%E4%B8%8B%E5%88%9B%E5%BB%BA%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F%E5%8F%8A%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Xgboost算法详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2019/09/05/Xgboost%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3/" target="_blank">Xgboost算法详解</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2019/09/05/Xgboost%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
-        <time datetime="2019-09-05T02:22:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-05</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>因为Xgboost算法常常用于有监督学习，关于有监督学习我们在前面已经介绍过来，但是有监督学习的要素有哪些呢？Xgboost算法为什么经常用于有监督学习呢？</p>
-<p><strong>有监督学习的要素</strong>包含两大块:</p>
-<h3 id="模型和参数"><a href="#模型和参数" class="headerlink" title="模型和参数"></a>模型和参数</h3><p><strong>模型</strong>通常是给定输入Xi，找出和输出y之间的关系，如线性模型<img src="https://img-blog.csdnimg.cn/20191108093352142.png" alt=""><br><strong>参数</strong>通常是我们需要从数据中学习的未确定部分。在线性回归模型中，参数是系数Wj。</p>
-<h3 id="损失函数和正则化"><a href="#损失函数和正则化" class="headerlink" title="损失函数和正则化"></a>损失函数和正则化</h3><p>我们在对数据进行训练的时候，总是要有一个评价指标，判断训练的好坏程度，这时候就引入了目标函数的概念，其中:<br>目标函数=损失函数L(θ)+正则化Ω(θ)</p>
-<p><strong>损失函数</strong><br>损失函数L(θ)是描述预测值和真实值的偏差有多少，衡量我们的数据对训练数据的预测性，数学表达式用l(Y-Yi)来表示,其中l(x)可以是均方误差，逻辑回归损失。</p>
-<p><strong>正则化</strong><br>正则化Ω(θ)控制模型的复杂性，这有助于避免过拟合。</p>
-<p>简单来说就是损失函数判断模型的好坏，正则化判断模型的复杂程度，我们当然需要一个既简单又可以预测的模型。如果数据量无限多的话，训练最好的情况下此时的模型拟合误差记为bias。如果在有限数据量的条件下进行拟合的话，那么此时的误差记为variance。</p>
-<h4 id="树集成"><a href="#树集成" class="headerlink" title="树集成"></a>树集成</h4><p>现在有五个人，要研究的是他们去打电脑游戏的可能性，最后的结果越大表明去打游戏的可能性也就越大。<br><img src="https://img-blog.csdnimg.cn/20191108103017885.png" alt=""><br><img src="https://img-blog.csdnimg.cn/20191108102900457.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt=""></p>
-<p>如果只用上图左边根据性别和年龄来进行分类的话，采用的是单棵树。如果加上上图右边的树将使用电脑频率进行分类的话，两棵树的结果相加最后得到每个人会去打电脑游戏的可能性，这样的方法称为树集成。而Xgboost本质上就是树集成。</p>
-<p>有了上面的基础之后，我们再来讨论，当我们既有了一棵树，我们还得添加哪些树?添加多少树呢？</p>
-<p><strong>添加哪些树？</strong><br>Xgboost里面的树是一个一个添加的，每一个树都可以看作是一个函数<br><img src="https://img-blog.csdnimg.cn/20191108104234681.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt=""><br><strong>所以我们添加的树必须要保证预测效果是比不加树之前的效果要好的。</strong></p>
-<p><strong>添加多少树?</strong><br>有可能到最后树的性能是提升了，但是提升的增益很小，甚至会带来过拟合情况的产生。这个时候就引入了惩罚函数<br><img src="https://img-blog.csdnimg.cn/20191108105042316.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt="">)比如<img src="https://img-blog.csdnimg.cn/20191108105112704.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt=""><strong>对目标函数进行优化</strong></p>
-<p><img src="https://img-blog.csdnimg.cn/20191108172735542.png" alt=""><br>利用均方误差对目标函数进行展开之后<br><img src="https://img-blog.csdnimg.cn/20191108172751261.png" alt=""><br>将均方误差的泰勒展示式展开到二阶之后<br><img src="https://img-blog.csdnimg.cn/20191108172855627.png" alt=""><br>因为损失函数最后是一个具体的值，和输入xi没有什么关系，所以除去损失函数和常量的值<br><img src="https://img-blog.csdnimg.cn/20191108171644887.png" alt=""><br>其中<br><img src="https://img-blog.csdnimg.cn/20191108171705562.png" alt=""><br><img src="https://img-blog.csdnimg.cn/20191108172641106.png" alt=""><br><img src="https://img-blog.csdnimg.cn/20191108172654248.png" alt=""><br>在二次函数的基础上满足以下条件可以使得目标函数最小，<br><img src="https://img-blog.csdnimg.cn/2019110817270710.png" alt=""><br><strong>信息增益:</strong><br>对于每次扩展，我们依旧要枚举所有可能的方案。对于某个特定的分割，我们要计算出这个分割的左子树的导数和和右子数导数和之和，然后和划分前的进行比较（基于损失，看分割后的损失和分割前的损失有没有发生变化，变化了多少）。遍历所有分割，选择变化最大的作为最合适的分割。<br><img src="https://img-blog.csdnimg.cn/20191108174320355.png" alt=""></p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">algo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2019/09/05/Xgboost%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3/">展开全文 >></a>
     </p>
     
 
@@ -1084,108 +1184,6 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/2019/08/22/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84Respbian%E6%88%96%E8%80%85ubuntu%E7%B3%BB%E7%BB%9F%E4%B8%8B%E5%AE%89%E8%A3%85opencv%E6%9C%80%E6%9C%89%E6%95%88%E7%9A%84%E6%96%B9%E6%B3%95/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-爬虫之selenium的使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2019/07/21/%E7%88%AC%E8%99%AB%E4%B9%8Bselenium%E7%9A%84%E4%BD%BF%E7%94%A8/" target="_blank">爬虫之selenium的使用</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2019/07/21/%E7%88%AC%E8%99%AB%E4%B9%8Bselenium%E7%9A%84%E4%BD%BF%E7%94%A8/" class="archive-article-date">
-        <time datetime="2019-07-20T23:30:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-21</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h3 id="驱动的安装"><a href="#驱动的安装" class="headerlink" title="驱动的安装:"></a>驱动的安装:</h3><p>1.在<a href="http://npm.taobao.org/mirrors/chromedriver/" target="_blank" rel="noopener">http://npm.taobao.org/mirrors/chromedriver/</a>中寻找chrome的驱动，进行安装<br>2.windows中将chrome.exe加入环境变量中<br>3.再把下载的chromedriver复制粘贴到你安装的python的Scripts目录下，</p>
-<p>测试是否安装成功:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line">browser = webdriver.Chrome()</span><br></pre></td></tr></table></figure>
-
-<p>selenium的安装:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install selenium</span><br></pre></td></tr></table></figure>
-<h4 id="1-打开一个网页"><a href="#1-打开一个网页" class="headerlink" title="1.打开一个网页"></a>1.打开一个网页</h4><h4 id="browser-get-url"><a href="#browser-get-url" class="headerlink" title="browser.get(url)"></a>browser.get(url)</h4><p>browser.get(“<a href="https://www.baidu.com&quot;" target="_blank" rel="noopener">https://www.baidu.com&quot;</a>)</p>
-<h4 id="2-对元素进行查找定位"><a href="#2-对元素进行查找定位" class="headerlink" title="2.对元素进行查找定位"></a>2.对元素进行查找定位</h4><h4 id="browser-find-element"><a href="#browser-find-element" class="headerlink" title="browser.find_element()"></a>browser.find_element()</h4><p>通过下面几种方式进行查找定位</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">login_form = driver.find_element_by_xpath(<span class="string">"/html/body/form[1]"</span>)</span><br><span class="line">login_form = driver.find_element_by_id(<span class="string">'loginForm'</span>)</span><br><span class="line">username = driver.find_element_by_name(<span class="string">'username'</span>)</span><br><span class="line">continue_link = driver.find_element_by_link_text(<span class="string">'Continue'</span>)</span><br><span class="line">heading1 = driver.find_element_by_tag_name(<span class="string">'h1'</span>)</span><br><span class="line">content = driver.find_element_by_class_name(<span class="string">'content'</span>)</span><br><span class="line">content = driver.find_element_by_css_selector(<span class="string">'p.content'</span>)</span><br></pre></td></tr></table></figure>
-<h4 id="3-等待"><a href="#3-等待" class="headerlink" title="3.等待"></a>3.等待</h4><p>有的时候元素的出现需要等待一段时间，等元素加载完成后才开始进行下一步的操作，或者为了防止操作过于频繁，这个时候就需要用到等待了</p>
-<h5 id="显示等待"><a href="#显示等待" class="headerlink" title="显示等待"></a>显示等待</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">driver = webdriver.Firefox()</span><br><span class="line">driver.get(<span class="string">"http://somedomain/url_that_delays_loading"</span>)</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    element = WebDriverWait(driver, <span class="number">10</span>).until(</span><br><span class="line">        EC.presence_of_element_located((By.ID, <span class="string">"myDynamicElement"</span>))</span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
-<p>上面这种情况就是等待ID为”myDynamicElement”的出现，如果等待10秒后没有出现，那么就报异常</p>
-<h5 id="隐示等待"><a href="#隐示等待" class="headerlink" title="隐示等待"></a>隐示等待</h5><p>隐式等待在执行动作或者定位元素之前，为浏览器对象创建一个等待时间，期间会一直刷新页面去寻找我们需要的元素</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">driver.implicitly_wait(<span class="number">10</span>)</span><br><span class="line">driver.find_element_by_name().send_keys()</span><br></pre></td></tr></table></figure>
-<p>上述这段代码为等待10秒</p>
-<h4 id="显示等待与隐式等待的区别？"><a href="#显示等待与隐式等待的区别？" class="headerlink" title="显示等待与隐式等待的区别？"></a>显示等待与隐式等待的区别？</h4><p>显示等待为有条件的等待<br>隐式等待为没有条件的等待<br>也就是显示等待会判断某个元素有没有满足我们的要求，也就是能不能定位，能不能可视化，而隐式等待适用于整个页面的元素有没有出现</p>
-<p>好了， 有了这上面的应该就够用了，其他的可以找selenium的API来查找，链接如下<a href="https://selenium-python.readthedocs.io/" target="_blank" rel="noopener">selenium-python文档</a></p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spider</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2019/07/21/%E7%88%AC%E8%99%AB%E4%B9%8Bselenium%E7%9A%84%E4%BD%BF%E7%94%A8/">展开全文 >></a>
     </p>
     
 

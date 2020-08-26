@@ -187,6 +187,108 @@
             
 
   
+    <article id="post-爬虫之selenium的使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2019/07/21/%E7%88%AC%E8%99%AB%E4%B9%8Bselenium%E7%9A%84%E4%BD%BF%E7%94%A8/" target="_blank">爬虫之selenium的使用</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2019/07/21/%E7%88%AC%E8%99%AB%E4%B9%8Bselenium%E7%9A%84%E4%BD%BF%E7%94%A8/" class="archive-article-date">
+        <time datetime="2019-07-20T23:30:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-21</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h3 id="驱动的安装"><a href="#驱动的安装" class="headerlink" title="驱动的安装:"></a>驱动的安装:</h3><p>1.在<a href="http://npm.taobao.org/mirrors/chromedriver/" target="_blank" rel="noopener">http://npm.taobao.org/mirrors/chromedriver/</a>中寻找chrome的驱动，进行安装<br>2.windows中将chrome.exe加入环境变量中<br>3.再把下载的chromedriver复制粘贴到你安装的python的Scripts目录下，</p>
+<p>测试是否安装成功:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line">browser = webdriver.Chrome()</span><br></pre></td></tr></table></figure>
+
+<p>selenium的安装:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install selenium</span><br></pre></td></tr></table></figure>
+<h4 id="1-打开一个网页"><a href="#1-打开一个网页" class="headerlink" title="1.打开一个网页"></a>1.打开一个网页</h4><h4 id="browser-get-url"><a href="#browser-get-url" class="headerlink" title="browser.get(url)"></a>browser.get(url)</h4><p>browser.get(“<a href="https://www.baidu.com&quot;" target="_blank" rel="noopener">https://www.baidu.com&quot;</a>)</p>
+<h4 id="2-对元素进行查找定位"><a href="#2-对元素进行查找定位" class="headerlink" title="2.对元素进行查找定位"></a>2.对元素进行查找定位</h4><h4 id="browser-find-element"><a href="#browser-find-element" class="headerlink" title="browser.find_element()"></a>browser.find_element()</h4><p>通过下面几种方式进行查找定位</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">login_form = driver.find_element_by_xpath(<span class="string">"/html/body/form[1]"</span>)</span><br><span class="line">login_form = driver.find_element_by_id(<span class="string">'loginForm'</span>)</span><br><span class="line">username = driver.find_element_by_name(<span class="string">'username'</span>)</span><br><span class="line">continue_link = driver.find_element_by_link_text(<span class="string">'Continue'</span>)</span><br><span class="line">heading1 = driver.find_element_by_tag_name(<span class="string">'h1'</span>)</span><br><span class="line">content = driver.find_element_by_class_name(<span class="string">'content'</span>)</span><br><span class="line">content = driver.find_element_by_css_selector(<span class="string">'p.content'</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="3-等待"><a href="#3-等待" class="headerlink" title="3.等待"></a>3.等待</h4><p>有的时候元素的出现需要等待一段时间，等元素加载完成后才开始进行下一步的操作，或者为了防止操作过于频繁，这个时候就需要用到等待了</p>
+<h5 id="显示等待"><a href="#显示等待" class="headerlink" title="显示等待"></a>显示等待</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">driver = webdriver.Firefox()</span><br><span class="line">driver.get(<span class="string">"http://somedomain/url_that_delays_loading"</span>)</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    element = WebDriverWait(driver, <span class="number">10</span>).until(</span><br><span class="line">        EC.presence_of_element_located((By.ID, <span class="string">"myDynamicElement"</span>))</span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
+<p>上面这种情况就是等待ID为”myDynamicElement”的出现，如果等待10秒后没有出现，那么就报异常</p>
+<h5 id="隐示等待"><a href="#隐示等待" class="headerlink" title="隐示等待"></a>隐示等待</h5><p>隐式等待在执行动作或者定位元素之前，为浏览器对象创建一个等待时间，期间会一直刷新页面去寻找我们需要的元素</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">driver.implicitly_wait(<span class="number">10</span>)</span><br><span class="line">driver.find_element_by_name().send_keys()</span><br></pre></td></tr></table></figure>
+<p>上述这段代码为等待10秒</p>
+<h4 id="显示等待与隐式等待的区别？"><a href="#显示等待与隐式等待的区别？" class="headerlink" title="显示等待与隐式等待的区别？"></a>显示等待与隐式等待的区别？</h4><p>显示等待为有条件的等待<br>隐式等待为没有条件的等待<br>也就是显示等待会判断某个元素有没有满足我们的要求，也就是能不能定位，能不能可视化，而隐式等待适用于整个页面的元素有没有出现</p>
+<p>好了， 有了这上面的应该就够用了，其他的可以找selenium的API来查找，链接如下<a href="https://selenium-python.readthedocs.io/" target="_blank" rel="noopener">selenium-python文档</a></p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spider</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2019/07/21/%E7%88%AC%E8%99%AB%E4%B9%8Bselenium%E7%9A%84%E4%BD%BF%E7%94%A8/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-爬虫提取规则之Beautiful Soup的使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
