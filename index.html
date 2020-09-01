@@ -819,104 +819,6 @@
 
 
   
-    <article id="post-Leetcode第739题--每日温度" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/07/30/Leetcode%E7%AC%AC739%E9%A2%98--%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6/" target="_blank">Leetcode第739题--每日温度</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/07/30/Leetcode%E7%AC%AC739%E9%A2%98--%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6/" class="archive-article-date">
-        <time datetime="2020-07-30T03:24:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-30</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p><strong><em>题目</em></strong><br>请根据每日 气温 列表，重新生成一个列表。对应位置的输出为：要想观测到更高的气温，至少需要等待的天数。如果气温在这之后都不会升高，请在该位置用 0 来代替。</p>
-<p>例如，给定一个列表 temperatures = [73, 74, 75, 71, 69, 72, 76, 73]，你的输出应该是 [1, 1, 4, 2, 1, 1, 0, 0]。</p>
-<p>提示：气温 列表长度的范围是 [1, 30000]。每个气温的值的均为华氏度，都是在 [30, 100] 范围内的整数。</p>
-<p><strong><em>思路</em></strong><br>受到排序算法的影响，将序列分为可分的和不可分的。</p>
-<ol>
-<li>先固定第一个元素i，然后将后面的元素放在一个单独的列表中，判断这个列表中有无比前面的这个元素大的元素。</li>
-<li>如果后面没有比前面的元素更大了，那么跳出本层的循环，此时i+1；如果有，那么后面进行判断。</li>
-<li>构建一个计数器，如果前面的数比后面的数大，那么还没有到达符合要求的位置，计数器加一；如果前面的数往后数比第一个遇到的数要小，那么计数器加一后退出本轮循环。</li>
-</ol>
-<p><img src="https://img-blog.csdnimg.cn/2020073019092689.JPG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dailyTemperatures</span><span class="params">(self, T: List[int])</span> -&gt; List[int]:</span></span><br><span class="line">        count_list=[]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(T)):  <span class="comment">#i相当于移动的指针</span></span><br><span class="line">            count = <span class="number">0</span></span><br><span class="line">            a=sorted([T[k] <span class="keyword">for</span> k <span class="keyword">in</span> range(i,len(T))]) <span class="comment">##每轮将后面的位置放在一个列表中进行存储</span></span><br><span class="line">            maxmium = a[<span class="number">-1</span>]</span><br><span class="line">            <span class="keyword">if</span> T[i] == maxmium:</span><br><span class="line">                count_list.append(count)</span><br><span class="line">                <span class="keyword">continue</span>      <span class="comment">#如果后面没有比前面更大的了,count=0,continue是跳出本层循环，break是跳出全部循环</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(i+<span class="number">1</span>,len(T)):</span><br><span class="line">                <span class="keyword">if</span> T[i] &gt;= T[j]:</span><br><span class="line">                    count +=<span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    count +=<span class="number">1</span></span><br><span class="line">                    count_list.append(count)</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">return</span> count_list</span><br></pre></td></tr></table></figure>
-
-<p><strong>但是</strong>这样运行的话时间复杂度是超时的，所以我们使用了栈的概念进行了操作（后面会加以解释）</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dailyTemperatures</span><span class="params">(self, T: List[int])</span> -&gt; List[int]:</span></span><br><span class="line">        length = len(T)  <span class="comment"># length of total days</span></span><br><span class="line">        res = [<span class="number">0</span>] * length</span><br><span class="line">        stack = []</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(length):</span><br><span class="line">            <span class="keyword">while</span> stack <span class="keyword">and</span> T[i] &gt; T[stack[<span class="number">-1</span>]]:  <span class="comment">###列表后面的数大于前面的数</span></span><br><span class="line">                small = stack.pop()             <span class="comment">##将前面的索引弹出</span></span><br><span class="line">                print(small)</span><br><span class="line">                res[small] = i - small  <span class="comment">####前面的索引 </span></span><br><span class="line">                </span><br><span class="line">            stack.append(i)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tiku</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/07/30/Leetcode%E7%AC%AC739%E9%A2%98--%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-Leetcode第24题--两两交换链接中的节点" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -989,6 +891,104 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/2020/07/30/Leetcode%E7%AC%AC24%E9%A2%98--%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E6%8E%A5%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Leetcode第739题--每日温度" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/07/30/Leetcode%E7%AC%AC739%E9%A2%98--%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6/" target="_blank">Leetcode第739题--每日温度</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/07/30/Leetcode%E7%AC%AC739%E9%A2%98--%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6/" class="archive-article-date">
+        <time datetime="2020-07-30T03:24:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-30</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p><strong><em>题目</em></strong><br>请根据每日 气温 列表，重新生成一个列表。对应位置的输出为：要想观测到更高的气温，至少需要等待的天数。如果气温在这之后都不会升高，请在该位置用 0 来代替。</p>
+<p>例如，给定一个列表 temperatures = [73, 74, 75, 71, 69, 72, 76, 73]，你的输出应该是 [1, 1, 4, 2, 1, 1, 0, 0]。</p>
+<p>提示：气温 列表长度的范围是 [1, 30000]。每个气温的值的均为华氏度，都是在 [30, 100] 范围内的整数。</p>
+<p><strong><em>思路</em></strong><br>受到排序算法的影响，将序列分为可分的和不可分的。</p>
+<ol>
+<li>先固定第一个元素i，然后将后面的元素放在一个单独的列表中，判断这个列表中有无比前面的这个元素大的元素。</li>
+<li>如果后面没有比前面的元素更大了，那么跳出本层的循环，此时i+1；如果有，那么后面进行判断。</li>
+<li>构建一个计数器，如果前面的数比后面的数大，那么还没有到达符合要求的位置，计数器加一；如果前面的数往后数比第一个遇到的数要小，那么计数器加一后退出本轮循环。</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/2020073019092689.JPG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dailyTemperatures</span><span class="params">(self, T: List[int])</span> -&gt; List[int]:</span></span><br><span class="line">        count_list=[]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(T)):  <span class="comment">#i相当于移动的指针</span></span><br><span class="line">            count = <span class="number">0</span></span><br><span class="line">            a=sorted([T[k] <span class="keyword">for</span> k <span class="keyword">in</span> range(i,len(T))]) <span class="comment">##每轮将后面的位置放在一个列表中进行存储</span></span><br><span class="line">            maxmium = a[<span class="number">-1</span>]</span><br><span class="line">            <span class="keyword">if</span> T[i] == maxmium:</span><br><span class="line">                count_list.append(count)</span><br><span class="line">                <span class="keyword">continue</span>      <span class="comment">#如果后面没有比前面更大的了,count=0,continue是跳出本层循环，break是跳出全部循环</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(i+<span class="number">1</span>,len(T)):</span><br><span class="line">                <span class="keyword">if</span> T[i] &gt;= T[j]:</span><br><span class="line">                    count +=<span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    count +=<span class="number">1</span></span><br><span class="line">                    count_list.append(count)</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">return</span> count_list</span><br></pre></td></tr></table></figure>
+
+<p><strong>但是</strong>这样运行的话时间复杂度是超时的，所以我们使用了栈的概念进行了操作（后面会加以解释）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dailyTemperatures</span><span class="params">(self, T: List[int])</span> -&gt; List[int]:</span></span><br><span class="line">        length = len(T)  <span class="comment"># length of total days</span></span><br><span class="line">        res = [<span class="number">0</span>] * length</span><br><span class="line">        stack = []</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(length):</span><br><span class="line">            <span class="keyword">while</span> stack <span class="keyword">and</span> T[i] &gt; T[stack[<span class="number">-1</span>]]:  <span class="comment">###列表后面的数大于前面的数</span></span><br><span class="line">                small = stack.pop()             <span class="comment">##将前面的索引弹出</span></span><br><span class="line">                print(small)</span><br><span class="line">                res[small] = i - small  <span class="comment">####前面的索引 </span></span><br><span class="line">                </span><br><span class="line">            stack.append(i)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tiku</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/07/30/Leetcode%E7%AC%AC739%E9%A2%98--%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6/">展开全文 >></a>
     </p>
     
 
@@ -1110,7 +1110,7 @@
 
 
   
-    <article id="post-一看就懂的教你Hexo如何搭建个人博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-四大排序算法的Python实现" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -1118,7 +1118,7 @@
   
     <h1 itemprop="name">
 	
-	  <a class="article-title" href="/2020/06/23/%E4%B8%80%E7%9C%8B%E5%B0%B1%E6%87%82%E7%9A%84%E6%95%99%E4%BD%A0Hexo%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" target="_blank">一看就懂的教你Hexo如何搭建个人博客</a>
+	  <a class="article-title" href="/2020/07/23/%E5%9B%9B%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%9A%84Python%E5%AE%9E%E7%8E%B0/" target="_blank">四大排序算法的Python实现</a>
   
     </h1>
   
@@ -1126,8 +1126,8 @@
 
   
   
-<a href="/2020/06/23/%E4%B8%80%E7%9C%8B%E5%B0%B1%E6%87%82%E7%9A%84%E6%95%99%E4%BD%A0Hexo%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" class="archive-article-date">
-        <time datetime="2020-06-23T08:19:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-23</time>
+<a href="/2020/07/23/%E5%9B%9B%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%9A%84Python%E5%AE%9E%E7%8E%B0/" class="archive-article-date">
+        <time datetime="2020-07-23T08:19:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-23</time>
 </a>
 
   
@@ -1139,42 +1139,17 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>想当年自己在搭建博客的时候查阅了很多资料，最近由于腾讯云服务器到期了，所以又重新将博客搭建在了Github上，因为步骤对新手来说不是很友好，所以大家可以先看我这个目录，了解一下结构，然后一步步操作就可以了。如果在操作过程有什么问题，大家在下面留言，我都会尽可能帮助大家。</p>
-<h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><h3 id="git软件安装"><a href="#git软件安装" class="headerlink" title="git软件安装"></a>git软件安装</h3><p><a href="https://gitforwindows.org/" target="_blank" rel="noopener">git官网</a></p>
-<h3 id="node-js安装"><a href="#node-js安装" class="headerlink" title="node.js安装"></a>node.js安装</h3><p><a href="https://link.zhihu.com/?target=https://nodejs.org/dist/v9.11.1/node-v9.11.1-x64.msi">node.js下载链接</a></p>
-<p>最后安装好之后，在刚刚下载的git软件中输入<code>node -v</code>和<code>npm -v</code>，如果出现版本号，那么就安装成功了。如下图所示:<br><img src="https://img-blog.csdnimg.cn/20200822215813143.png#pic_center" alt="在这里插入图片描述"></p>
-<h3 id="hexo安装"><a href="#hexo安装" class="headerlink" title="hexo安装"></a>hexo安装</h3><p>在合适的地方新建一个文件夹，用来存放自己的博客文件，比如我的博客文件都存放在D:\study\program\blog目录下。</p>
-<p>在该目录下右键点击Git Bash Here，打开git的控制台窗口，以后我们所有的操作都在git控制台进行，就不要用Windows自带的控制台了。</p>
-<p>定位到该目录下，输入<code>npm i hexo-cli -g</code>安装Hexo。会有几个报错，无视它就行。</p>
-<p>安装完后输入hexo -v验证是否安装成功。</p>
-<p>然后就要初始化我们的网站，输入<code>hexo init</code>初始化文件夹，接着输入npm install安装必备的组件。</p>
-<p>这样本地的网站配置也弄好啦，输入<code>hexo g</code>生成静态网页，然后输入hexo s打开本地服务器，然后浏览器打开<code>http://localhost:4000/</code>，就可以看到我们的博客啦，效果如下： </p>
-<h3 id="Github创建仓库"><a href="#Github创建仓库" class="headerlink" title="Github创建仓库"></a>Github创建仓库</h3><p><strong>新建仓库</strong>:<img src="https://img-blog.csdnimg.cn/20200823103815812.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<p><img src="https://img-blog.csdnimg.cn/20200823103744715.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><strong>在这后面的结尾一定是</strong><code>github.io</code></p>
-<p>然后项目就建成了，点击Settings，向下拉到最后有个GitHub Pages，点击Choose a theme选择一个主题。然后等一会儿，再回到GitHub Pages，会变成下面这样：<br><img src="https://img-blog.csdnimg.cn/2020082310411453.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><strong>至此你的一个博客就搭建完成啦，但是你想定制这个博客那怎么办呢？步骤如下所示：</strong></p>
-<h2 id="修改博客内容"><a href="#修改博客内容" class="headerlink" title="修改博客内容"></a>修改博客内容</h2><h3 id="连接Github与本地"><a href="#连接Github与本地" class="headerlink" title="连接Github与本地"></a>连接Github与本地</h3><p>首先右键打开git bash，然后输入下面命令：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --<span class="keyword">global</span> user.name <span class="string">"xxxxxx"</span></span><br><span class="line">git config --<span class="keyword">global</span> user.email <span class="string">"xxxxxxxx@qq.com"</span></span><br></pre></td></tr></table></figure>
+    <p>网上有很多关于算法的Java和C的实现方式，这里对很多人都不太友好，今天来把几种排序方法用Python实现，算法讲解博客参考：</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a href="https://blog.csdn.net/lu_1079776757/article/details/80459370" target="_blank" rel="noopener">冒泡排序</a><br><a href="https://codeplayer.vip/p/j7sbj" target="_blank" rel="noopener">选择排序</a><br><a href="https://blog.csdn.net/zxm317122667/article/details/83344178" target="_blank" rel="noopener">插入排序</a><br><a href="https://www.sohu.com/a/246785807_684445" target="_blank" rel="noopener">快速排序</a><br><strong>排序算法的关键在于交换的轮数和交换次数！！</strong></p>
+<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><p><strong>关键点在于”冒泡”</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bubble</span><span class="params">(li)</span>:</span></span><br><span class="line">	n = len(li)</span><br><span class="line">	<span class="keyword">for</span> j <span class="keyword">in</span> range(n):</span><br><span class="line">		<span class="keyword">for</span> i <span class="keyword">in</span> range(n<span class="number">-1</span>-j):</span><br><span class="line">			<span class="keyword">if</span> li[i] &gt; li[i+<span class="number">1</span>]:</span><br><span class="line">				li[i],li[i+<span class="number">1</span>] = li[i+<span class="number">1</span>],li[i]</span><br><span class="line">	print(li)</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">	li = [<span class="number">54</span>,<span class="number">26</span>,<span class="number">93</span>,<span class="number">17</span>,<span class="number">77</span>,<span class="number">31</span>,<span class="number">44</span>,<span class="number">55</span>,<span class="number">20</span>]</span><br><span class="line">	bubble(li)</span><br></pre></td></tr></table></figure>
+<h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><p><strong>关键点在于”每次只取出一个”最小值”排到最左边”</strong><br>这个选择在于分为 有序和无序序列时候，从后面无序序列选择一个最小的值与有序的交换或者放在其最后面。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">select</span><span class="params">(li)</span>:</span></span><br><span class="line">	n = len(li)</span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(n):   </span><br><span class="line">		min_index = i   <span class="comment">##每一轮假设第一个数是最小值</span></span><br><span class="line">		<span class="keyword">for</span> j <span class="keyword">in</span> range(i,n):</span><br><span class="line">			<span class="keyword">if</span> li[min_index] &gt; li[j]: <span class="comment">#后面有数比假设最小的值大时</span></span><br><span class="line">				min_index = j</span><br><span class="line">		li[min_index],li[i] = li[i],li[min_index]</span><br><span class="line">	print(li)</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">	li = [<span class="number">54</span>,<span class="number">26</span>,<span class="number">93</span>,<span class="number">17</span>,<span class="number">77</span>,<span class="number">31</span>,<span class="number">44</span>,<span class="number">55</span>,<span class="number">20</span>]</span><br><span class="line">	select(li)</span><br></pre></td></tr></table></figure>
 
-<p>用户名和邮箱根据你注册github的信息自行修改。</p>
-<p>然后生成密钥SSH key：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">"xxxxxxxx@qq.com"</span></span><br></pre></td></tr></table></figure>
-
-<p>打开github，在头像下面点击settings，再点击SSH and GPG keys，新建一个SSH，名字随便，如下图所示：<br><img src="https://img-blog.csdnimg.cn/20200822220650481.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<p>在如下目录中找这个文件 (你的电脑用户不是Dell)，打开它。<br><img src="https://img-blog.csdnimg.cn/20200822220343716.png#pic_center" alt="在这里插入图片描述"></p>
-<p>将输出的内容复制到框中，点击确定保存。</p>
-<p>输入<code>ssh -T git@github.com</code>，如果如下图所示，出现你的用户名，那就成功了。 </p>
-<p>打开根目录下的_config.yml文件，修改配置文件。<br><img src="https://img-blog.csdnimg.cn/20200822220904677.png#pic_center" alt="在这里插入图片描述"><br>repository修改为你自己的github项目地址。其中项目地址在repository里面的这个地方，如下所示，<strong>记得是ssh链接哦！</strong><br><img src="https://img-blog.csdnimg.cn/20200822221117698.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<h3 id="写博客"><a href="#写博客" class="headerlink" title="写博客"></a>写博客</h3><p>首先在博客根目录下右键打开git bash，安装一个扩展<code>npm i hexo-deployer-git</code>。</p>
-<p>然后输入<code>hexo new post &quot;article title&quot;</code>，新建一篇文章。</p>
-<p>然后打开<code>g:/hexo</code>的目录，可以发现下面多了一个文件夹和一个.md文件，一个用来存放你的图片等数据，另一个就是你的文章文件啦。</p>
-<p>编写完markdown文件后，根目录下输入<code>hexo g</code>生成静态网页，然后输入<code>hexo s</code>可以本地预览效果，最后输入<code>hexo d</code>上传到github上。这时打开你的github.io主页就能看到发布的文章啦。</p>
-<h3 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h3><p><strong>如果自己没有域名的话，可以忽略这一步，如果需要的话，可以试试购买腾讯云的域名，很便宜。</strong></p>
-<p>以腾讯云服务器的域名为例，快速添加网站解析：<br><img src="https://img-blog.csdnimg.cn/20200823104918281.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<p>之后会让你输入ip地址：<br><img src="https://img-blog.csdnimg.cn/20200823104957281.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"> 这里的地址通过指令<code>ping mabostudy.github.io</code>获得：<br><img src="https://img-blog.csdnimg.cn/20200823105137255.png#pic_center" alt="在这里插入图片描述"></p>
-<p>然后打开你的github博客项目，点击settings，拉到下面Custom domain处，填上你自己的域名，保存如下图所示：<br><img src="https://img-blog.csdnimg.cn/20200823105301717.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述">这时候你的项目根目录应该会出现一个名为CNAME的文件了。如果没有的话，打开你本地博客/source目录，我的是<code>g:/hexo/source</code>，新建CNAME文件，<strong>注意没有后缀</strong>。然后在里面写上你的域名，保存。最后运行hexo g、hexo d上传到github。<strong>这一步不能少，否则会出现每次更新博客内容重新绑定域名的情况出现。</strong><br>，<img src="https://img-blog.csdnimg.cn/20200823105527542.png#pic_center" alt="在这里插入图片描述"></p>
-<h3 id="定制博客"><a href="#定制博客" class="headerlink" title="定制博客"></a>定制博客</h3><p>通过下面的链接可以自己自定义自己的主题：<br><a href="https://hexo.io/themes/" target="_blank" rel="noopener">hexo主题</a><br>以下很多内容都是需要根据你自己的想法来搭建了。具体参考可以看：<br><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">hexo文档</a></p>
-<p><strong>好了，以上就是搭建博客的步骤啦，当然你在搭建时候可能会遇到很多问题，到时候一步步去解决就可以了。</strong></p>
-
+<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><p><strong>关键点在于”插入”,突破口为有序和无序</strong><br>这个插入在于分为 有序和无序序列时候，从后面无序序列顺序取出一个元素和前面的每个元素相比较，插入到有序序列中。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">insert</span><span class="params">(li)</span>:</span></span><br><span class="line">    n = len(li)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">        j = i</span><br><span class="line">        <span class="keyword">while</span> j&gt;<span class="number">0</span>:</span><br><span class="line">            <span class="keyword">if</span> li[j]&lt;li[j<span class="number">-1</span>]:</span><br><span class="line">                li[j],li[j<span class="number">-1</span>] = li[j<span class="number">-1</span>],li[j]</span><br><span class="line">            j-=<span class="number">1</span>	</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">	li = [<span class="number">54</span>,<span class="number">26</span>,<span class="number">93</span>,<span class="number">17</span>,<span class="number">77</span>,<span class="number">31</span>,<span class="number">44</span>,<span class="number">55</span>,<span class="number">20</span>]</span><br><span class="line">	insert(li)</span><br><span class="line">	print(li)</span><br></pre></td></tr></table></figure>
+<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p><strong>关键点在于确定好基准元素，基准元素的两边分别为比基准元素小的，和比基准元素大的</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quick</span><span class="params">(first,last,li)</span>:</span></span><br><span class="line">    mid_value = li[first]</span><br><span class="line">    left = first</span><br><span class="line">    right = last</span><br><span class="line">    <span class="keyword">if</span> first &gt;=last:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">    <span class="keyword">while</span> left &lt; right:</span><br><span class="line">        <span class="keyword">while</span> left &lt;right <span class="keyword">and</span> li[right] &gt;= mid_value:<span class="comment">##先从右边开始</span></span><br><span class="line">            right -= <span class="number">1</span></span><br><span class="line">        li[left] = li[right]</span><br><span class="line">        <span class="keyword">while</span> left &lt;right <span class="keyword">and</span> li[left] &lt; mid_value:</span><br><span class="line">            left += <span class="number">1</span></span><br><span class="line">        li[right] = li[left]</span><br><span class="line">    li[right] = mid_value </span><br><span class="line">    quick(first,left<span class="number">-1</span>,li)</span><br><span class="line">    quick(left+<span class="number">1</span>,last,li)</span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:                                                     </span><br><span class="line">    li = [<span class="number">54</span>,<span class="number">26</span>,<span class="number">93</span>,<span class="number">17</span>,<span class="number">77</span>,<span class="number">31</span>,<span class="number">44</span>,<span class="number">55</span>,<span class="number">20</span>]</span><br><span class="line">    first = <span class="number">0</span></span><br><span class="line">    last = len(li)<span class="number">-1</span></span><br><span class="line">    quick(first,last,li)</span><br><span class="line">    print(li)</span><br></pre></td></tr></table></figure>
     
 
     
@@ -1200,7 +1175,7 @@
 
     
     <p class="article-more-link">
-      <a class="article-more-a" href="/2020/06/23/%E4%B8%80%E7%9C%8B%E5%B0%B1%E6%87%82%E7%9A%84%E6%95%99%E4%BD%A0Hexo%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">展开全文 >></a>
+      <a class="article-more-a" href="/2020/07/23/%E5%9B%9B%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%9A%84Python%E5%AE%9E%E7%8E%B0/">展开全文 >></a>
     </p>
     
 
