@@ -6,19 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>ubuntu下创建定时任务的两种方式及常见问题解决方案 | 知识分享</title>
+  <title>Archives: 2020 | 知识分享</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="ubuntu下创建定时任务的两种方式及常见问题解决方案">
-<meta name="keywords" content="suibi">
-<meta property="og:type" content="article">
-<meta property="og:title" content="ubuntu下创建定时任务的两种方式及常见问题解决方案">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;09&#x2F;05&#x2F;ubuntu%E4%B8%8B%E5%88%9B%E5%BB%BA%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F%E5%8F%8A%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88&#x2F;index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="知识分享">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;archives&#x2F;2020&#x2F;page&#x2F;3&#x2F;index.html">
 <meta property="og:site_name" content="知识分享">
-<meta property="og:description" content="ubuntu下创建定时任务的两种方式及常见问题解决方案">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-08-22T13:38:08.144Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="知识分享" type="application/atom+xml">
@@ -184,289 +180,69 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-ubuntu下创建定时任务的两种方式及常见问题解决方案" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
+            
+  
+  
     
-      <header class="article-header">
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2020" class="archive-year">2020</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	
+<a href="/2020/01/03/LSTM%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
+        <time datetime="2020-01-03T04:58:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-03</time>
+</a>
+
+        </div>
+    	 
   
+    <h1 itemprop="name">
+	
+	  <a class="archive-article-title" href="/2020/01/03/LSTM%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3/" target="_blank">LSTM算法详解</a>
   
-    <h1 class="article-title" itemprop="name">
-      ubuntu下创建定时任务的两种方式及常见问题解决方案
     </h1>
   
 
 
-  
-  
-        
-        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
-              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
-        </span>
-
-<a href="/2019/09/05/ubuntu%E4%B8%8B%E5%88%9B%E5%BB%BA%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F%E5%8F%8A%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="archive-article-date">
-        <time datetime="2019-09-05T02:22:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-05</time>
-</a>
-
-  
-  
-    
-<div style="margin-top:10px;">
-  <span class="post-time">
-    <span class="post-meta-item-icon">
-      <!-- fonts.scss -->
-      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
-      <i class="icon-statistics"></i>
-      <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">1.2k字</span>
-    </span>
-  </span>
-
-  <span class="post-time">
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-      <i class="icon-book icon"></i>
-      <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">4分</span>
-    </span>
-  </span>
-</div>
-
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>创建定时任务的目的就是摆脱人为对程序重复性地运行。</p>
-<p>\0. 首先用下面的指令检查你是否安装crontab,</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">crontab -l</span><br><span class="line">如果本身就有的话，那么出现如下指令</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">LC_CTYPE=&quot;zh_CN.utf-8&quot;</span><br><span class="line"># Edit this file to introduce tasks to be run by cron.</span><br><span class="line"># </span><br><span class="line"># Each task to run has to be defined through a single line</span><br><span class="line"># indicating with different fields when the task will be run</span><br><span class="line"># and what command to run for the task</span><br><span class="line"># </span><br><span class="line"># To define the time you can provide concrete values for</span><br><span class="line"># minute (m), hour (h), day of month (dom), month (mon),</span><br><span class="line"># and day of week (dow) or use &apos;*&apos; in these fields (for &apos;any&apos;).# </span><br><span class="line"># Notice that tasks will be started based on the cron&apos;s system</span><br><span class="line"># daemon&apos;s notion of time and timezones.</span><br><span class="line"># </span><br><span class="line"># Output of the crontab jobs (including errors) is sent through</span><br><span class="line"># email to the user the crontab file belongs to (unless redirected).</span><br><span class="line"># </span><br><span class="line"># For example, you can run a backup of all your user accounts</span><br><span class="line"># at 5 a.m every week with:</span><br><span class="line"># 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/</span><br></pre></td></tr></table></figure>
-
-
-<p>如果没有的话按下面的方式进行安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">apt-get install cron</span><br><span class="line">方式有下面两种：</span><br><span class="line"></span><br><span class="line">1.crontab -e指令</span><br><span class="line">直接在终端输入crontab -e，进入nano编辑器的编辑界面，它相对vi，vim编辑器来说更友好，简单。</span><br><span class="line"># For more information see the manual pages of crontab(5) and cron(8)</span><br><span class="line"># </span><br><span class="line"># m h  dom mon dow   command</span><br><span class="line">  7 15 * * * /usr/bin/python2.7 /home/mabo/Desktop/camera.py</span><br><span class="line">需要注意一行的前面如果希望它执行的话，是不可以有#号的</span><br><span class="line">m h  dom mon dow   command  分别是(minute; hour; day of month; month; day of week)的缩写</span><br></pre></td></tr></table></figure>
-
-<p><strong>minute：</strong> 表示分钟，可以是从0到59之间的任何整数。</p>
-<p><strong>hour：</strong>表示小时，可以是从0到23之间的任何整数。</p>
-<p><strong>day：</strong>表示日期，可以是从1到31之间的任何整数。</p>
-<p><strong>month：</strong>表示月份，可以是从1到12之间的任何整数。</p>
-<p><strong>week：</strong>表示星期几，可以是从0到7之间的任何整数，这里的0或7代表星期日。</p>
-<p><strong>command</strong>：要执行的命令，可以是系统命令，也可以是自己编写的脚本文件</p>
-<p><strong>[Note]:需要注意的是在编写command指令之前要在终端进行测试是否能够执行。后面会具体说</strong></p>
-<p><strong>星号（*）</strong>：代表所有可能的值，例如month字段如果是星号，则表示在满足其它字段的制约条件后每月都执行该命令操作。</p>
-<p><strong>逗号（,）</strong>：可以用逗号隔开的值指定一个列表范围，例如，“1,2,5,7,8,9”。</p>
-<p><strong>中杠（-）</strong>：可以用整数之间的中杠表示一个整数范围，例如“2-6”表示“2,3,4,5,6”。</p>
-<p><strong>正斜线（/）</strong>：可以用正斜线指定时间的间隔频率，例如“0-23/2”表示每两小时执行一次。同时正斜线可以和星号一起使用，例如*/10，如果用在minute字段，表示每十分钟执行一次。</p>
-<p><strong>2.用编辑器打开 /etc/crontab</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">二选一即可</span><br><span class="line">sudo nano /etc/crontab</span><br><span class="line">sudo vi /etc/crontab</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># m h dom mon dow user  command</span><br><span class="line">17 *    * * *   root    cd / &amp;&amp; run-parts --report /etc/cron.hourly</span><br><span class="line">25 6    * * *   root    test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --repo$</span><br><span class="line">47 6    * * 7   root    test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --repo$</span><br><span class="line">52 6    1 * *   root    test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --repo$</span><br><span class="line">#</span><br><span class="line">17 16   * * *   mabo    /usr/bin/python2.7 /home/mabo/Desktop/camera.py</span><br></pre></td></tr></table></figure>
-
-
-
-<p>打开之后如上图所示，最下面的一行是我自己写的定时任务。这里与第一种方法有个不同的是这个用户(user)级别的问题。</p>
-<p><strong>常见问题:</strong></p>
-<p>Q：定时任务不执行？</p>
-<p>A: 遇到这种情况首先应该检查程序是否有问题，你可能会想，在pycharm中运行的都没有问题，但是现在你用的是IDE，所以你需要将上述的command指令全部复制到终端上，看是否运行成功，不是的话根据提示来解决问题，直到运行没有问题。</p>
-<p>上面的方法已经能够解决很大一部分问题了，在排除了程序中的错误之后，如果你使用的是第二种方法，那么你可以将root修改为你的普通用户，重新执行。</p>
-<p>Q：定时任务常用相关指令？</p>
-<p>A：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">crontab -l              //查看设置的所有定时任务service crond start     //启动服务</span><br><span class="line">service crond stop      //关闭服务</span><br><span class="line">service crond restart   //重启服务</span><br></pre></td></tr></table></figure>
-
-
-
-<p>Q：怎么查看我的定时任务执行情况？</p>
-<p>A：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">下面二选一即可</span><br><span class="line">sudo nano /var/log/cron.log</span><br><span class="line">sudo vi /var/log/cron.log</span><br></pre></td></tr></table></figure>
-
-<p>在日志里，你可以看到你所设置的定时任务的运行情况。经过多次实践发现，正常的运行时，在日志里面只会出现和你command指令相同的指令，有其它多余的指令都会导致定时任务失败。根据这多余的指令来排除错误</p>
-
-    
-
-    
-    <div class="page-reward">
-      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
-        <div class="tooltip tooltip-east">
-          <span class="tooltip-item">
-            赏
-          </span>
-          <span class="tooltip-content">
-            <span class="tooltip-text">
-              <span class="tooltip-inner">
-                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
-                    class="icon icon-quo-right"></i></p>
-                <div class="reward-box">
-                  
-                  <div class="reward-box-item">
-                    <img class="reward-img" src="/img/alipay.jpg">
-                    <span class="reward-type">支付宝</span>
-                  </div>
-                  
-                  
-                  <div class="reward-box-item">
-                    <img class="reward-img" src="/img/weixin.jpg">
-                    <span class="reward-type">微信</span>
-                  </div>
-                  
-                </div>
-              </span>
-            </span>
-          </span>
-        </div>
-      </a>
-    </div>
-    
-
-    
-    <div class="declare"> 
-      <ul class="post-copyright">
-        <li>
-          <strong>本文作者：</strong>
-          Ma Bo
-        </li>
-        <li>
-          <strong>本文链接：</strong>
-          <a href="http://yoursite.com/2019/09/05/ubuntu下创建定时任务的两种方式及常见问题解决方案/" title="ubuntu下创建定时任务的两种方式及常见问题解决方案" target="_blank">http://yoursite.com/2019/09/05/ubuntu下创建定时任务的两种方式及常见问题解决方案/</a>
-        </li>
-        
-        <li>
-          <strong>版权声明： </strong>
+        <div class="article-info info-on-right">
           
-          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
-        </li>
-        
-      </ul>
-    </div>
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">suibi</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">algo</a>
         		</li>
       		
 		</ul>
 	</div>
 
-    
+          
 
-    
-
-    
-    
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a> -->
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/09/05/ubuntu%E4%B8%8B%E5%88%9B%E5%BB%BA%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F%E5%8F%8A%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" alt="微信分享二维码"> -->
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-
-    
-    <div class="clearfix"></div>
-  </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-
-<nav id="article-nav">
-  
-    <a href="/2019/09/05/Xgboost%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Xgboost算法详解
-        
-      </div>
-    </a>
   
   
-    <a href="/2019/09/05/%E7%88%AC%E8%99%ABRequests%E5%BA%93%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">爬虫Requests库的安装和使用</div>
-      <i class="icon-circle-right"></i>
-    </a>
+    </div></section>
   
-</nav>
 
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-
-
-
-
-
-
-
+    
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/archives/2020/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/archives/2020/">1</a><a class="page-number" href="/archives/2020/page/2/">2</a><span class="page-number current">3</span>
+    </nav>
+  
 
 
           </div>
@@ -507,8 +283,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,

@@ -187,6 +187,128 @@
             
 
   
+    <article id="post-爬虫Requests库的安装和使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2019/09/05/%E7%88%AC%E8%99%ABRequests%E5%BA%93%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/" target="_blank">爬虫Requests库的安装和使用</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2019/09/05/%E7%88%AC%E8%99%ABRequests%E5%BA%93%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/" class="archive-article-date">
+        <time datetime="2019-09-05T02:22:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-05</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="requests库"><a href="#requests库" class="headerlink" title="requests库"></a>requests库</h2><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install requests</span><br></pre></td></tr></table></figure>
+<h4 id="导入模块"><a href="#导入模块" class="headerlink" title="导入模块"></a>导入模块</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br></pre></td></tr></table></figure>
+<h3 id="get请求方式"><a href="#get请求方式" class="headerlink" title="get请求方式"></a>get请求方式</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>r=requests.get(<span class="string">'http://httpbin.org/post'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(r)</span><br><span class="line">&lt;Response [<span class="number">200</span>]&gt;</span><br></pre></td></tr></table></figure>
+<p>返回状态码为200，则请求正常。<br>如果想要看响应的内容，那么</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(r.text)</span><br></pre></td></tr></table></figure>
+<h3 id="post请求方式"><a href="#post请求方式" class="headerlink" title="post请求方式"></a>post请求方式</h3><p>我们一般向浏览器传递表单的时候采用的就是post请求。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>payload = &#123;<span class="string">'key1'</span>: <span class="string">'value1'</span>, <span class="string">'key2'</span>: <span class="string">'value2'</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.post(<span class="string">"http://httpbin.org/post"</span>, data=payload)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(r.text)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"args"</span>: &#123;&#125;, </span><br><span class="line">  <span class="string">"data"</span>: <span class="string">""</span>, </span><br><span class="line">  <span class="string">"files"</span>: &#123;&#125;, </span><br><span class="line">  <span class="string">"form"</span>: &#123;</span><br><span class="line">    <span class="string">"key1"</span>: <span class="string">"value1"</span>, </span><br><span class="line">    <span class="string">"key2"</span>: <span class="string">"value2"</span></span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+<p>那么其他 HTTP 请求类型：PUT，DELETE，HEAD 以及 OPTIONS 又是如何的呢？都是一样的简单：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.put(<span class="string">'http://httpbin.org/put'</span>, data = &#123;<span class="string">'key'</span>:<span class="string">'value'</span>&#125;)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.delete(<span class="string">'http://httpbin.org/delete'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.head(<span class="string">'http://httpbin.org/get'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.options(<span class="string">'http://httpbin.org/get'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="响应内容"><a href="#响应内容" class="headerlink" title="响应内容"></a>响应内容</h3><h4 id="二进制响应内容"><a href="#二进制响应内容" class="headerlink" title="二进制响应内容"></a>二进制响应内容</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>r.content</span><br><span class="line"><span class="string">b'&#123;\n  "args": &#123;&#125;, \n  "data": "", \n  "files": &#123;&#125;, \n  "form": &#123;\n    "key1": "value1", \n    "key2": "value2"\n  &#125;, \n  "headers": &#123;\n    "Accept": "*/*", \n    "Accept-Encoding": "gzip, deflate", \n    "Content-Length": "23", \n    "Content-Type": "application/x-www-form-urlencoded", \n    "Host": "httpbin.org", \n    "User-Agent": "python-requests/2.22.0"\n  &#125;, \n  "json": null, \n  "origin": "58.246.203.154, 58.246.203.154", \n  "url": "https://httpbin.org/post"\n&#125;\n</span></span><br></pre></td></tr></table></figure>
+<h4 id="JSON-响应内容"><a href="#JSON-响应内容" class="headerlink" title="JSON 响应内容"></a>JSON 响应内容</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> requests</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.get(<span class="string">'https://api.github.com/events'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r.json()</span><br><span class="line">[&#123;<span class="string">u'repository'</span>: &#123;<span class="string">u'open_issues'</span>: <span class="number">0</span>, <span class="string">u'url'</span>: <span class="string">'https://github.com/...</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="加请求头"><a href="#加请求头" class="headerlink" title="加请求头"></a>加请求头</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>url = <span class="string">'https://api.github.com/some/endpoint'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>headers = &#123;<span class="string">'user-agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:69.0) Gecko/20100101 Firefox'</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.get(url, headers=headers)</span><br></pre></td></tr></table></figure>
+
+<p>Session和Cookies保留了我们的登录状态，允许我们跨网页登录时候或者下次登录时候登录信息仍然在。</p>
+<h3 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">requests.get(<span class="string">'http://httpbin.org/cookies/set/sessioncookie/123456789'</span>)</span><br><span class="line">r = requests.get(<span class="string">"http://httpbin.org/cookies"</span>)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
+<p>结果是</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"cookies"</span>: &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是我们不可能每次跳转网页(比如淘宝)的时候都需要重新登录的，所以这时候就需要用到Session了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">s = requests.Session()</span><br><span class="line">s.get(<span class="string">'http://httpbin.org/cookies/set/sessioncookie/123456789'</span>)</span><br><span class="line">r = s.get(<span class="string">"http://httpbin.org/cookies"</span>)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
+<p>结果是</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"cookies"</span>: &#123;</span><br><span class="line">    <span class="string">"sessioncookie"</span>: <span class="string">"123456789"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在使用了Session之后，跳转了另一个网页之后是存在cookies的。</p>
+<h3 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h3><p>响应中包含了cookies的话</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>url = <span class="string">'http://example.com/some/cookie/setting/url'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.get(url)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r.cookies[<span class="string">'example_cookie_name'</span>]</span><br><span class="line"><span class="string">'example_cookie_value'</span></span><br></pre></td></tr></table></figure>
+
+
+<p>将cookies发送到服务器，可以使用 cookies 参数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>url = <span class="string">'http://httpbin.org/cookies'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>cookies = dict(cookies_are=<span class="string">'working'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.get(url, cookies=cookies)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r.text</span><br><span class="line"><span class="string">'&#123;"cookies": &#123;"cookies_are": "working"&#125;&#125;'</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="超时"><a href="#超时" class="headerlink" title="超时"></a>超时</h3><p>设置对一个浏览器请求的时间，不是下载时间，是请求时间。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>requests.get(<span class="string">'http://github.com'</span>, timeout=<span class="number">0.001</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="错误与异常"><a href="#错误与异常" class="headerlink" title="错误与异常"></a>错误与异常</h3><p>1.遇到网络问题（如：DNS 查询失败、拒绝连接等）时，Requests 会抛出一个 ConnectionError 异常。<br>2.若请求超时，则抛出一个 Timeout 异常。<br>3.若请求超过了设定的最大重定向次数，则会抛出一个 TooManyRedirects 异常。<br>4.所有Requests显式抛出的异常都继承自 requests.exceptions.RequestException 。</p>
+<h3 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">proxies = &#123;</span><br><span class="line">  <span class="string">"https"</span>: <span class="string">"http://41.118.132.69:4433"</span></span><br><span class="line">&#125;</span><br><span class="line">r = requests.post(<span class="string">"http://httpbin.org/post"</span>, proxies=proxies)</span><br><span class="line"><span class="keyword">print</span> r.text</span><br></pre></td></tr></table></figure>
+
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spider</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2019/09/05/%E7%88%AC%E8%99%ABRequests%E5%BA%93%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-树莓派的Respbian或者ubuntu系统下安装opencv最有效的方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

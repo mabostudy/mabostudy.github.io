@@ -187,6 +187,124 @@
             
 
   
+    <article id="post-LSTM算法详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/01/03/LSTM%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3/" target="_blank">LSTM算法详解</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/01/03/LSTM%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
+        <time datetime="2020-01-03T04:58:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-03</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>最近用到了LSTM的技术，查阅了很多资料，看了很多论文呢，这里我们详细讲解下这种网络。</p>
+<h1 id="Recurrent-Neural-Networks"><a href="#Recurrent-Neural-Networks" class="headerlink" title="Recurrent Neural Networks"></a>Recurrent Neural Networks</h1><p>人类并不是每时每刻都从一片空白的大脑开始他们的思考。在你阅读这篇文章时候，你都是基于自己已经拥有的对先前所见词的理解来推断当前词的真实含义。我们不会将所有的东西都全部丢弃，然后用空白的大脑进行思考。我们的思想拥有持久性。<br>传统的神经网络并不能做到这点，看起来也像是一种巨大的弊端。例如，假设你希望对电影中的每个时间点的时间类型进行分类。传统的神经网络应该很难来处理这个问题——使用电影中先前的事件推断后续的事件。<br>RNN 解决了这个问题。RNN 是包含循环的网络，允许信息的持久化。<br><img src="https://img-blog.csdnimg.cn/20200821125146750.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="RNN-包含循环"><a href="#RNN-包含循环" class="headerlink" title="RNN 包含循环"></a>RNN 包含循环</h2><p>在上面的示例图中，神经网络的模块，A，正在读取某个输入 x_i，并输出一个值 h_i。循环可以使得信息可以从当前步传递到下一步。<br>这些循环使得 RNN 看起来非常神秘。然而，如果你仔细想想，这样也不比一个正常的神经网络难于理解。RNN 可以被看做是同一神经网络的多次复制，每个神经网络模块会把消息传递给下一个。所以，如果我们将这个循环展开：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200821125157141.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="展开的-RNN"><a href="#展开的-RNN" class="headerlink" title="展开的 RNN"></a>展开的 RNN</h2><p>链式的特征揭示了 RNN 本质上是与序列和列表相关的。他们是对于这类数据的最自然的神经网络架构。<br>并且 RNN 也已经被人们应用了！在过去几年中，应用 RNN 在语音识别，语言建模，翻译，图片描述等问题上已经取得一定成功，并且这个列表还在增长。我建议大家参考 Andrej Karpathy 的博客文章——The Unreasonable Effectiveness of Recurrent Neural Networks 来看看更丰富有趣的 RNN 的成功应用。<br>而这些成功应用的关键之处就是 LSTM 的使用，这是一种特别的 RNN，比标准的 RNN 在很多的任务上都表现得更好。几乎所有的令人振奋的关于 RNN 的结果都是通过 LSTM 达到的。这篇博文也会就 LSTM 进行展开。</p>
+<h2 id="长期依赖（Long-Term-Dependencies）问题"><a href="#长期依赖（Long-Term-Dependencies）问题" class="headerlink" title="长期依赖（Long-Term Dependencies）问题"></a>长期依赖（Long-Term Dependencies）问题</h2><p>RNN 的关键点之一就是他们可以用来连接先前的信息到当前的任务上，例如使用过去的视频段来推测对当前段的理解。如果 RNN 可以做到这个，他们就变得非常有用。但是真的可以么？答案是，还有很多依赖因素。<br>有时候，我们仅仅需要知道先前的信息来执行当前的任务。例如，我们有一个语言模型用来基于先前的词来预测下一个词。如果我们试着预测 “the clouds are in the sky” 最后的词，我们并不需要任何其他的上下文 —— 因此下一个词很显然就应该是 sky。在这样的场景中，相关的信息和预测的词位置之间的间隔是非常小的，RNN 可以学会使用先前的信息。<br><img src="https://img-blog.csdnimg.cn/20200821125226643.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="不太长的相关信息和位置间隔"><a href="#不太长的相关信息和位置间隔" class="headerlink" title="不太长的相关信息和位置间隔"></a>不太长的相关信息和位置间隔</h2><p>但是同样会有一些更加复杂的场景。假设我们试着去预测“I grew up in France… I speak fluent French”最后的词。当前的信息建议下一个词可能是一种语言的名字，但是如果我们需要弄清楚是什么语言，我们是需要先前提到的离当前位置很远的 France 的上下文的。这说明相关信息和当前预测位置之间的间隔就肯定变得相当的大。<br>不幸的是，在这个间隔不断增大时，RNN 会丧失学习到连接如此远的信息的能力。<br><img src="https://img-blog.csdnimg.cn/20200821125241763.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="相当长的相关信息和位置间隔"><a href="#相当长的相关信息和位置间隔" class="headerlink" title="相当长的相关信息和位置间隔"></a>相当长的相关信息和位置间隔</h2><p>在理论上，RNN 绝对可以处理这样的 长期依赖 问题。人们可以仔细挑选参数来解决这类问题中的最初级形式，但在实践中，RNN 肯定不能够成功学习到这些知识。Bengio, et al. (1994)等人对该问题进行了深入的研究，他们发现一些使训练 RNN 变得非常困难的相当根本的原因。<br>然而，幸运的是，LSTM 并没有这个问题！</p>
+<h1 id="LSTM-网络"><a href="#LSTM-网络" class="headerlink" title="LSTM 网络"></a>LSTM 网络</h1><p>Long Short Term 网络—— 一般就叫做 LSTM ——是一种 RNN 特殊的类型，可以学习长期依赖信息。LSTM 由Hochreiter &amp; Schmidhuber (1997)提出，并在近期被Alex Graves进行了改良和推广。在很多问题，LSTM 都取得相当巨大的成功，并得到了广泛的使用。<br>LSTM 通过刻意的设计来避免长期依赖问题。记住长期的信息在实践中是 LSTM 的默认行为，而非需要付出很大代价才能获得的能力！<br>所有 RNN 都具有一种重复神经网络模块的链式的形式。在标准的 RNN 中，这个重复的模块只有一个非常简单的结构，例如一个 tanh 层。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200821125254538.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>标准 RNN 中的重复模块包含单一的层</p>
+<p>LSTM 同样是这样的结构，但是重复的模块拥有一个不同的结构。不同于 单一神经网络层，这里是有四个，以一种非常特殊的方式进行交互。<br><img src="https://img-blog.csdnimg.cn/20200821125312619.png#pic_center" alt="在这里插入图片描述"></p>
+<p>LSTM 中的重复模块包含四个交互的层</p>
+<p>不必担心这里的细节。我们会一步一步地剖析 LSTM 解析图。现在，我们先来熟悉一下图中使用的各种元素的图标。</p>
+<h2 id="LSTM-中的图标"><a href="#LSTM-中的图标" class="headerlink" title="LSTM 中的图标"></a>LSTM 中的图标</h2><p>在上面的图例中，每一条黑线传输着一整个向量，从一个节点的输出到其他节点的输入。粉色的圈代表 pointwise 的操作，诸如向量的和，而黄色的矩阵就是学习到的神经网络层。合在一起的线表示向量的连接，分开的线表示内容被复制，然后分发到不同的位置。</p>
+<h2 id="LSTM-的核心思想"><a href="#LSTM-的核心思想" class="headerlink" title="LSTM 的核心思想"></a>LSTM 的核心思想</h2><p>LSTM 的关键就是细胞状态，水平线在图上方贯穿运行。<br>细胞状态类似于传送带。直接在整个链上运行，只有一些少量的线性交互。信息在上面流传保持不变会很容易。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200821125433633.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>LSTM 有通过精心设计的称作为“门”的结构来去除或者增加信息到细胞状态的能力。门是一种让信息选择式通过的方法。他们包含一个 sigmoid 神经网络层和一个 pointwise 乘法操作。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200821125442191.png#pic_center" alt="在这里插入图片描述"></p>
+<p>Sigmoid 层输出 0 到 1 之间的数值，描述每个部分有多少量可以通过。0 代表“不许任何量通过”，1 就指“允许任意量通过”！</p>
+<p>LSTM 拥有三个门，来保护和控制细胞状态。</p>
+<h2 id="逐步理解-LSTM"><a href="#逐步理解-LSTM" class="headerlink" title="逐步理解 LSTM"></a>逐步理解 LSTM</h2><p>在我们 LSTM 中的第一步是决定我们会从细胞状态中丢弃什么信息。这个决定通过一个称为忘记门层完成。该门会读取h_{t-1}和x_t，输出一个在 0 到 1 之间的数值给每个在细胞状态C_{t-1}中的数字。1 表示“完全保留”，0 表示“完全舍弃”。<br>让我们回到语言模型的例子中来基于已经看到的预测下一个词。在这个问题中，细胞状态可能包含当前主语的性别，因此正确的代词可以被选择出来。当我们看到新的主语，我们希望忘记旧的主语。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200821125509351.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="决定丢弃信息"><a href="#决定丢弃信息" class="headerlink" title="决定丢弃信息"></a>决定丢弃信息</h2><p>下一步是确定什么样的新信息被存放在细胞状态中。这里包含两个部分。第一，sigmoid 层称 “输入门层” 决定什么值我们将要更新。然后，一个 tanh 层创建一个新的候选值向量，\tilde{C}_t，会被加入到状态中。下一步，我们会讲这两个信息来产生对状态的更新。<br>在我们语言模型的例子中，我们希望增加新的主语的性别到细胞状态中，来替代旧的需要忘记的主语。<br><img src="https://img-blog.csdnimg.cn/20200821125518648.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="确定更新的信息"><a href="#确定更新的信息" class="headerlink" title="确定更新的信息"></a>确定更新的信息</h2><p>现在是更新旧细胞状态的时间了，C_{t-1}更新为C_t。前面的步骤已经决定了将会做什么，我们现在就是实际去完成。<br>我们把旧状态与f_t相乘，丢弃掉我们确定需要丢弃的信息。接着加上i_t * \tilde{C}_t。这就是新的候选值，根据我们决定更新每个状态的程度进行变化。<br>在语言模型的例子中，这就是我们实际根据前面确定的目标，丢弃旧代词的性别信息并添加新的信息的地方。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200821125527833.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="更新细胞状态"><a href="#更新细胞状态" class="headerlink" title="更新细胞状态"></a>更新细胞状态</h2><p>最终，我们需要确定输出什么值。这个输出将会基于我们的细胞状态，但是也是一个过滤后的版本。首先，我们运行一个 sigmoid 层来确定细胞状态的哪个部分将输出出去。接着，我们把细胞状态通过 tanh 进行处理（得到一个在 -1 到 1 之间的值）并将它和 sigmoid 门的输出相乘，最终我们仅仅会输出我们确定输出的那部分。<br>在语言模型的例子中，因为他就看到了一个 代词，可能需要输出与一个 动词 相关的信息。例如，可能输出是否代词是单数还是负数，这样如果是动词的话，我们也知道动词需要进行的词形变化。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200821125537913.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="输出信息"><a href="#输出信息" class="headerlink" title="输出信息"></a>输出信息</h2><p>LSTM 的变体<br>我们到目前为止都还在介绍正常的 LSTM。但是不是所有的 LSTM 都长成一个样子的。实际上，几乎所有包含 LSTM 的论文都采用了微小的变体。差异非常小，但是也值得拿出来讲一下。<br>其中一个流形的 LSTM 变体，就是由 Gers &amp; Schmidhuber (2000) 提出的，增加了 “peephole connection”。是说，我们让 门层 也会接受细胞状态的输入。</p>
+<h2 id="peephole-连接"><a href="#peephole-连接" class="headerlink" title="peephole 连接"></a>peephole 连接</h2><p>上面的图例中，我们增加了 peephole 到每个门上，但是许多论文会加入部分的 peephole 而非所有都加。</p>
+<p>另一个变体是通过使用 coupled 忘记和输入门。不同于之前是分开确定什么忘记和需要添加什么新的信息，这里是一同做出决定。我们仅仅会当我们将要输入在当前位置时忘记。我们仅仅输入新的值到那些我们已经忘记旧的信息的那些状态 。</p>
+<h2 id="coupled-忘记门和输入门"><a href="#coupled-忘记门和输入门" class="headerlink" title="coupled 忘记门和输入门"></a>coupled 忘记门和输入门</h2><p>另一个改动较大的变体是 Gated Recurrent Unit (GRU)，这是由 Cho, et al. (2014) 提出。它将忘记门和输入门合成了一个单一的 更新门。同样还混合了细胞状态和隐藏状态，和其他一些改动。最终的模型比标准的 LSTM 模型要简单，也是非常流行的变体。</p>
+<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>刚开始，我提到通过 RNN 得到重要的结果。本质上所有这些都可以使用 LSTM 完成。对于大多数任务确实展示了更好的性能！<br>由于 LSTM 一般是通过一系列的方程表示的，使得 LSTM 有一点令人费解。然而本文中一步一步地解释让这种困惑消除了不少。<br>LSTM 是我们在 RNN 中获得的重要成功。很自然地，我们也会考虑：哪里会有更加重大的突破呢？在研究人员间普遍的观点是：“Yes! 下一步已经有了——那就是注意力！” 这个想法是让 RNN 的每一步都从更加大的信息集中挑选信息。例如，如果你使用 RNN 来产生一个图片的描述，可能会选择图片的一个部分，根据这部分信息来产生输出的词。实际上，Xu, et al.(2015)已经这么做了——如果你希望深入探索注意力可能这就是一个有趣的起点！还有一些使用注意力的相当振奋人心的研究成果，看起来有更多的东西亟待探索……<br>注意力也不是 RNN 研究领域中唯一的发展方向。例如，Kalchbrenner, et al. (2015) 提出的 Grid LSTM 看起来也是很有前途。使用生成模型的 RNN，诸如Gregor, et al. (2015) Chung, et al. (2015) 和 Bayer &amp; Osendorfer (2015) 提出的模型同样很有趣。在过去几年中，RNN 的研究已经相当的燃，而研究成果当然也会更加丰富！</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">algo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/01/03/LSTM%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Java第四讲——JAVA的三大特性" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -861,6 +979,104 @@
 
 
   
+    <article id="post-Xgboost算法详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2019/09/05/Xgboost%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3/" target="_blank">Xgboost算法详解</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2019/09/05/Xgboost%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
+        <time datetime="2019-09-05T02:22:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-05</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>因为Xgboost算法常常用于有监督学习，关于有监督学习我们在前面已经介绍过来，但是有监督学习的要素有哪些呢？Xgboost算法为什么经常用于有监督学习呢？</p>
+<p><strong>有监督学习的要素</strong>包含两大块:</p>
+<h3 id="模型和参数"><a href="#模型和参数" class="headerlink" title="模型和参数"></a>模型和参数</h3><p><strong>模型</strong>通常是给定输入Xi，找出和输出y之间的关系，如线性模型<img src="https://img-blog.csdnimg.cn/20191108093352142.png" alt=""><br><strong>参数</strong>通常是我们需要从数据中学习的未确定部分。在线性回归模型中，参数是系数Wj。</p>
+<h3 id="损失函数和正则化"><a href="#损失函数和正则化" class="headerlink" title="损失函数和正则化"></a>损失函数和正则化</h3><p>我们在对数据进行训练的时候，总是要有一个评价指标，判断训练的好坏程度，这时候就引入了目标函数的概念，其中:<br>目标函数=损失函数L(θ)+正则化Ω(θ)</p>
+<p><strong>损失函数</strong><br>损失函数L(θ)是描述预测值和真实值的偏差有多少，衡量我们的数据对训练数据的预测性，数学表达式用l(Y-Yi)来表示,其中l(x)可以是均方误差，逻辑回归损失。</p>
+<p><strong>正则化</strong><br>正则化Ω(θ)控制模型的复杂性，这有助于避免过拟合。</p>
+<p>简单来说就是损失函数判断模型的好坏，正则化判断模型的复杂程度，我们当然需要一个既简单又可以预测的模型。如果数据量无限多的话，训练最好的情况下此时的模型拟合误差记为bias。如果在有限数据量的条件下进行拟合的话，那么此时的误差记为variance。</p>
+<h4 id="树集成"><a href="#树集成" class="headerlink" title="树集成"></a>树集成</h4><p>现在有五个人，要研究的是他们去打电脑游戏的可能性，最后的结果越大表明去打游戏的可能性也就越大。<br><img src="https://img-blog.csdnimg.cn/20191108103017885.png" alt=""><br><img src="https://img-blog.csdnimg.cn/20191108102900457.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt=""></p>
+<p>如果只用上图左边根据性别和年龄来进行分类的话，采用的是单棵树。如果加上上图右边的树将使用电脑频率进行分类的话，两棵树的结果相加最后得到每个人会去打电脑游戏的可能性，这样的方法称为树集成。而Xgboost本质上就是树集成。</p>
+<p>有了上面的基础之后，我们再来讨论，当我们既有了一棵树，我们还得添加哪些树?添加多少树呢？</p>
+<p><strong>添加哪些树？</strong><br>Xgboost里面的树是一个一个添加的，每一个树都可以看作是一个函数<br><img src="https://img-blog.csdnimg.cn/20191108104234681.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt=""><br><strong>所以我们添加的树必须要保证预测效果是比不加树之前的效果要好的。</strong></p>
+<p><strong>添加多少树?</strong><br>有可能到最后树的性能是提升了，但是提升的增益很小，甚至会带来过拟合情况的产生。这个时候就引入了惩罚函数<br><img src="https://img-blog.csdnimg.cn/20191108105042316.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt="">)比如<img src="https://img-blog.csdnimg.cn/20191108105112704.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt=""><strong>对目标函数进行优化</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/20191108172735542.png" alt=""><br>利用均方误差对目标函数进行展开之后<br><img src="https://img-blog.csdnimg.cn/20191108172751261.png" alt=""><br>将均方误差的泰勒展示式展开到二阶之后<br><img src="https://img-blog.csdnimg.cn/20191108172855627.png" alt=""><br>因为损失函数最后是一个具体的值，和输入xi没有什么关系，所以除去损失函数和常量的值<br><img src="https://img-blog.csdnimg.cn/20191108171644887.png" alt=""><br>其中<br><img src="https://img-blog.csdnimg.cn/20191108171705562.png" alt=""><br><img src="https://img-blog.csdnimg.cn/20191108172641106.png" alt=""><br><img src="https://img-blog.csdnimg.cn/20191108172654248.png" alt=""><br>在二次函数的基础上满足以下条件可以使得目标函数最小，<br><img src="https://img-blog.csdnimg.cn/2019110817270710.png" alt=""><br><strong>信息增益:</strong><br>对于每次扩展，我们依旧要枚举所有可能的方案。对于某个特定的分割，我们要计算出这个分割的左子树的导数和和右子数导数和之和，然后和划分前的进行比较（基于损失，看分割后的损失和分割前的损失有没有发生变化，变化了多少）。遍历所有分割，选择变化最大的作为最合适的分割。<br><img src="https://img-blog.csdnimg.cn/20191108174320355.png" alt=""></p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">algo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2019/09/05/Xgboost%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-ubuntu下创建定时任务的两种方式及常见问题解决方案" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -963,226 +1179,6 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/2019/09/05/ubuntu%E4%B8%8B%E5%88%9B%E5%BB%BA%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F%E5%8F%8A%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Xgboost算法详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2019/09/05/Xgboost%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3/" target="_blank">Xgboost算法详解</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2019/09/05/Xgboost%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
-        <time datetime="2019-09-05T02:22:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-05</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>因为Xgboost算法常常用于有监督学习，关于有监督学习我们在前面已经介绍过来，但是有监督学习的要素有哪些呢？Xgboost算法为什么经常用于有监督学习呢？</p>
-<p><strong>有监督学习的要素</strong>包含两大块:</p>
-<h3 id="模型和参数"><a href="#模型和参数" class="headerlink" title="模型和参数"></a>模型和参数</h3><p><strong>模型</strong>通常是给定输入Xi，找出和输出y之间的关系，如线性模型<img src="https://img-blog.csdnimg.cn/20191108093352142.png" alt=""><br><strong>参数</strong>通常是我们需要从数据中学习的未确定部分。在线性回归模型中，参数是系数Wj。</p>
-<h3 id="损失函数和正则化"><a href="#损失函数和正则化" class="headerlink" title="损失函数和正则化"></a>损失函数和正则化</h3><p>我们在对数据进行训练的时候，总是要有一个评价指标，判断训练的好坏程度，这时候就引入了目标函数的概念，其中:<br>目标函数=损失函数L(θ)+正则化Ω(θ)</p>
-<p><strong>损失函数</strong><br>损失函数L(θ)是描述预测值和真实值的偏差有多少，衡量我们的数据对训练数据的预测性，数学表达式用l(Y-Yi)来表示,其中l(x)可以是均方误差，逻辑回归损失。</p>
-<p><strong>正则化</strong><br>正则化Ω(θ)控制模型的复杂性，这有助于避免过拟合。</p>
-<p>简单来说就是损失函数判断模型的好坏，正则化判断模型的复杂程度，我们当然需要一个既简单又可以预测的模型。如果数据量无限多的话，训练最好的情况下此时的模型拟合误差记为bias。如果在有限数据量的条件下进行拟合的话，那么此时的误差记为variance。</p>
-<h4 id="树集成"><a href="#树集成" class="headerlink" title="树集成"></a>树集成</h4><p>现在有五个人，要研究的是他们去打电脑游戏的可能性，最后的结果越大表明去打游戏的可能性也就越大。<br><img src="https://img-blog.csdnimg.cn/20191108103017885.png" alt=""><br><img src="https://img-blog.csdnimg.cn/20191108102900457.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt=""></p>
-<p>如果只用上图左边根据性别和年龄来进行分类的话，采用的是单棵树。如果加上上图右边的树将使用电脑频率进行分类的话，两棵树的结果相加最后得到每个人会去打电脑游戏的可能性，这样的方法称为树集成。而Xgboost本质上就是树集成。</p>
-<p>有了上面的基础之后，我们再来讨论，当我们既有了一棵树，我们还得添加哪些树?添加多少树呢？</p>
-<p><strong>添加哪些树？</strong><br>Xgboost里面的树是一个一个添加的，每一个树都可以看作是一个函数<br><img src="https://img-blog.csdnimg.cn/20191108104234681.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt=""><br><strong>所以我们添加的树必须要保证预测效果是比不加树之前的效果要好的。</strong></p>
-<p><strong>添加多少树?</strong><br>有可能到最后树的性能是提升了，但是提升的增益很小，甚至会带来过拟合情况的产生。这个时候就引入了惩罚函数<br><img src="https://img-blog.csdnimg.cn/20191108105042316.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt="">)比如<img src="https://img-blog.csdnimg.cn/20191108105112704.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt=""><strong>对目标函数进行优化</strong></p>
-<p><img src="https://img-blog.csdnimg.cn/20191108172735542.png" alt=""><br>利用均方误差对目标函数进行展开之后<br><img src="https://img-blog.csdnimg.cn/20191108172751261.png" alt=""><br>将均方误差的泰勒展示式展开到二阶之后<br><img src="https://img-blog.csdnimg.cn/20191108172855627.png" alt=""><br>因为损失函数最后是一个具体的值，和输入xi没有什么关系，所以除去损失函数和常量的值<br><img src="https://img-blog.csdnimg.cn/20191108171644887.png" alt=""><br>其中<br><img src="https://img-blog.csdnimg.cn/20191108171705562.png" alt=""><br><img src="https://img-blog.csdnimg.cn/20191108172641106.png" alt=""><br><img src="https://img-blog.csdnimg.cn/20191108172654248.png" alt=""><br>在二次函数的基础上满足以下条件可以使得目标函数最小，<br><img src="https://img-blog.csdnimg.cn/2019110817270710.png" alt=""><br><strong>信息增益:</strong><br>对于每次扩展，我们依旧要枚举所有可能的方案。对于某个特定的分割，我们要计算出这个分割的左子树的导数和和右子数导数和之和，然后和划分前的进行比较（基于损失，看分割后的损失和分割前的损失有没有发生变化，变化了多少）。遍历所有分割，选择变化最大的作为最合适的分割。<br><img src="https://img-blog.csdnimg.cn/20191108174320355.png" alt=""></p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">algo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2019/09/05/Xgboost%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-爬虫Requests库的安装和使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2019/09/05/%E7%88%AC%E8%99%ABRequests%E5%BA%93%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/" target="_blank">爬虫Requests库的安装和使用</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2019/09/05/%E7%88%AC%E8%99%ABRequests%E5%BA%93%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/" class="archive-article-date">
-        <time datetime="2019-09-05T02:22:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-05</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="requests库"><a href="#requests库" class="headerlink" title="requests库"></a>requests库</h2><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install requests</span><br></pre></td></tr></table></figure>
-<h4 id="导入模块"><a href="#导入模块" class="headerlink" title="导入模块"></a>导入模块</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br></pre></td></tr></table></figure>
-<h3 id="get请求方式"><a href="#get请求方式" class="headerlink" title="get请求方式"></a>get请求方式</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>r=requests.get(<span class="string">'http://httpbin.org/post'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(r)</span><br><span class="line">&lt;Response [<span class="number">200</span>]&gt;</span><br></pre></td></tr></table></figure>
-<p>返回状态码为200，则请求正常。<br>如果想要看响应的内容，那么</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(r.text)</span><br></pre></td></tr></table></figure>
-<h3 id="post请求方式"><a href="#post请求方式" class="headerlink" title="post请求方式"></a>post请求方式</h3><p>我们一般向浏览器传递表单的时候采用的就是post请求。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>payload = &#123;<span class="string">'key1'</span>: <span class="string">'value1'</span>, <span class="string">'key2'</span>: <span class="string">'value2'</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.post(<span class="string">"http://httpbin.org/post"</span>, data=payload)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(r.text)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"args"</span>: &#123;&#125;, </span><br><span class="line">  <span class="string">"data"</span>: <span class="string">""</span>, </span><br><span class="line">  <span class="string">"files"</span>: &#123;&#125;, </span><br><span class="line">  <span class="string">"form"</span>: &#123;</span><br><span class="line">    <span class="string">"key1"</span>: <span class="string">"value1"</span>, </span><br><span class="line">    <span class="string">"key2"</span>: <span class="string">"value2"</span></span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
-<p>那么其他 HTTP 请求类型：PUT，DELETE，HEAD 以及 OPTIONS 又是如何的呢？都是一样的简单：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.put(<span class="string">'http://httpbin.org/put'</span>, data = &#123;<span class="string">'key'</span>:<span class="string">'value'</span>&#125;)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.delete(<span class="string">'http://httpbin.org/delete'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.head(<span class="string">'http://httpbin.org/get'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.options(<span class="string">'http://httpbin.org/get'</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="响应内容"><a href="#响应内容" class="headerlink" title="响应内容"></a>响应内容</h3><h4 id="二进制响应内容"><a href="#二进制响应内容" class="headerlink" title="二进制响应内容"></a>二进制响应内容</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>r.content</span><br><span class="line"><span class="string">b'&#123;\n  "args": &#123;&#125;, \n  "data": "", \n  "files": &#123;&#125;, \n  "form": &#123;\n    "key1": "value1", \n    "key2": "value2"\n  &#125;, \n  "headers": &#123;\n    "Accept": "*/*", \n    "Accept-Encoding": "gzip, deflate", \n    "Content-Length": "23", \n    "Content-Type": "application/x-www-form-urlencoded", \n    "Host": "httpbin.org", \n    "User-Agent": "python-requests/2.22.0"\n  &#125;, \n  "json": null, \n  "origin": "58.246.203.154, 58.246.203.154", \n  "url": "https://httpbin.org/post"\n&#125;\n</span></span><br></pre></td></tr></table></figure>
-<h4 id="JSON-响应内容"><a href="#JSON-响应内容" class="headerlink" title="JSON 响应内容"></a>JSON 响应内容</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> requests</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.get(<span class="string">'https://api.github.com/events'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r.json()</span><br><span class="line">[&#123;<span class="string">u'repository'</span>: &#123;<span class="string">u'open_issues'</span>: <span class="number">0</span>, <span class="string">u'url'</span>: <span class="string">'https://github.com/...</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="加请求头"><a href="#加请求头" class="headerlink" title="加请求头"></a>加请求头</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>url = <span class="string">'https://api.github.com/some/endpoint'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>headers = &#123;<span class="string">'user-agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:69.0) Gecko/20100101 Firefox'</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.get(url, headers=headers)</span><br></pre></td></tr></table></figure>
-
-<p>Session和Cookies保留了我们的登录状态，允许我们跨网页登录时候或者下次登录时候登录信息仍然在。</p>
-<h3 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">requests.get(<span class="string">'http://httpbin.org/cookies/set/sessioncookie/123456789'</span>)</span><br><span class="line">r = requests.get(<span class="string">"http://httpbin.org/cookies"</span>)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
-<p>结果是</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"cookies"</span>: &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>但是我们不可能每次跳转网页(比如淘宝)的时候都需要重新登录的，所以这时候就需要用到Session了。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">s = requests.Session()</span><br><span class="line">s.get(<span class="string">'http://httpbin.org/cookies/set/sessioncookie/123456789'</span>)</span><br><span class="line">r = s.get(<span class="string">"http://httpbin.org/cookies"</span>)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
-<p>结果是</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"cookies"</span>: &#123;</span><br><span class="line">    <span class="string">"sessioncookie"</span>: <span class="string">"123456789"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在使用了Session之后，跳转了另一个网页之后是存在cookies的。</p>
-<h3 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h3><p>响应中包含了cookies的话</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>url = <span class="string">'http://example.com/some/cookie/setting/url'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.get(url)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r.cookies[<span class="string">'example_cookie_name'</span>]</span><br><span class="line"><span class="string">'example_cookie_value'</span></span><br></pre></td></tr></table></figure>
-
-
-<p>将cookies发送到服务器，可以使用 cookies 参数：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>url = <span class="string">'http://httpbin.org/cookies'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>cookies = dict(cookies_are=<span class="string">'working'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.get(url, cookies=cookies)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r.text</span><br><span class="line"><span class="string">'&#123;"cookies": &#123;"cookies_are": "working"&#125;&#125;'</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="超时"><a href="#超时" class="headerlink" title="超时"></a>超时</h3><p>设置对一个浏览器请求的时间，不是下载时间，是请求时间。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>requests.get(<span class="string">'http://github.com'</span>, timeout=<span class="number">0.001</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="错误与异常"><a href="#错误与异常" class="headerlink" title="错误与异常"></a>错误与异常</h3><p>1.遇到网络问题（如：DNS 查询失败、拒绝连接等）时，Requests 会抛出一个 ConnectionError 异常。<br>2.若请求超时，则抛出一个 Timeout 异常。<br>3.若请求超过了设定的最大重定向次数，则会抛出一个 TooManyRedirects 异常。<br>4.所有Requests显式抛出的异常都继承自 requests.exceptions.RequestException 。</p>
-<h3 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">proxies = &#123;</span><br><span class="line">  <span class="string">"https"</span>: <span class="string">"http://41.118.132.69:4433"</span></span><br><span class="line">&#125;</span><br><span class="line">r = requests.post(<span class="string">"http://httpbin.org/post"</span>, proxies=proxies)</span><br><span class="line"><span class="keyword">print</span> r.text</span><br></pre></td></tr></table></figure>
-
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spider</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2019/09/05/%E7%88%AC%E8%99%ABRequests%E5%BA%93%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/">展开全文 >></a>
     </p>
     
 
