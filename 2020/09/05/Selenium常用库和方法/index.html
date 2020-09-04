@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>知识分享</title>
+  <title>Selenium常用库和方法 | 知识分享</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-    
-    <!-- <meta name="keywords" content="">
-    <meta name="description" content=""> -->
-  
-  <meta property="og:type" content="website">
-<meta property="og:title" content="知识分享">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;page&#x2F;3&#x2F;index.html">
+  <meta name="description" content="Selenium常用库和方法">
+<meta name="keywords" content="spider">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Selenium常用库和方法">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;09&#x2F;05&#x2F;Selenium%E5%B8%B8%E7%94%A8%E5%BA%93%E5%92%8C%E6%96%B9%E6%B3%95&#x2F;index.html">
 <meta property="og:site_name" content="知识分享">
+<meta property="og:description" content="Selenium常用库和方法">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-09-04T16:15:44.024Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="知识分享" type="application/atom+xml">
@@ -184,653 +184,130 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-
-  
-    <article id="post-Attention机制详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-Selenium常用库和方法" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/04/05/Attention%E6%9C%BA%E5%88%B6%E8%AF%A6%E8%A7%A3/" target="_blank">Attenion机制详解</a>
-  
+    <h1 class="article-title" itemprop="name">
+      Selenium常用库和方法
     </h1>
   
 
 
   
   
-<a href="/2020/04/05/Attention%E6%9C%BA%E5%88%B6%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
-        <time datetime="2020-04-05T05:38:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-05</time>
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2020/09/05/Selenium%E5%B8%B8%E7%94%A8%E5%BA%93%E5%92%8C%E6%96%B9%E6%B3%95/" class="archive-article-date">
+        <time datetime="2020-09-04T16:15:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-05</time>
 </a>
 
   
   
     
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">719字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">3分</span>
+    </span>
+  </span>
+</div>
+
 
   
   </header>
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>近期对深度学习中的Attention模型进行了深入研究，该模型在图像识别、语音识别和自然语言处理三大深度学习的热门领域均有广泛的使用，是2014和2015年深度学习领域的重要进展。现对其原理、主要应用及研究进展进行详细介绍。</p>
-<h2 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h2><p>  Attention模型最初应用于图像识别，模仿人看图像时，目光的焦点在不同的物体上移动。当神经网络对图像或语言进行识别时，每次集中于部分特征上，识别更加准确。如何衡量特征的重要性呢？最直观的方法就是权重，因此，Attention模型的结果就是在每次识别时，首先计算每个特征的权值，然后对特征进行加权求和，权值越大，该特征对当前识别的贡献就大。<br>  机器翻译中的Attention模型最直观，易于理解，因为每生成一个单词，找到源句子中与其对应的单词，翻译才准确。此处就以机器翻译为例讲解Attention模型的基本原理。在此之前，需要先介绍一下目前机器翻译领域应用最广泛的模型——Encoder-Decoder结构，谷歌最新发布的机器翻译系统就是基于该框架[1]，并且采用了Attention模型。<br>  Encoder-Decoder框架包括两个步骤，第一步是Encoder，将输入数据（如图像或文本）编码为一系列特征，第二步是Decoder，以编码的特征作为输入，将其解码为目标输出。Encoder和Decoder是两个独立的模型，可以采用神经网络，也可以采用其他模型。机器翻译中的Encoder-Decoder示例如下图（取自[2]）：<br><img src="https://img-blog.csdnimg.cn/20200821131933126.png#pic_center" alt="在这里插入图片描述"></p>
-<p>该示例将一个句子（ABC）翻译为另一种语言的句子（WXYZ），其中A、B、C和W、X、Y、Z分别表示一个字或一个单词，图中每个方框表示一个RNN模型，不同的方框表示不同的时刻，<eos>表示句子结束。<br>  了解Encoder-Decoder结构之后，我们再回到Attention模型，Attention在Encoder-Decoder中介于Encoder和Decoder中间，首先根据Encoder和Decoder的特征计算权值，然后对Encoder的特征进行加权求和，作为Decoder的输入，其作用是将Encoder的特征以更好的方式呈献给Decoder。[3]首次将Attention模型应用到机器翻译中，我们参照下图对其展开讲解。<br>  <img src="https://img-blog.csdnimg.cn/20200821131950210.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<p>  该图将句子(x1,x2,…,xT)翻译为(y1,y2,…,yt,…)，Encoder和Decoder均采用RNN模型，下方的一系列h为Encoder生成的特征，考虑到句子中单词的上下文关系，此处采用了双向RNN模型，所以每个时刻生成的特征由两个方向的特征组合而成，即hi=[hi→;hi←]。图中的αt,i就是Attention模型生成的权值，在t时刻，对特征h进行加权组合：<br><img src="https://img-blog.csdnimg.cn/20200821132652808.png#pic_center" alt="在这里插入图片描述"></p>
-<p>那么生成新的单词的过程为：<br><img src="https://img-blog.csdnimg.cn/20200821132733981.png#pic_center" alt="在这里插入图片描述"></p>
-<p>如果没有Attention模型计算权值，那么该过程就变为：<br><img src="https://img-blog.csdnimg.cn/20200821132751931.png#pic_center" alt="在这里插入图片描述"></p>
-<p>也就是说，在Decoder的每个时刻，其输入特征均是固定的，将所有的输入x编码为一个固定的特征容易造成信息损失，而且在Decoder的时候，每一个时刻均选取所有特征，没有针对性，因此就产生了Attention模型。那么Attention模型中的权值α是怎么计算的呢？<br><img src="https://img-blog.csdnimg.cn/20200821132817159.png#pic_center" alt="在这里插入图片描述"></p>
-<p>前面说了那么多，其实这里的fatt才是Attention模型的核心，它被称为alignment模型，计算Encoder的特征与Decoder特征的对应关系。举例如下图：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200821132627212.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<p>​<br>该图表示法语到英语的翻译，图中的小方格就是表示Attention模型的权值α的大小，颜色越浅表示权值越大。可以看到，大的权值基本上分布在对角线上，而在European Economic Area三个单词处，权值成反对角线分布，这是因为法语与英语的句法结构不同，这三个单词的权值依然是对应的，说明Attention模型在这里准确实现了单词之间的对应关系。<br>  综上所述，Attention模型就是对输入特征进行加权以衡量每个特征对当前识别的重要性，它自己集中于重要的特征，忽略不重要的特征。</p>
-<ol start="2">
-<li>Attention模型的主要应用</li>
-</ol>
-<p>  Attention模型主要应用于深度学习，目前深度学习最热门的应用就是自然语言理解、图像识别和语音识别三大领域。本文针对三个领域分别列举几个Attention模型的应用。<br>2.1 自然语言理解</p>
-<p>  第一节的机器翻译就是一个非常重要的应用，谷歌在最新发布的机器翻译模型中就采用了Attention模型，[4]一文中将Attention模型应用到文本摘要，从长句子或段落中提取关键词，如下图：<br><img src="https://img-blog.csdnimg.cn/20200821132051201.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<p>华为诺亚方舟实验室的李航博士将Attention模型应用于短文本对话[5]。</p>
-<h2 id="图像识别"><a href="#图像识别" class="headerlink" title="图像识别"></a>图像识别</h2><p>  Attention模型在图像识别里的应用既有图像分类，如[6][7]，又有图像生成，如[8][9]，个人最感兴趣的是图像标题生成[10]，如下图：<br>    <img src="https://img-blog.csdnimg.cn/20200821132110304.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<p>该研究中将Attention模型的权值可视化，显示在原图中，即图中白色的区域，可以看出，图中的飞盘和狗分别与句子中的frisbee和dog形成了对应关系。</p>
-<h2 id="语音识别"><a href="#语音识别" class="headerlink" title="语音识别"></a>语音识别</h2><p>  语音识别的经典模型要数CTC，基于Attention模型的Encoder-Decoder框架也取得了较好的结果，如[11][12]，Attention模型也建立了语音与单词之间的对应关系。<br>  <img src="https://img-blog.csdnimg.cn/20200821132130882.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<h2 id="研究进展"><a href="#研究进展" class="headerlink" title="研究进展"></a>研究进展</h2><p>  自从Attention模型引入深度学习后，不但获得了广泛应用，也产生了很多改进，下面列举几个研究进展。<br>   [10]首次将Attention模型引入图像标题应用时，提出了两种Attention方法——soft attention和hard attention，其中soft attention就是最初的attention方法，而hard attention在选取特征组合时，并不针对所有的特征生成权值，而是只选取1个或者几个特征，因此是hard的。<br>  从Attention中的alignment模型et,i=fatt(st−1,hi)<br>可以看出，它实际上是基于Decoder的t-1时刻的状态预测t时刻状态与Encoder特征hi的关联程度，在[13]中，首先不使用Attention模型进行Decoder，然后就可以使用Attenion计算t时刻的Decoder状态与Encoder特征的关联程度，et,i=fatt(st,hi)</p>
-<p>，并且文章基于bilinear方法提出了简化版的Attention模型，计算更加高效。<br>  在机器翻译中，存在过翻译和欠翻译的现象，即有些词被多次翻译，有些词却被漏掉，这是因为Attention模型没有记忆翻译进程的机制，[14]一文增加了Coverage模型，用于记录哪些单词已被翻译，哪些尚未翻译，从而使Attention模型专注于未翻译的单词，忽略已经翻译的单词。<br>  在2017年，google的团队提出一个只基于attention机制的结构来处理序列模型相关的问题[15]，没有采用常见的RNN和CNN网络，该结构能够并行训练，大大地减少了训练时间。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>  Attention模型在深度学习的各个领域均取得广泛的应用，作为一个独立的框架，attention机制还可以使用更加复杂的网络结构来改善其效果。并且，attention机制尚有不完善之处，如未记忆历史信息、缺乏对attention的评价机制等，仍在存在一定的改进空间。</p>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] Wu, Y., Schuster, M., Chen, Z., Le, Q. V., Norouzi, M., Macherey, W., … &amp; Klingner, J. (2016). Google’s Neural Machine Translation System: Bridging the Gap between Human and Machine Translation. arXiv preprint arXiv:1609.08144.<br>[2] Sutskever, I., Vinyals, O., &amp; Le, Q. V. (2014). Sequence to sequence learning with neural networks. In Advances in neural information processing systems (pp. 3104-3112).<br>[3] Bahdanau, D., Cho, K., &amp; Bengio, Y. (2014). Neural machine translation by jointly learning to align and translate. arXiv preprint arXiv:1409.0473.<br>[4] Rush, A. M., Chopra, S., &amp; Weston, J. (2015). A neural attention model for abstractive sentence summarization. arXiv preprint arXiv:1509.00685.<br>[5] Shang, L., Lu, Z., &amp; Li, H. (2015). Neural responding machine for short-text conversation. arXiv preprint arXiv:1503.02364.<br>[6] Mnih, V., Heess, N., &amp; Graves, A. (2014). Recurrent models of visual attention. In Advances in Neural Information Processing Systems (pp. 2204-2212).<br>[7] Ba, J., Mnih, V., &amp; Kavukcuoglu, K. (2014). Multiple object recognition with visual attention. arXiv preprint arXiv:1412.7755.<br>[8]Gregor, K., Danihelka, I., Graves, A., Rezende, D. J., &amp; Wierstra, D. (2015). DRAW: A recurrent neural network for image generation. arXiv preprint arXiv:1502.04623.<br>[9]Mansimov, E., Parisotto, E., Ba, J. L., &amp; Salakhutdinov, R. (2015). Generating images from captions with attention. arXiv preprint arXiv:1511.02793.<br>[10]Xu, K., Ba, J., Kiros, R., Cho, K., Courville, A., Salakhutdinov, R., … &amp; Bengio, Y. (2015). Show, attend and tell: Neural image caption generation with visual attention. arXiv preprint arXiv:1502.03044, 2(3), 5.<br>[11]Chan, W., Jaitly, N., Le, Q. V., &amp; Vinyals, O. (2015). Listen, attend and spell. arXiv preprint arXiv:1508.01211.<br>[12]Bahdanau, D., Chorowski, J., Serdyuk, D., &amp; Bengio, Y. (2016, March). End-to-end attention-based large vocabulary speech recognition. In 2016 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP) (pp. 4945-4949). IEEE.<br>[13] Luong, M. T., Pham, H., &amp; Manning, C. D. (2015). Effective approaches to attention-based neural machine translation. arXiv preprint arXiv:1508.04025.<br>[14] Tu, Z., Lu, Z., Liu, Y., Liu, X., &amp; Li, H. (2016). Modeling coverage for neural machine translation. ArXiv eprints, January.<br>[15] Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., … &amp; Polosukhin, I. (2017). Attention is all you need. In Advances in Neural Information Processing Systems (pp. 6000-6010).</p>
+    <p>在你写脚本时候肯定是会用到selenium的，但是这里的库有的时候又不能自动导入，这里记录一下selenium操作的一些方法：</p>
+<h2 id="导入库"><a href="#导入库" class="headerlink" title="导入库"></a>导入库</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support <span class="keyword">import</span> expected_conditions</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support.wait <span class="keyword">import</span> WebDriverWait</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support <span class="keyword">import</span> expected_conditions <span class="keyword">as</span> EC</span><br></pre></td></tr></table></figure>
+
+<p><strong>等待某元素可以被点击</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WebDriverWait(driver,<span class="number">10</span>).until(EC.element_to_be_clickable((By.XPATH,<span class="string">'//*[@id="casLoginForm"]/p[5]/button'</span>))).click()</span><br></pre></td></tr></table></figure>
+<h2 id="EC方法"><a href="#EC方法" class="headerlink" title="EC方法"></a>EC方法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#这两个条件类验证title，验证传入的参数title是否等于或在driver.title中</span></span><br><span class="line">EC.title_is</span><br><span class="line">EC.title_contains</span><br><span class="line"><span class="comment">#这两个条件验证元素是否出现，传入的参数都是元组类型的locator，如(By.ID, 'kw')</span></span><br><span class="line"><span class="comment">#一个只要一个符合条件的元素加载出来就通过；另一个必须所有符合条件的元素都加载出来才行</span></span><br><span class="line">EC.presence_of_element_located((By.CSS_SELECTOR,<span class="string">'.ui-page &gt; div.ui-page-wrap'</span>))</span><br><span class="line">EC.presence_of_all_elements_located((By.CSS_SELECTOR,<span class="string">'.ui-page &gt; div.ui-page-wrap'</span>))</span><br><span class="line"><span class="comment">#这三个条件验证元素是否可见，前两个传入参数是元组类型的locator，第三个传入WebElement</span></span><br><span class="line"><span class="comment">#第一个和第三个其实质是一样的</span></span><br><span class="line">EC.visibility_of_element_located</span><br><span class="line">EC.invisibility_of_element_located</span><br><span class="line">EC.visibility_of</span><br><span class="line"><span class="comment">#这两个人条件判断某段文本是否出现在某元素中，一个判断元素的text，一个判断元素的value属性</span></span><br><span class="line">EC.text_to_be_present_in_element</span><br><span class="line">EC.text_to_be_present_in_element_value</span><br><span class="line"><span class="comment">#这个条件判断frame是否可切入，可传入locator元组或者直接传入定位方式：id、name、index或WebElement</span></span><br><span class="line">EC.frame_to_be_available_and_switch_to_it</span><br><span class="line"><span class="comment">#这个条件判断是否有alert出现</span></span><br><span class="line">EC.alert_is_present</span><br><span class="line"><span class="comment">#这个条件判断元素是否可点击，传入locator</span></span><br><span class="line">EC.element_to_be_clickable</span><br><span class="line"><span class="comment">#这四个条件判断元素是否被选中，第一个条件传入WebElement对象，第二个传入locator元组</span></span><br><span class="line"><span class="comment">#第三个传入WebElement对象以及状态，相等返回True，否则返回False</span></span><br><span class="line"><span class="comment">#第四个传入locator以及状态，相等返回True，否则返回False</span></span><br><span class="line">EC.element_to_be_selected</span><br><span class="line">EC.element_located_to_be_selected</span><br><span class="line">EC.element_selection_state_to_be</span><br><span class="line">EC.element_located_selection_state_to_be</span><br><span class="line"><span class="comment">#最后一个条件判断一个元素是否仍在页面中，传入WebElement对象，可以判断页面是否刷新</span></span><br><span class="line">EC.staleness_of</span><br></pre></td></tr></table></figure>
+<h2 id="By方法"><a href="#By方法" class="headerlink" title="By方法"></a>By方法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">find_element(By.ID,<span class="string">"kw"</span>)</span><br><span class="line">find_element(By.NAME,<span class="string">"wd"</span>)</span><br><span class="line">find_element(By.CLASS_NAME,<span class="string">"s_ipt"</span>)</span><br><span class="line">find_element(By.TAG_NAME,<span class="string">"input"</span>)</span><br><span class="line">find_element(By.LINK_TEXT,<span class="string">u"新闻"</span>)  <span class="comment">##包含了文字</span></span><br><span class="line">find_element(By.PARTIAL_LINK_TEXT,<span class="string">u"新"</span>)</span><br><span class="line">find_element(By.XPATH,<span class="string">"//*[@class='bg s_btn']"</span>)</span><br><span class="line">find_element(By.CSS_SELECTOR,<span class="string">"span.bg s_btn_wr&gt;input#su"</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="包含文字"><a href="#包含文字" class="headerlink" title="包含文字"></a>包含文字</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">WebDriverWait(driver,<span class="number">10</span>).until(EC.element_to_be_clickable((By.XPATH,<span class="string">"//*[contains(text(), '请点击此处补报')]"</span>))).click()</span><br><span class="line"></span><br><span class="line">find_element(By.LINK_TEXT,<span class="string">u"新闻"</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="切换frame"><a href="#切换frame" class="headerlink" title="切换frame"></a>切换frame</h2><p>如果你的selenium怎么点击都点击不上去的话，那你就要考虑是不是iframe需要切换了，因为js前端会有很多frame组成的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>有id，并且唯一，直接写id</span><br><span class="line">driver.switch_to_frame(<span class="string">"x-URS-iframe"</span>)</span><br><span class="line">driver.switch_to.frame(<span class="string">"x-URS-iframe"</span>)</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span>有name，并且唯一，直接写name</span><br><span class="line">driver.switch_to_frame(<span class="string">"xxxx"</span>)</span><br><span class="line">driver.switch_to.frame(<span class="string">"xxxx"</span>)</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span>无id，无name,先定位iframe元素</span><br><span class="line">iframe = driver.find_elements_by_tag_name(<span class="string">"iframe"</span>)[<span class="number">0</span>]</span><br><span class="line">driver.switch_to_frame(iframe)</span><br><span class="line">driver.switch_to.frame(iframe)</span><br></pre></td></tr></table></figure>
+
+<p>切换完了frame如果还需要回到主页面，记得用如下代码切换回来。<code>driver.switch_to.default_content()</code><br>其他操作frame的详细方法见：<br><a href="https://www.cnblogs.com/xiaoxiaolvdou/p/9316805.html" target="_blank" rel="noopener">frame切换</a></p>
 
     
 
     
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">algo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/04/05/Attention%E6%9C%BA%E5%88%B6%E8%AF%A6%E8%A7%A3/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/alipay.jpg">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/weixin.jpg">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
         </div>
-        
-        
+      </a>
     </div>
-</aside>
-
-
-
-
-  
-    <article id="post-基于auto.js自动撸视频" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/01/05/%E5%9F%BA%E4%BA%8Eauto.js%E8%87%AA%E5%8A%A8%E6%92%B8%E8%A7%86%E9%A2%91/" target="_blank">基于auto.js自动撸视频</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/01/05/%E5%9F%BA%E4%BA%8Eauto.js%E8%87%AA%E5%8A%A8%E6%92%B8%E8%A7%86%E9%A2%91/" class="archive-article-date">
-        <time datetime="2020-01-05T04:45:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-05</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>背景：现在市面上出现了很多刷视频赚钱的软件，例如刷宝，快看点，趣头条，如果手刷的话很浪费你的时间，于是auto.js是很好用的一款软件，可以帮助你实现自动刷视频，并且稳定不会被封号，这里亲测过！！</p>
-<p>前提:手机没有root的话，必须安卓手机且Android 7.0 版本及以上<br>第一步 安装软件</p>
-<p>这里需要安装Auto.js，如果你要打包的话还需要安装Auto.js的插件，如果你不需要打包成Apk的话，你只需要在手机百度搜索Auto.js进行下载就可以了</p>
-<p><img src="https://img-blog.csdnimg.cn/20200214200050607.png" alt="在这里插入图片描述"></p>
-<p>第二步 编写代码</p>
-<p>这里以刷宝视频为例：<br>为了增加刷视频的活跃度，这里采用随机时间观看视频，以及随机点赞和关注，来增加视频的收益</p>
-<p><img src="https://img-blog.csdnimg.cn/2020021414154474.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这段程序的意思是获取随机时间，这样防止重复，增加刷视频的安全性，同样点赞和关注也是随机的，可以增加账号的活跃度<br>第三步 运行程序</p>
-<p>在电脑上写完程序之后，发送到手机上，auto.js上粘贴完程序之后，可以将其打包成apk文件，大致就这些步骤啦，如果你会写javascript代码，那么写起来很简单的，代码量太大，如果需要源代码，auto.js和打包插件的，在下面留言，我发给你。</p>
-
     
 
     
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">suibi</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/01/05/%E5%9F%BA%E4%BA%8Eauto.js%E8%87%AA%E5%8A%A8%E6%92%B8%E8%A7%86%E9%A2%91/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          Ma Bo
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="http://yoursite.com/2020/09/05/Selenium常用库和方法/" title="Selenium常用库和方法" target="_blank">http://yoursite.com/2020/09/05/Selenium常用库和方法/</a>
+        </li>
         
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
+        <li>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
         
-        
+      </ul>
     </div>
-</aside>
-
-
-
-
-  
-    <article id="post-LSTM算法详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/01/03/LSTM%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3/" target="_blank">LSTM算法详解</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/01/03/LSTM%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
-        <time datetime="2020-01-03T04:58:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-03</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>最近用到了LSTM的技术，查阅了很多资料，看了很多论文呢，这里我们详细讲解下这种网络。</p>
-<h1 id="Recurrent-Neural-Networks"><a href="#Recurrent-Neural-Networks" class="headerlink" title="Recurrent Neural Networks"></a>Recurrent Neural Networks</h1><p>人类并不是每时每刻都从一片空白的大脑开始他们的思考。在你阅读这篇文章时候，你都是基于自己已经拥有的对先前所见词的理解来推断当前词的真实含义。我们不会将所有的东西都全部丢弃，然后用空白的大脑进行思考。我们的思想拥有持久性。<br>传统的神经网络并不能做到这点，看起来也像是一种巨大的弊端。例如，假设你希望对电影中的每个时间点的时间类型进行分类。传统的神经网络应该很难来处理这个问题——使用电影中先前的事件推断后续的事件。<br>RNN 解决了这个问题。RNN 是包含循环的网络，允许信息的持久化。<br><img src="https://img-blog.csdnimg.cn/20200821125146750.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<h2 id="RNN-包含循环"><a href="#RNN-包含循环" class="headerlink" title="RNN 包含循环"></a>RNN 包含循环</h2><p>在上面的示例图中，神经网络的模块，A，正在读取某个输入 x_i，并输出一个值 h_i。循环可以使得信息可以从当前步传递到下一步。<br>这些循环使得 RNN 看起来非常神秘。然而，如果你仔细想想，这样也不比一个正常的神经网络难于理解。RNN 可以被看做是同一神经网络的多次复制，每个神经网络模块会把消息传递给下一个。所以，如果我们将这个循环展开：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200821125157141.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<h2 id="展开的-RNN"><a href="#展开的-RNN" class="headerlink" title="展开的 RNN"></a>展开的 RNN</h2><p>链式的特征揭示了 RNN 本质上是与序列和列表相关的。他们是对于这类数据的最自然的神经网络架构。<br>并且 RNN 也已经被人们应用了！在过去几年中，应用 RNN 在语音识别，语言建模，翻译，图片描述等问题上已经取得一定成功，并且这个列表还在增长。我建议大家参考 Andrej Karpathy 的博客文章——The Unreasonable Effectiveness of Recurrent Neural Networks 来看看更丰富有趣的 RNN 的成功应用。<br>而这些成功应用的关键之处就是 LSTM 的使用，这是一种特别的 RNN，比标准的 RNN 在很多的任务上都表现得更好。几乎所有的令人振奋的关于 RNN 的结果都是通过 LSTM 达到的。这篇博文也会就 LSTM 进行展开。</p>
-<h2 id="长期依赖（Long-Term-Dependencies）问题"><a href="#长期依赖（Long-Term-Dependencies）问题" class="headerlink" title="长期依赖（Long-Term Dependencies）问题"></a>长期依赖（Long-Term Dependencies）问题</h2><p>RNN 的关键点之一就是他们可以用来连接先前的信息到当前的任务上，例如使用过去的视频段来推测对当前段的理解。如果 RNN 可以做到这个，他们就变得非常有用。但是真的可以么？答案是，还有很多依赖因素。<br>有时候，我们仅仅需要知道先前的信息来执行当前的任务。例如，我们有一个语言模型用来基于先前的词来预测下一个词。如果我们试着预测 “the clouds are in the sky” 最后的词，我们并不需要任何其他的上下文 —— 因此下一个词很显然就应该是 sky。在这样的场景中，相关的信息和预测的词位置之间的间隔是非常小的，RNN 可以学会使用先前的信息。<br><img src="https://img-blog.csdnimg.cn/20200821125226643.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<h2 id="不太长的相关信息和位置间隔"><a href="#不太长的相关信息和位置间隔" class="headerlink" title="不太长的相关信息和位置间隔"></a>不太长的相关信息和位置间隔</h2><p>但是同样会有一些更加复杂的场景。假设我们试着去预测“I grew up in France… I speak fluent French”最后的词。当前的信息建议下一个词可能是一种语言的名字，但是如果我们需要弄清楚是什么语言，我们是需要先前提到的离当前位置很远的 France 的上下文的。这说明相关信息和当前预测位置之间的间隔就肯定变得相当的大。<br>不幸的是，在这个间隔不断增大时，RNN 会丧失学习到连接如此远的信息的能力。<br><img src="https://img-blog.csdnimg.cn/20200821125241763.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<h2 id="相当长的相关信息和位置间隔"><a href="#相当长的相关信息和位置间隔" class="headerlink" title="相当长的相关信息和位置间隔"></a>相当长的相关信息和位置间隔</h2><p>在理论上，RNN 绝对可以处理这样的 长期依赖 问题。人们可以仔细挑选参数来解决这类问题中的最初级形式，但在实践中，RNN 肯定不能够成功学习到这些知识。Bengio, et al. (1994)等人对该问题进行了深入的研究，他们发现一些使训练 RNN 变得非常困难的相当根本的原因。<br>然而，幸运的是，LSTM 并没有这个问题！</p>
-<h1 id="LSTM-网络"><a href="#LSTM-网络" class="headerlink" title="LSTM 网络"></a>LSTM 网络</h1><p>Long Short Term 网络—— 一般就叫做 LSTM ——是一种 RNN 特殊的类型，可以学习长期依赖信息。LSTM 由Hochreiter &amp; Schmidhuber (1997)提出，并在近期被Alex Graves进行了改良和推广。在很多问题，LSTM 都取得相当巨大的成功，并得到了广泛的使用。<br>LSTM 通过刻意的设计来避免长期依赖问题。记住长期的信息在实践中是 LSTM 的默认行为，而非需要付出很大代价才能获得的能力！<br>所有 RNN 都具有一种重复神经网络模块的链式的形式。在标准的 RNN 中，这个重复的模块只有一个非常简单的结构，例如一个 tanh 层。</p>
-<p><img src="https://img-blog.csdnimg.cn/20200821125254538.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<p>标准 RNN 中的重复模块包含单一的层</p>
-<p>LSTM 同样是这样的结构，但是重复的模块拥有一个不同的结构。不同于 单一神经网络层，这里是有四个，以一种非常特殊的方式进行交互。<br><img src="https://img-blog.csdnimg.cn/20200821125312619.png#pic_center" alt="在这里插入图片描述"></p>
-<p>LSTM 中的重复模块包含四个交互的层</p>
-<p>不必担心这里的细节。我们会一步一步地剖析 LSTM 解析图。现在，我们先来熟悉一下图中使用的各种元素的图标。</p>
-<h2 id="LSTM-中的图标"><a href="#LSTM-中的图标" class="headerlink" title="LSTM 中的图标"></a>LSTM 中的图标</h2><p>在上面的图例中，每一条黑线传输着一整个向量，从一个节点的输出到其他节点的输入。粉色的圈代表 pointwise 的操作，诸如向量的和，而黄色的矩阵就是学习到的神经网络层。合在一起的线表示向量的连接，分开的线表示内容被复制，然后分发到不同的位置。</p>
-<h2 id="LSTM-的核心思想"><a href="#LSTM-的核心思想" class="headerlink" title="LSTM 的核心思想"></a>LSTM 的核心思想</h2><p>LSTM 的关键就是细胞状态，水平线在图上方贯穿运行。<br>细胞状态类似于传送带。直接在整个链上运行，只有一些少量的线性交互。信息在上面流传保持不变会很容易。</p>
-<p><img src="https://img-blog.csdnimg.cn/20200821125433633.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<p>LSTM 有通过精心设计的称作为“门”的结构来去除或者增加信息到细胞状态的能力。门是一种让信息选择式通过的方法。他们包含一个 sigmoid 神经网络层和一个 pointwise 乘法操作。</p>
-<p><img src="https://img-blog.csdnimg.cn/20200821125442191.png#pic_center" alt="在这里插入图片描述"></p>
-<p>Sigmoid 层输出 0 到 1 之间的数值，描述每个部分有多少量可以通过。0 代表“不许任何量通过”，1 就指“允许任意量通过”！</p>
-<p>LSTM 拥有三个门，来保护和控制细胞状态。</p>
-<h2 id="逐步理解-LSTM"><a href="#逐步理解-LSTM" class="headerlink" title="逐步理解 LSTM"></a>逐步理解 LSTM</h2><p>在我们 LSTM 中的第一步是决定我们会从细胞状态中丢弃什么信息。这个决定通过一个称为忘记门层完成。该门会读取h_{t-1}和x_t，输出一个在 0 到 1 之间的数值给每个在细胞状态C_{t-1}中的数字。1 表示“完全保留”，0 表示“完全舍弃”。<br>让我们回到语言模型的例子中来基于已经看到的预测下一个词。在这个问题中，细胞状态可能包含当前主语的性别，因此正确的代词可以被选择出来。当我们看到新的主语，我们希望忘记旧的主语。</p>
-<p><img src="https://img-blog.csdnimg.cn/20200821125509351.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<h2 id="决定丢弃信息"><a href="#决定丢弃信息" class="headerlink" title="决定丢弃信息"></a>决定丢弃信息</h2><p>下一步是确定什么样的新信息被存放在细胞状态中。这里包含两个部分。第一，sigmoid 层称 “输入门层” 决定什么值我们将要更新。然后，一个 tanh 层创建一个新的候选值向量，\tilde{C}_t，会被加入到状态中。下一步，我们会讲这两个信息来产生对状态的更新。<br>在我们语言模型的例子中，我们希望增加新的主语的性别到细胞状态中，来替代旧的需要忘记的主语。<br><img src="https://img-blog.csdnimg.cn/20200821125518648.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<h2 id="确定更新的信息"><a href="#确定更新的信息" class="headerlink" title="确定更新的信息"></a>确定更新的信息</h2><p>现在是更新旧细胞状态的时间了，C_{t-1}更新为C_t。前面的步骤已经决定了将会做什么，我们现在就是实际去完成。<br>我们把旧状态与f_t相乘，丢弃掉我们确定需要丢弃的信息。接着加上i_t * \tilde{C}_t。这就是新的候选值，根据我们决定更新每个状态的程度进行变化。<br>在语言模型的例子中，这就是我们实际根据前面确定的目标，丢弃旧代词的性别信息并添加新的信息的地方。</p>
-<p><img src="https://img-blog.csdnimg.cn/20200821125527833.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<h2 id="更新细胞状态"><a href="#更新细胞状态" class="headerlink" title="更新细胞状态"></a>更新细胞状态</h2><p>最终，我们需要确定输出什么值。这个输出将会基于我们的细胞状态，但是也是一个过滤后的版本。首先，我们运行一个 sigmoid 层来确定细胞状态的哪个部分将输出出去。接着，我们把细胞状态通过 tanh 进行处理（得到一个在 -1 到 1 之间的值）并将它和 sigmoid 门的输出相乘，最终我们仅仅会输出我们确定输出的那部分。<br>在语言模型的例子中，因为他就看到了一个 代词，可能需要输出与一个 动词 相关的信息。例如，可能输出是否代词是单数还是负数，这样如果是动词的话，我们也知道动词需要进行的词形变化。</p>
-<p><img src="https://img-blog.csdnimg.cn/20200821125537913.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<h2 id="输出信息"><a href="#输出信息" class="headerlink" title="输出信息"></a>输出信息</h2><p>LSTM 的变体<br>我们到目前为止都还在介绍正常的 LSTM。但是不是所有的 LSTM 都长成一个样子的。实际上，几乎所有包含 LSTM 的论文都采用了微小的变体。差异非常小，但是也值得拿出来讲一下。<br>其中一个流形的 LSTM 变体，就是由 Gers &amp; Schmidhuber (2000) 提出的，增加了 “peephole connection”。是说，我们让 门层 也会接受细胞状态的输入。</p>
-<h2 id="peephole-连接"><a href="#peephole-连接" class="headerlink" title="peephole 连接"></a>peephole 连接</h2><p>上面的图例中，我们增加了 peephole 到每个门上，但是许多论文会加入部分的 peephole 而非所有都加。</p>
-<p>另一个变体是通过使用 coupled 忘记和输入门。不同于之前是分开确定什么忘记和需要添加什么新的信息，这里是一同做出决定。我们仅仅会当我们将要输入在当前位置时忘记。我们仅仅输入新的值到那些我们已经忘记旧的信息的那些状态 。</p>
-<h2 id="coupled-忘记门和输入门"><a href="#coupled-忘记门和输入门" class="headerlink" title="coupled 忘记门和输入门"></a>coupled 忘记门和输入门</h2><p>另一个改动较大的变体是 Gated Recurrent Unit (GRU)，这是由 Cho, et al. (2014) 提出。它将忘记门和输入门合成了一个单一的 更新门。同样还混合了细胞状态和隐藏状态，和其他一些改动。最终的模型比标准的 LSTM 模型要简单，也是非常流行的变体。</p>
-<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>刚开始，我提到通过 RNN 得到重要的结果。本质上所有这些都可以使用 LSTM 完成。对于大多数任务确实展示了更好的性能！<br>由于 LSTM 一般是通过一系列的方程表示的，使得 LSTM 有一点令人费解。然而本文中一步一步地解释让这种困惑消除了不少。<br>LSTM 是我们在 RNN 中获得的重要成功。很自然地，我们也会考虑：哪里会有更加重大的突破呢？在研究人员间普遍的观点是：“Yes! 下一步已经有了——那就是注意力！” 这个想法是让 RNN 的每一步都从更加大的信息集中挑选信息。例如，如果你使用 RNN 来产生一个图片的描述，可能会选择图片的一个部分，根据这部分信息来产生输出的词。实际上，Xu, et al.(2015)已经这么做了——如果你希望深入探索注意力可能这就是一个有趣的起点！还有一些使用注意力的相当振奋人心的研究成果，看起来有更多的东西亟待探索……<br>注意力也不是 RNN 研究领域中唯一的发展方向。例如，Kalchbrenner, et al. (2015) 提出的 Grid LSTM 看起来也是很有前途。使用生成模型的 RNN，诸如Gregor, et al. (2015) Chung, et al. (2015) 和 Bayer &amp; Osendorfer (2015) 提出的模型同样很有趣。在过去几年中，RNN 的研究已经相当的燃，而研究成果当然也会更加丰富！</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">algo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/01/03/LSTM%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Java第四讲——JAVA的三大特性" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2019/09/29/Java%E7%AC%AC%E5%9B%9B%E8%AE%B2%E2%80%94%E2%80%94JAVA%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7/" target="_blank">Java第四讲——JAVA的三大特性</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2019/09/29/Java%E7%AC%AC%E5%9B%9B%E8%AE%B2%E2%80%94%E2%80%94JAVA%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7/" class="archive-article-date">
-        <time datetime="2019-09-29T10:50:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-29</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>Java是面向对象编程的，它的三大特性分别是:<br>封装，继承，多态</p>
-<p>封装<br>封装的好处：隐藏实现的细节、更易于维护、 更安全。<br>上一节的类就是一个封装体、封装了属性和方法。</p>
-<p>继承<br>继承的好处：提高代码的可复用性。<br>特点:1.子类继承了父类的属性和方法。<br>2.java采用单根继承，Object是所有类的间接父类。<br>3.生成子类对象，先执行父类构造方法，再执行子类构造方法。<br>Note:构造方法不能被继承。</p>
-<p>多态<br>指同一种行为在不同的对象上有不同的表现形式。 同样都是叫声，猫和狗叫声就是不同的<br>出现多态性的三个条件:<br>1.有继承<br>2.有方法的复写<br>3.存在父类的引用指向子类的对象(Animal a = Human())，a.sleep()这里输出的是Human的方法，如果是Animal a = Animal()，那么a.sleep()输出的就是Animal的方法，这里主要是看引用指向的是谁的方法。</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">suibi</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2019/09/29/Java%E7%AC%AC%E5%9B%9B%E8%AE%B2%E2%80%94%E2%80%94JAVA%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Java第三讲——类和对象" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2019/09/28/Java%E7%AC%AC%E4%B8%89%E8%AE%B2%E2%80%94%E2%80%94%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/" target="_blank">Java第三讲——类和对象</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2019/09/28/Java%E7%AC%AC%E4%B8%89%E8%AE%B2%E2%80%94%E2%80%94%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/" class="archive-article-date">
-        <time datetime="2019-09-28T07:47:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-28</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>什么是对象?<br>世界上任何一种客观存在的事物都是对象。(“万物皆对象”)</p>
-<p>什么是类？<br>类是具有相同特征的一组对象的集合和抽象。(“物以类聚，人以群分”)</p>
-<p>什么是构造方法？<br>名字与类名相同，但是没有返回类型的方法。</p>
-<p>构造方法的作用?<br>用来初始化对象，并且如果用户没有进行初始化构造方法的话，那么系统会默认生成一个与类名字相同的没有参数，没有返回类型，方法体为空的函数。</p>
-<p>什么是引用？<br>引用是一种数据类型，是一个对象的别名。比如李明的外号叫小明，那么小明就是对象李明的引用。</p>
-<p>Java的数据类型有哪几种？<br>引用数据类型和基本数据类型。</p>
-<p>其中计算机的内存模型分为栈内存和堆内存，其中栈内存为顺序结构，堆内存为离散结构。<br>其中基本数据类型都是在栈内存中分配，引用数据类型都是在堆内存中分配。</p>
-<p>类的组成部分？<br>类由两种部分组成，属性和方法。属性是类具有的静态特征，方法是类具有的动态特征。</p>
-<p>类与对象的关系？<br>类是对象的抽象，对象是类的具体，所以类与对象是具体和抽象的关系。</p>
-<p>Person p =new Person(‘zhangsan’,”25”)<br>其中第一个Person是类的名字，new Person(‘zhangsan’,”25”)是对象<br>p是引用，Person(‘zhangsan’,”25”)是构造方法</p>
-<p>JAVA中的几种内部类：<br>1.在类体中定义的类称为内部类。<br>2.类体中定义的普通类<br>3.类体中定义的静态类<br>4.成员方法中定义的内部类<br>5.静态方法中定义的内部</p>
-<p>设计类时需要注意的几个问题：<br>1.先设计属性再设计方法。<br>2.属性使用名词<br>3.方法使用动词<br>4.考虑构造方法的重载<br>5.设计类一定要合理，适当的颗粒度，不能太粗 ，也不能太细。</p>
-<p>String类：<br>String类属于引用数据类型，它的初始化可以分为静态初始化和动态初始化<br>静态初始化为:String s = “hello”; //在字符串常量池中分配空间<br>动态初始化为String s =new String(“hello”);//在堆内存中分配空间</p>
-<p>String类常用方法介绍：</p>
-<p>charAt(int index)  //返回指定下标的字符<br>compareTo(String s) //字符串比较<br>concat(String s) //字符串拼接<br>contain() //字符串包含<br>equals() //判断两个字符串内容是否相同<br>getBytes() //返回字节数组<br>indexOf() //查找子串下标<br>lastIndexOf() //查找最后子串下标<br>split() //分隔字符串返回字符串数组    与StringTokenizer有相似功能<br>subString() //获取子串<br>toString() //对象转换为字符串<br>toUpperCase() //转换为大写字母<br>toLowerCase() //转换为小写字母</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">suibi</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2019/09/28/Java%E7%AC%AC%E4%B8%89%E8%AE%B2%E2%80%94%E2%80%94%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Java第二讲——数组和函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2019/09/27/Java%E7%AC%AC%E4%BA%8C%E8%AE%B2%E2%80%94%E2%80%94%E6%95%B0%E7%BB%84%E5%92%8C%E5%87%BD%E6%95%B0/" target="_blank">Java第二讲——数组与函数</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2019/09/27/Java%E7%AC%AC%E4%BA%8C%E8%AE%B2%E2%80%94%E2%80%94%E6%95%B0%E7%BB%84%E5%92%8C%E5%87%BD%E6%95%B0/" class="archive-article-date">
-        <time datetime="2019-09-27T06:58:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-27</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>数组就是一个程序中充当容器功能的一种数据类型，所谓的容器就是用来装数据的。<br>数组的三大特征是：<br>连续，数据类型要完全相同，大小固定</p>
-<p>数组的初始化分为静态初始化和动态初始化两种<br>所谓静态初始化就是在数组的初始赋值的时候就给定了数值，后面除非对初始化的值进行修改，其他情况改变不了数组的值，这个类似于python中元组的概念。<br>动态初始化就是在给定数组的值之后，后面还可以继续对数组的值进行修改，相当与python中列表的概念。</p>
-<p>数组的基本操作分为三种：<br>遍历，CRUD，排序<br>其中CRUD中<br>C：就是创建（Create），<br>R：就是查找（Retrieve），<br>U：就是更改（Update），<br>D：就是删除（Delete）<br>数组的初始化为int[] arr =new int[10];<br>进行排序的函数是Arrays.sort(arr)</p>
-<p>函数的概念：<br>函数是具有独立功能的一段代码，函数最大的优势就是能够提高代码的复用性。</p>
-<p>函数的四大组成部分:<br>返回类型，函数名字，参数列表，函数体<br>其中除了返回类型，参数列表，其他两个一个函数中必须存在的。</p>
-<p>实参和形参:<br>函数调用处的参数为实参，被调用处的参数为形参，其中形参有个形象的比喻就是做饭的食材。函数调用的本质是实参把自己的副本拷贝给形参。</p>
-<p>函数的递归:<br>函数的递归就是自己调用自己的过程。</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">suibi</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2019/09/27/Java%E7%AC%AC%E4%BA%8C%E8%AE%B2%E2%80%94%E2%80%94%E6%95%B0%E7%BB%84%E5%92%8C%E5%87%BD%E6%95%B0/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-爬虫实战篇--更换代理ip" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2019/09/26/%E7%88%AC%E8%99%AB%E5%AE%9E%E6%88%98%E7%AF%87--%E6%9B%B4%E6%8D%A2%E4%BB%A3%E7%90%86ip/" target="_blank">Python爬虫实战篇-更换代理ip</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2019/09/26/%E7%88%AC%E8%99%AB%E5%AE%9E%E6%88%98%E7%AF%87--%E6%9B%B4%E6%8D%A2%E4%BB%A3%E7%90%86ip/" class="archive-article-date">
-        <time datetime="2019-09-26T15:50:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-26</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p><strong>背景</strong><br>我们在爬取网站数据，防止被对方服务器发现的一个最重要的操作是更换代理ip，因为你的电脑主机在局域网下的ip是固定的，所以你经常使用一个代理ip对网站进行大规模爬取，就容易被对方服务器检测出来是非人为操作，那么你的主机ip会被他们拉入到ip黑名单池，导致爬取不到想要的数据了。</p>
-<p>目前市面上有很多免费和收费的代理ip。对于免费和付费的代理，不妨依次使用，先用免费代理尝试，如果需要更高阶的爬取，那么可以考虑付费代理。需要提醒的是，代理的选择最好使用高匿名代理IP，不然你的主机IP可能还是会被对方服务器检测出来。</p>
-<p><strong>免费代理使用</strong><br>对于需要维护免费的ip代理池的朋友可以参考下面的链接进行配置：<br><a href="https://github.com/Python3WebSpider/ProxyPool" target="_blank" rel="noopener">免费代理池项目</a></p>
-<p><strong>付费代理使用</strong><br><a href="https://zhuanlan.zhihu.com/p/33576641" target="_blank" rel="noopener">付费代理测评</a></p>
-<p><strong>提取代理代码编写</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re,requests</span><br><span class="line">ips1=[]</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_ips</span><span class="params">()</span>:</span></span><br><span class="line">    url=<span class="string">""</span>   <span class="comment">##这里需要填写的是你的API链接</span></span><br><span class="line">    response=requests.get(url)</span><br><span class="line">    ips=re.findall(<span class="string">'\\d+\\.\\d+\\.\\d+\\.\\d*\\:\\d+'</span>,response.text,re.S) <span class="comment">##正则表达式提取代理ip</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(ips)):</span><br><span class="line">        ip = ips[i]</span><br><span class="line">        proxies = &#123;</span><br><span class="line">                   <span class="string">'http'</span>: <span class="string">"http://"</span> + ip</span><br><span class="line">                   &#125;    <span class="comment">##可选，http或者https</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            test_ip_response = requests.get(<span class="string">'https://sh.fang.anjuke.com/'</span>,proxies=proxies)<span class="comment">##这里以访问安居客为例</span></span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            print(<span class="string">"此代理异常"</span>)</span><br><span class="line">        print(test_ip_response.status_code)</span><br><span class="line">        <span class="keyword">if</span> test_ip_response.status_code == <span class="number">200</span>:  <span class="comment">##，如果能够访问安居客，状态码是200，那么就将代理加入到列表中</span></span><br><span class="line">            ips1.append(proxies)</span><br><span class="line">    <span class="keyword">return</span> ips1</span><br></pre></td></tr></table></figure>
-
-<p><strong>调用代理ip代码编写</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ip_list=get_ips()</span><br><span class="line"><span class="comment">##请求网站信息</span></span><br><span class="line">response = requests.get(<span class="string">'https://sh.fang.anjuke.com,proxies=random.choice(ip_list)) ##加请求头，更换ip,</span></span><br></pre></td></tr></table></figure>
-<p>通过这种操作就成功地把代理加到请求链接啦。</p>
-
-    
-
-    
-
     
 
   </div>
@@ -851,16 +328,76 @@
     
 
     
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2019/09/26/%E7%88%AC%E8%99%AB%E5%AE%9E%E6%88%98%E7%AF%87--%E6%9B%B4%E6%8D%A2%E4%BB%A3%E7%90%86ip/">展开全文 >></a>
-    </p>
+
     
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/09/05/Selenium%E5%B8%B8%E7%94%A8%E5%BA%93%E5%92%8C%E6%96%B9%E6%B3%95/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
 
     
     <div class="clearfix"></div>
   </div>
   </div>
 </article>
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2020/08/26/%E6%80%8E%E4%B9%88%E5%9C%A8github%E4%B8%8A%E9%83%A8%E7%BD%B2%E7%BD%91%E9%A1%B5/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">怎么在github上部署网页</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -881,310 +418,14 @@
 
 
 
-  
-    <article id="post-Java第一讲——基础知识" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2019/09/26/Java%E7%AC%AC%E4%B8%80%E8%AE%B2%E2%80%94%E2%80%94%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" target="_blank">Java第一讲——基础知识</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2019/09/26/Java%E7%AC%AC%E4%B8%80%E8%AE%B2%E2%80%94%E2%80%94%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="archive-article-date">
-        <time datetime="2019-09-26T10:57:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-26</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>java的特点:<br>简单的、面向对象、分布式、解释性、健壮、安全与系统无关、可移植、高性能、多线程和动态的语言。</p>
-<p>java开发环境的安装<br>需要先安装JDK再安装Eclipse等开发环境，因为jdk是java的开发工具，而Eclipse只是帮你集成了这种环境。安装之后再配置环境变量就可以写一个java程序了，写好了java程序之后需要进行编译和执行，两个指令分别为<br>javac *.java 用来编译JAVA源程序，java 类名 用来执行JAVA的字节码文件</p>
-<p>JDK与JRE的区别：<br>JRE是Java Runtime Environment 的缩写，为java运行环境<br>JDK是Java Development Toolkit的缩写，为java的开发包<br>从不同角度来说，JRE偏向用户侧，而JDK偏向开发者层面</p>
-<p>JVM是什么？<br>JAVA程序运行在JVM上，JVM不是跨平台，不同的操作系统安装不同版本的JVM，但是class文件是跨平台的。也就 是说，由JVM去负责与操作系统交互并调用操作系统的API， JVM负责JAVA程序的内存分配，和内存释放，其中有著名的 垃圾回收机制。 简单一句话，JAVA程序的运行环境就好比一台虚拟的计算机中，而这个虚拟环境就是JVM。</p>
-<p>使用eclipse创建项目的方法可以看下面的链接<br><a href="https://www.jb51.net/article/160236.htm" target="_blank" rel="noopener">https://www.jb51.net/article/160236.htm</a></p>
-<p>创建java程序需要注意的问题？<br>每一个java程序中可以有多个类，但是只能有一个public类<br>Java标识符由数字，字母和下划线（_），美元符号（$）组 成。在Java中是区分大小写的，而且还要求首位不能是数字 。同时Java的标识符不能是Java中的关键字。</p>
-<p>JAVA和C语言的不同？<br>a.JAVA的基本组成是类，而C的基本组成是函数。<br>b.JAVA的基本数据类型中char型占两个字节，C语言中是一个字节，因为java采用的是unicode字符集，C语言采用的是ASCii字符集，所以java是可以输出中文的。<br>c.JAVA的判断只有True和False这两种布尔类型，C语言非0即真。<br>d.JAVA中每一个类中都可以有main()方法，但是c语言中只能有一个main()方法。</p>
-<p>JAVA中的数据类型转换:<br>由低精度的数据向高精度的数据进行转换的时候是不需要强制转换类型的。但是相反则需要进行强制转换，比如<br>double c=123.456;<br>int a = (int)c;</p>
-<p>JAVA中的输入和输出：<br>System.out.println换行输出，System.out.println不换行输出</p>
-<p>import java.util.Scanner;</p>
-<p>public class InputTest {<br>    public static void main(String[] args) {<br>        int num;<br>        Scanner input = new Scanner(System.in);<br>        System.out.println(“请输入一个整数：”);<br>        num = input.nextInt();  //将输入的数字赋值给nu</p>
-<p>Java中的数制转换:<br>二进制与十进制的转换基本都用凑幂法，凑出几个2的次方的整数相加。<br>而八进制，十进制，十六进制的转换通常都是将其转换为二进制，利用二进制来进行转换的。</p>
-<p>二进制转换为八进制和十六进制的方法：<br>二进制转换为八进制是从末位开始，三个数为一组，不够的用0来补齐，比如1110011 补为011 110 011(3 6 3)所以转换为八进制为363<br>二进制转换为十六进制是从末位开始，四个数为一组，不够的用0来补齐，同上面一样.</p>
-<p>数制转换的三个API函数:<br>Integer.toBinaryString(n); //转换为二进制<br>Integer.toHexString(i); //转换为十六进制<br>Integer.toOctalString(i); //转换为八进制</p>
-<p>JAVA的几种运算符<br>1.算术运算符：+,-,*,/,%，其中求模运算的正负是由分子的正负来确定的。<br>自增自减运算符：x++ 表示先取值，再运算，++x表示先运算，再取值。<br>2.关系运算符：&gt; ，&lt; ，&gt;= ， &lt;= ，== ，!=<br>3.逻辑运算符：与(&amp;&amp;)，或(| |)，非(!)<br>4.位运算符:&amp;(按位与) ，|(按位或)，~(按位取反),^(按位异或)，&gt;&gt;(右移),&lt;&lt;(左移)<br>5.赋值运算符</p>
-<p>程序的三种基本结构<br>顺序，选择，循环</p>
-<p>if-else的三种形式<br>简单if-else语句，多重if-else if-else语句，嵌套if-else语句<br>switch-case语句:也是用于判断，具体的看<br><a href="https://www.runoob.com/java/java-switch-case.html要注意的是case匹配一个成功之后，如果这个里面没有break的话，那么会继续往下面进行匹配。" target="_blank" rel="noopener">https://www.runoob.com/java/java-switch-case.html要注意的是case匹配一个成功之后，如果这个里面没有break的话，那么会继续往下面进行匹配。</a></p>
-<p>if-else 与switch-case 的区别?<br>if-else适合一个范围的判断，而switch-case适合值进行判断</p>
-<p>循环的三种方式？<br>do-while，while，for循环<br>这三种形式分别为<br>do{<br>while(条件);</p>
-<p>while(条件)<br>{<br>}</p>
-<p>for(语句1;循环条件;语句3)<br>{<br>语句2;<br>}<br>其中for循环执行的顺序是先执行语句1，再判断循环条件，如果条件成立的话执行语句2，语句2执行结束后，执行语句3，再判断循环条件，不满足条件则退出循环体。</p>
-<p>三种循环的区别是<br>1.do-while循环至少执行一次循环体的内容，而while和for循环可能一次循环体都不执行。<br>2.如果知道循环次数的话，选择for循环。<br>3.因为for循环比较简单，直接，所以大部分都是采用这种循环的方法。</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">suibi</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2019/09/26/Java%E7%AC%AC%E4%B8%80%E8%AE%B2%E2%80%94%E2%80%94%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
 
 
 
 
-  
-    <article id="post-Python爬虫实战篇-详细讲解爬取安居客房价数据" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2019/09/25/Python%E7%88%AC%E8%99%AB%E5%AE%9E%E6%88%98%E7%AF%87-%E8%AF%A6%E7%BB%86%E8%AE%B2%E8%A7%A3%E7%88%AC%E5%8F%96%E5%AE%89%E5%B1%85%E5%AE%A2%E6%88%BF%E4%BB%B7%E6%95%B0%E6%8D%AE/" target="_blank">Python爬虫实战篇-详细讲解爬取安居客房价数据</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2019/09/25/Python%E7%88%AC%E8%99%AB%E5%AE%9E%E6%88%98%E7%AF%87-%E8%AF%A6%E7%BB%86%E8%AE%B2%E8%A7%A3%E7%88%AC%E5%8F%96%E5%AE%89%E5%B1%85%E5%AE%A2%E6%88%BF%E4%BB%B7%E6%95%B0%E6%8D%AE/" class="archive-article-date">
-        <time datetime="2019-09-25T15:50:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-25</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>最近在尝试用python爬取安居客房价数据，在这里给需要的小伙伴们提供代码，并且给出一点小心得。</p>
-<p>首先是爬取之前应该尽可能伪装成浏览器而不被识别出来是爬虫，基本的是加请求头，但是这样的纯文本数据爬取的人会很多，所以我们需要考虑更换代理IP和随机更换请求头的方式来对房价数据进行爬取。（下面没有给出这两种方式的代码，如果有需要可以看我别的博客，将代码加入到其中）</p>
-<p>其次是爬取规则的选择，理想的房价数据应该是这样的，结构化的。<br><img src="https://img-blog.csdnimg.cn/20200802231142884.png" alt="在这里插入图片描述"></p>
-<p>但是实际上遇到的会是下面的情况，户型和房价数据会缺失，所以这就导致了爬取规则的不确定性，用xpath对于格式一致的数据爬取会比较简单，但是这样结构不一致的数据爬取出来就比较困难，所以这里我采用的是正则表达式来进行爬取，因为正则表达式可以对每个块进行处理，什么意思呢？也就是将爬取范围缩小到每一块的范围，从而对每一块的数据进行精确处理，而不是处理所有块的数据，在这里就是对每一个小区的数据进行单独的处理。<br><img src="https://img-blog.csdnimg.cn/20200802231022955.png" alt="在这里插入图片描述">)<img src="https://img-blog.csdnimg.cn/20200802231121757.png" alt="在这里插入图片描述"></p>
-<p><strong>正则表达式提取房价</strong>:<br>1.Note：因为小区，地址数据是结构化的，不需要单独进行处理，所以下面的特殊处理针对的是<strong>面积、价格和户型</strong>。</p>
-<p>2.<strong>缩小范围（大致定位）</strong>：将面积、价格、户型分别缩小到一小块源代码中，具体代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">huxing_mianji_prices = re.findall(<span class="string">'&lt;a class="address"(.*?)&lt;!-- 户型销控信息开关 --&gt;'</span>,res.text,re.S)</span><br></pre></td></tr></table></figure>
-
-<p>我们打印出来这个列表的长度是60，也就是用这一行代码可以将每一页的60个小区都包含进来，所以这一步完成了将户型、面积、价格确定在一小块源代码中了。</p>
-<p>3.<strong>具体定位</strong>：之后我们要操作的是对这里面的数据进行具体定位，对这六十个元素根据索引进行遍历，如果某一个小区的户型缺失了，那么，就用无户型这个字符串来填充，同理面积和价格也一样，具体的代码可以见下面的<code>details()</code>函数。</p>
-<p>4.<strong>清洗数据</strong>：接下来就是清洗数据了，具体定位之后可能会有数据包含了标签，最常见的就是<code>span</code>标签了，这个时候需要用<code>replace()</code>函数来进行替换了，注意<code>replace()</code>前面的引号是旧字符串，后面的引号是新字符串，不要弄混淆了。具体的代码可以见下面的<code>select_datas()</code>函数。</p>
-<p>5.<strong>写入表格</strong>：写入表格操作采用的是<code>xlwt</code>库，这里的写法逻辑是先创建空表，再创建表头，最后写入数据。具体的代码可以见下面的<code>write_to_excel()</code>函数。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> xlwt</span><br><span class="line"><span class="keyword">from</span> user_agent <span class="keyword">import</span> get_user_agent</span><br><span class="line">book = xlwt.Workbook(encoding=<span class="string">'utf-8'</span>)   <span class="comment">#0.创建一个工作簿</span></span><br><span class="line">sheet = book.add_sheet(<span class="string">"安居客"</span>,cell_overwrite_ok=<span class="literal">True</span>)  <span class="comment">## 1.创建空表</span></span><br><span class="line">headers = &#123;</span><br><span class="line">        <span class="string">'user-agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36'</span>),</span><br><span class="line">        <span class="string">'Accept-Encoding'</span>: <span class="string">'gzip, deflate'</span>,</span><br><span class="line">        <span class="string">'referer'</span>: <span class="string">'https://shanghai.anjuke.com/'</span>,</span><br><span class="line">        <span class="string">'Accept-Language'</span>: <span class="string">'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2'</span>, &#125;</span><br><span class="line"><span class="comment">##请求网站信息</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">req</span><span class="params">()</span>:</span></span><br><span class="line">    response = requests.get(<span class="string">'https://sh.fang.anjuke.com/'</span>,headers=headers) <span class="comment">##加请求头,如果需要加随机请求头和代理ip的可以看我的别的博客</span></span><br><span class="line">    <span class="keyword">return</span> response</span><br><span class="line"></span><br><span class="line"><span class="comment">#解析网站</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">crawl</span><span class="params">()</span>:</span></span><br><span class="line">    res = req()</span><br><span class="line">    names = re.findall(<span class="string">'&lt;span class="items-name"&gt;(.*?)&lt;/span&gt;'</span>,res.text,re.S)</span><br><span class="line">    places = re.findall(<span class="string">'&lt;span class="list-map" target="_blank"&gt;\[&amp;nbsp;(.*?)&amp;nbsp;(.*?)&amp;nbsp;\]&amp;nbsp;(.*?)&lt;/span&gt;'</span>,res.text,re.S)</span><br><span class="line">    huxing_mianji_prices = re.findall(<span class="string">'&lt;a class="address"(.*?)&lt;!-- 户型销控信息开关 --&gt;'</span>,res.text,re.S)</span><br><span class="line">    <span class="keyword">return</span> names,places,huxing_mianji_prices</span><br><span class="line"></span><br><span class="line"> <span class="comment">##具体定位户型等详细信息</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">details</span><span class="params">()</span>:</span></span><br><span class="line">    names,places,huxing_mianji_prices = crawl()</span><br><span class="line">    huxing_list = []</span><br><span class="line">    mianji_list = []</span><br><span class="line">    prices_list = []</span><br><span class="line">    <span class="keyword">for</span> content <span class="keyword">in</span> huxing_mianji_prices:  <span class="comment">##对每一块进行操作，方便对后续缺失、非结构化数据进行处理。</span></span><br><span class="line">        strings = <span class="string">'户型：'</span></span><br><span class="line">        strings1 = <span class="string">'建筑面积：'</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> strings <span class="keyword">in</span> content:  <span class="comment">#在小范围内查找</span></span><br><span class="line">            huxing = re.findall(<span class="string">'户型：.*?&lt;span&gt;(.*?) '</span>,content,re.S)[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            huxing = <span class="string">"无户型"</span></span><br><span class="line">        huxing_list.append(huxing)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> strings1 <span class="keyword">in</span> content:   <span class="comment">#在每一块里寻找面积</span></span><br><span class="line">            mianji= re.findall(<span class="string">'建筑面积：(.*?)&lt;/span&gt;'</span>,content,re.S)[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            mianji = <span class="string">"无面积"</span></span><br><span class="line">        mianji_list.append(mianji)</span><br><span class="line"></span><br><span class="line">        price = re.findall(<span class="string">'&lt;p class="price(.*?)&lt;/p&gt;'</span>, content, re.S)[<span class="number">0</span>]</span><br><span class="line">        prices_list.append(price)</span><br><span class="line">    <span class="keyword">return</span> names,places,huxing_list,mianji_list,prices_list <span class="comment">#返回户型,面积,价格</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#清洗数据,因为是用正则表达式提取的，所以要将无关的符号去掉</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">select_datas</span><span class="params">()</span>:</span></span><br><span class="line">    names,places,huxing_list,mianji_list,prices_list = details()</span><br><span class="line">    final_huxing = []</span><br><span class="line">    final_mianji = mianji_list</span><br><span class="line">    final_prices = []</span><br><span class="line">    <span class="comment"># print(prices_list)</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(huxing_list)):</span><br><span class="line">        <span class="keyword">if</span> <span class="string">"span"</span> <span class="keyword">in</span> huxing_list[i]:</span><br><span class="line">            huxing_list[i]=huxing_list[i].replace(<span class="string">'&lt;/span&gt;'</span>,<span class="string">'、'</span>).replace(<span class="string">'/&lt;span&gt;'</span>,<span class="string">''</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line">        final_huxing.append(huxing_list[i])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="string">'-txt"&gt;'</span> <span class="keyword">in</span> prices_list[i]:</span><br><span class="line">            prices_list[i] = prices_list[i].replace(<span class="string">'-txt"&gt;'</span>,<span class="string">''</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">'span'</span> <span class="keyword">in</span> prices_list[i]:</span><br><span class="line">            prices_list[i] = prices_list[i].replace(<span class="string">'&lt;span&gt;'</span>,<span class="string">':'</span>).replace(<span class="string">'&lt;/span&gt;'</span>,<span class="string">''</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">'"&gt;'</span> <span class="keyword">in</span> prices_list[i]:</span><br><span class="line">            prices_list[i] = prices_list[i].replace(<span class="string">'"&gt;'</span>,<span class="string">''</span>)</span><br><span class="line">        final_prices.append(prices_list[i])</span><br><span class="line">    <span class="keyword">return</span> names,places,huxing_list,mianji_list,prices_list</span><br><span class="line"></span><br><span class="line"><span class="comment">#写入表格</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">write_to_excel</span><span class="params">()</span>:</span></span><br><span class="line">    names,places,huxing_list,mianji_list,prices_list=select_datas() <span class="comment">##调用处理之后的数据</span></span><br><span class="line">    sheet.write(<span class="number">0</span>, <span class="number">0</span>, <span class="string">'小区名'</span>)   <span class="comment">##2. 创建表头</span></span><br><span class="line">    sheet.write(<span class="number">0</span>, <span class="number">1</span>, <span class="string">'地址'</span>)</span><br><span class="line">    sheet.write(<span class="number">0</span>, <span class="number">2</span>, <span class="string">'户型'</span>)</span><br><span class="line">    sheet.write(<span class="number">0</span>, <span class="number">3</span>, <span class="string">'面积'</span>)</span><br><span class="line">    sheet.write(<span class="number">0</span>, <span class="number">4</span>, <span class="string">'价格'</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(names)):</span><br><span class="line">        name = names[i]</span><br><span class="line">        place = places[i]</span><br><span class="line">        huxing = huxing_list[i]</span><br><span class="line">        mianji = mianji_list[i]</span><br><span class="line">        price = prices_list[i]</span><br><span class="line">        sheet.write(i+<span class="number">1</span> ,<span class="number">0</span> , name)  <span class="comment">##3.写入数据</span></span><br><span class="line">        sheet.write(i + <span class="number">1</span>, <span class="number">1</span>, place)</span><br><span class="line">        sheet.write(i + <span class="number">1</span>, <span class="number">2</span>, huxing)</span><br><span class="line">        sheet.write(i + <span class="number">1</span>, <span class="number">3</span>, mianji)</span><br><span class="line">        sheet.write(i + <span class="number">1</span>, <span class="number">4</span>, price)</span><br><span class="line">    book.save(<span class="string">'上海安居客房价数据'</span> + <span class="string">'.xls'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    write_to_excel()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>总结</strong>：<br>1.在爬取数据之前要多思考。思考之后那基本动手写代码就是体力活了。<br>2.尽量和浏览器访问网站一致，防止被对方服务器给检测到。另外在选择代理之后尽量选择高匿代理，否则你使用了代理之后对于安居客这种网站还是会被检测到本机ip的。<br>3.多使用函数，在每一段代码编写时候输出看一下，防止在后面会出现大问题，又得从前面开始检查。</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spider</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2019/09/25/Python%E7%88%AC%E8%99%AB%E5%AE%9E%E6%88%98%E7%AF%87-%E8%AF%A6%E7%BB%86%E8%AE%B2%E8%A7%A3%E7%88%AC%E5%8F%96%E5%AE%89%E5%B1%85%E5%AE%A2%E6%88%BF%E4%BB%B7%E6%95%B0%E6%8D%AE/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
 
 
 
 
-  
-    <article id="post-爬虫代理的两种来源" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2019/09/23/%E7%88%AC%E8%99%AB%E4%BB%A3%E7%90%86%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%9D%A5%E6%BA%90/" target="_blank">爬虫代理的两种来源</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2019/09/23/%E7%88%AC%E8%99%AB%E4%BB%A3%E7%90%86%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%9D%A5%E6%BA%90/" class="archive-article-date">
-        <time datetime="2019-09-23T04:45:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-23</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h5 id="请求头"><a href="#请求头" class="headerlink" title="请求头"></a>请求头</h5><p>对爬虫有一定实战经验的人都知道，我们往往需要加请求头。那么为什么需要加请求头呢？ 因为搜索引擎其实就是个爬虫，大部分的网页都是允许搜索引擎爬虫来进行爬取的，所以当我们模拟搜索引擎对网页进行爬取的时候就可以在某些场合下爬到数据啦。</p>
-<h5 id="更换ip地址"><a href="#更换ip地址" class="headerlink" title="更换ip地址"></a>更换ip地址</h5><p>但有时候模拟搜索引擎进行爬取时候也会出问题，我们每一台电脑默认都只有一个唯一的ip地址，如果在同一时段内同一IP地址多次重复对某一网站进行有规律地爬取，这样是很容易被发现进而你的ip被拉入了黑名单。进入黑名单也就意味着你的ip被发现是用于爬虫的，再次使用的话会出现重定向，获取不到数据，获取到假数据的情况，在这样的情况下，我们就需要更换爬虫所用的ip了，下面介绍几种非常好用的更换代理ip的方法。</p>
-<h4 id="更换代理ip的方法"><a href="#更换代理ip的方法" class="headerlink" title="更换代理ip的方法"></a>更换代理ip的方法</h4><h5 id="1-通过ip代理池获取代理"><a href="#1-通过ip代理池获取代理" class="headerlink" title="1.通过ip代理池获取代理"></a>1.通过ip代理池获取代理</h5><p>这里给出一个github网站，你可以直接下载下来，<a href="https://github.com/Germey/ProxyPool" target="_blank" rel="noopener">github代理项目</a>，安装需要的库，直接run.py就可以运行并等待爬取将可用代理全部装入代理池redis中<br><img src="https://img-blog.csdnimg.cn/2019102716174747.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt=""><strong>从各大代理网站爬取代理进行测试使用:</strong><br><img src="https://img-blog.csdnimg.cn/20191027162207726.png" alt=""><br><strong>访问网址<a href="http://127.0.0.1:5000/get" target="_blank" rel="noopener">http://127.0.0.1:5000/get</a>获取代理，刷新后继续获取</strong><br><img src="https://img-blog.csdnimg.cn/20191027162019130.png" alt=""><strong>redis代理池</strong><br><img src="https://img-blog.csdnimg.cn/2019102716250533.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt="redis代理池">[Note]:   如果你的爬虫项目不大，那么完全可以从代理池中拿几个代理直接使用，如果爬取的项目比较大，那么你可以自己写个爬取<a href="http://127.0.0.1:5000/get" target="_blank" rel="noopener">http://127.0.0.1:5000/get</a>的代码自动从这里面拿代理，这种方式也适合每天定时爬取的项目。</p>
-<p>当然你也可以自己维护一个ip代理池，从各大免费的代理网站上爬取代理，然后自己对ip进行验证，如果访问你所要爬取的网站返回的状态码是200，那么就加入ip列表中，否则不加入列表，继续爬取。</p>
-<h5 id="2-通过购买代理进行爬取"><a href="#2-通过购买代理进行爬取" class="headerlink" title="2.通过购买代理进行爬取"></a>2.通过购买代理进行爬取</h5><p>如果你经济允许的话，可以购买私密代理进行使用，一般代理网站都会给出代理使用的API，你只需要访问它的接口网址就可以拿到代理了。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#-*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="string">"""使用requests调用API接口</span></span><br><span class="line"><span class="string">import requests</span></span><br><span class="line"><span class="string">#api链接</span></span><br><span class="line"><span class="string">api_url = "http://dev.kdlapi.com/api/getproxy/?orderid=965102959536478&amp;num=100&amp;protocol=1&amp;method=2&amp;an_ha=1&amp;sep=1"</span></span><br><span class="line"><span class="string">headers = &#123;"Accept-Encoding": "gzip"&#125;  #使用gzip压缩传输数据让访问更快</span></span><br><span class="line"><span class="string">r = requests.get(url=api_url, headers=headers)</span></span><br><span class="line"><span class="string">print(r.status_code) #获取Reponse的返回码</span></span><br><span class="line"><span class="string">print(r.content.decode('utf-8'))  #获取页面内容</span></span><br></pre></td></tr></table></figure>
-<p>需要提醒你的是，虽然你用的是购买了的代理IP，但是仍然会出现使用不了的情况，本人之前买过的快XX就是到了半个月期限的时候所有代理都用不了，但是用第一种方式可以正常爬取网站，所以建议你去别的代理网站去购买。</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spider</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2019/09/23/%E7%88%AC%E8%99%AB%E4%BB%A3%E7%90%86%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%9D%A5%E6%BA%90/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
-    </nav>
-  
 
 
           </div>
@@ -1224,8 +465,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

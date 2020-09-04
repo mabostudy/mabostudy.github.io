@@ -187,6 +187,202 @@
             
 
   
+    <article id="post-四大排序算法的Python实现" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/07/23/%E5%9B%9B%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%9A%84Python%E5%AE%9E%E7%8E%B0/" target="_blank">四大排序算法的Python实现</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/07/23/%E5%9B%9B%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%9A%84Python%E5%AE%9E%E7%8E%B0/" class="archive-article-date">
+        <time datetime="2020-07-23T08:19:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-23</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>网上有很多关于算法的Java和C的实现方式，这里对很多人都不太友好，今天来把几种排序方法用Python实现，算法讲解博客参考：</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a href="https://blog.csdn.net/lu_1079776757/article/details/80459370" target="_blank" rel="noopener">冒泡排序</a><br><a href="https://codeplayer.vip/p/j7sbj" target="_blank" rel="noopener">选择排序</a><br><a href="https://blog.csdn.net/zxm317122667/article/details/83344178" target="_blank" rel="noopener">插入排序</a><br><a href="https://www.sohu.com/a/246785807_684445" target="_blank" rel="noopener">快速排序</a><br><strong>排序算法的关键在于交换的轮数和交换次数！！</strong></p>
+<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><p><strong>关键点在于”冒泡”</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bubble</span><span class="params">(li)</span>:</span></span><br><span class="line">	n = len(li)</span><br><span class="line">	<span class="keyword">for</span> j <span class="keyword">in</span> range(n):</span><br><span class="line">		<span class="keyword">for</span> i <span class="keyword">in</span> range(n<span class="number">-1</span>-j):</span><br><span class="line">			<span class="keyword">if</span> li[i] &gt; li[i+<span class="number">1</span>]:</span><br><span class="line">				li[i],li[i+<span class="number">1</span>] = li[i+<span class="number">1</span>],li[i]</span><br><span class="line">	print(li)</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">	li = [<span class="number">54</span>,<span class="number">26</span>,<span class="number">93</span>,<span class="number">17</span>,<span class="number">77</span>,<span class="number">31</span>,<span class="number">44</span>,<span class="number">55</span>,<span class="number">20</span>]</span><br><span class="line">	bubble(li)</span><br></pre></td></tr></table></figure>
+<h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><p><strong>关键点在于”每次只取出一个”最小值”排到最左边”</strong><br>这个选择在于分为 有序和无序序列时候，从后面无序序列选择一个最小的值与有序的交换或者放在其最后面。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">select</span><span class="params">(li)</span>:</span></span><br><span class="line">	n = len(li)</span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(n):   </span><br><span class="line">		min_index = i   <span class="comment">##每一轮假设第一个数是最小值</span></span><br><span class="line">		<span class="keyword">for</span> j <span class="keyword">in</span> range(i,n):</span><br><span class="line">			<span class="keyword">if</span> li[min_index] &gt; li[j]: <span class="comment">#后面有数比假设最小的值大时</span></span><br><span class="line">				min_index = j</span><br><span class="line">		li[min_index],li[i] = li[i],li[min_index]</span><br><span class="line">	print(li)</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">	li = [<span class="number">54</span>,<span class="number">26</span>,<span class="number">93</span>,<span class="number">17</span>,<span class="number">77</span>,<span class="number">31</span>,<span class="number">44</span>,<span class="number">55</span>,<span class="number">20</span>]</span><br><span class="line">	select(li)</span><br></pre></td></tr></table></figure>
+
+<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><p><strong>关键点在于”插入”,突破口为有序和无序</strong><br>这个插入在于分为 有序和无序序列时候，从后面无序序列顺序取出一个元素和前面的每个元素相比较，插入到有序序列中。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">insert</span><span class="params">(li)</span>:</span></span><br><span class="line">    n = len(li)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">        j = i</span><br><span class="line">        <span class="keyword">while</span> j&gt;<span class="number">0</span>:</span><br><span class="line">            <span class="keyword">if</span> li[j]&lt;li[j<span class="number">-1</span>]:</span><br><span class="line">                li[j],li[j<span class="number">-1</span>] = li[j<span class="number">-1</span>],li[j]</span><br><span class="line">            j-=<span class="number">1</span>	</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">	li = [<span class="number">54</span>,<span class="number">26</span>,<span class="number">93</span>,<span class="number">17</span>,<span class="number">77</span>,<span class="number">31</span>,<span class="number">44</span>,<span class="number">55</span>,<span class="number">20</span>]</span><br><span class="line">	insert(li)</span><br><span class="line">	print(li)</span><br></pre></td></tr></table></figure>
+<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p><strong>关键点在于确定好基准元素，基准元素的两边分别为比基准元素小的，和比基准元素大的</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quick</span><span class="params">(first,last,li)</span>:</span></span><br><span class="line">    mid_value = li[first]</span><br><span class="line">    left = first</span><br><span class="line">    right = last</span><br><span class="line">    <span class="keyword">if</span> first &gt;=last:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">    <span class="keyword">while</span> left &lt; right:</span><br><span class="line">        <span class="keyword">while</span> left &lt;right <span class="keyword">and</span> li[right] &gt;= mid_value:<span class="comment">##先从右边开始</span></span><br><span class="line">            right -= <span class="number">1</span></span><br><span class="line">        li[left] = li[right]</span><br><span class="line">        <span class="keyword">while</span> left &lt;right <span class="keyword">and</span> li[left] &lt; mid_value:</span><br><span class="line">            left += <span class="number">1</span></span><br><span class="line">        li[right] = li[left]</span><br><span class="line">    li[right] = mid_value </span><br><span class="line">    quick(first,left<span class="number">-1</span>,li)</span><br><span class="line">    quick(left+<span class="number">1</span>,last,li)</span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:                                                     </span><br><span class="line">    li = [<span class="number">54</span>,<span class="number">26</span>,<span class="number">93</span>,<span class="number">17</span>,<span class="number">77</span>,<span class="number">31</span>,<span class="number">44</span>,<span class="number">55</span>,<span class="number">20</span>]</span><br><span class="line">    first = <span class="number">0</span></span><br><span class="line">    last = len(li)<span class="number">-1</span></span><br><span class="line">    quick(first,last,li)</span><br><span class="line">    print(li)</span><br></pre></td></tr></table></figure>
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">suibi</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/07/23/%E5%9B%9B%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%9A%84Python%E5%AE%9E%E7%8E%B0/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-R-CNN逻辑讲解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/07/16/R-CNN%E9%80%BB%E8%BE%91%E8%AE%B2%E8%A7%A3/" target="_blank">R-CNN逻辑讲解</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/07/16/R-CNN%E9%80%BB%E8%BE%91%E8%AE%B2%E8%A7%A3/" class="archive-article-date">
+        <time datetime="2020-07-16T12:05:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-16</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>网上看了很多关于R-CNN的理解，讲的都非常细致，但是读者很容易就抓不住论文所介绍的方法核心和思路。我觉得一种新技术最好的方法是先抓住方法的框架，然后再去深究方法里面的细节，或许这才可以不失主次之分。</p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>本文参考论文：<a href="https://openaccess.thecvf.com/content_cvpr_2014/papers/Girshick_Rich_Feature_Hierarchies_2014_CVPR_paper.pdf" target="_blank" rel="noopener">R-CNN</a><br>论文的创新点主要有两个，第一个是由底层向上的图像分割和检测，然后在不同尺度上对候选框进行合并。第二个是可以在只拥有少量监督数据的情况下实现fine-tuning微调就能够满足模型的训练要求。</p>
+<h2 id="R-CNN的工作流程"><a href="#R-CNN的工作流程" class="headerlink" title="R-CNN的工作流程"></a>R-CNN的工作流程</h2><h3 id="R-CNN模型"><a href="#R-CNN模型" class="headerlink" title="R-CNN模型"></a>R-CNN模型</h3><p><img src="https://img-blog.csdnimg.cn/20200904170147878.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述">R-CNN的结构概述如上图所示<br>首先，输入原图。<br>其次，通过区域选择的方法提取2000个提取框。<br>然后，利用CNN提取每个提取框的特征。<br>最后，利用CNN或者SVM等分类器进行分类。</p>
+<p>看到这里，有细心地读者会注意到，为什么没有对坐标位置的回归呢，别急，后面会介绍。</p>
+<h3 id="预训练"><a href="#预训练" class="headerlink" title="预训练"></a>预训练</h3><p>在ImageNet上训练一个分类神经网络；因为后面要对物体进行分类，注意这里不一定是自己需要分类的物体，什么意思呢？比如你最终要分类的是牛和马进行分类，但是因为你没有那么多的标签数据，那么在这里你可以训练一个猫和狗的分类模型。</p>
+<h3 id="使用Selective-Search找出候选区域核心"><a href="#使用Selective-Search找出候选区域核心" class="headerlink" title="使用Selective Search找出候选区域核心"></a>使用Selective Search找出候选区域核心</h3><p><strong>自底向上的图像分割，在不同尺度上合并区域</strong></p>
+<p>更详细的介绍见文章：<a href="https://www.cnblogs.com/zyly/p/9259392.html" target="_blank" rel="noopener">目标检测之选择性搜索-Selective Search</a></p>
+<p><strong>工作原理</strong>：<br>1.使用传统图像分割算法创建候选框区域<br>2.使用贪心算法合并候选框区域：<br>   计算所有相邻区域的相似度<br>   将最相似的两个区域合并为一个区域<br>3.重复迭代第二步直到达到某个设定的停止条件</p>
+<h3 id="将候选区域resize成CNN输入的尺寸"><a href="#将候选区域resize成CNN输入的尺寸" class="headerlink" title="将候选区域resize成CNN输入的尺寸"></a>将候选区域resize成CNN输入的尺寸</h3><p>因为CNN要求输入图片的大小必须是一致的，这里就有了一个缺点，就是resize的时候图片可能会变形、失真。</p>
+<h3 id="fine-tuning"><a href="#fine-tuning" class="headerlink" title="fine-tuning"></a>fine-tuning</h3><p>在自己的训练集中fine-tune CNN，做为一个识别K+1类别的分类问题，K为感兴趣的样本类别，1为背景类别，Fine-tuning使用比较小的学习率，因为数据不均衡，所以要在正样本上做数据增强处理。<br><a href="https://blog.csdn.net/weixin_42137700/article/details/82107208" target="_blank" rel="noopener">fine-tuning讲解</a></p>
+<p>去掉Fine-tune之后的CNN的最后分类层，将每一个候选区域通过CNN输出一个特征向量。</p>
+<h3 id="训练二元分类器"><a href="#训练二元分类器" class="headerlink" title="训练二元分类器"></a>训练二元分类器</h3><p>在输出特征向量之后，我们需要利用特征向量为每个类别训练一个二元SVM分类器。</p>
+<h3 id="回归模型"><a href="#回归模型" class="headerlink" title="回归模型"></a>回归模型</h3><p><strong>使用Regression模型预测新的定位。</strong></p>
+<p>一个是手工标注的真实的位置，另一种是候选框的标注的位置，这两个位置做损失函数。类似于我们平时做的损失函数，真实值和预测值的误差，我们要去拟合的就是这个相误差。</p>
+<p>下面图中所用到的全部都是百分比，为什么要这么做呢？这么做的好处就是当图片进行缩放之后图片的相对比例并不会发生改变，也就是并没有改变图片的中心相对整张图片的位置。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200904184824124.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">algo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/07/16/R-CNN%E9%80%BB%E8%BE%91%E8%AE%B2%E8%A7%A3/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-基于TensorFlow利用Mnist数据集实现CNN" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1039,207 +1235,6 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/2020/04/21/%E5%85%B3%E4%BA%8E%E7%A7%91%E7%A0%94%E6%96%B9%E9%9D%A2%E5%88%86%E4%BA%AB%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BB%8F%E9%AA%8C/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Attention机制详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/04/05/Attention%E6%9C%BA%E5%88%B6%E8%AF%A6%E8%A7%A3/" target="_blank">Attenion机制详解</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/04/05/Attention%E6%9C%BA%E5%88%B6%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
-        <time datetime="2020-04-05T05:38:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-05</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>近期对深度学习中的Attention模型进行了深入研究，该模型在图像识别、语音识别和自然语言处理三大深度学习的热门领域均有广泛的使用，是2014和2015年深度学习领域的重要进展。现对其原理、主要应用及研究进展进行详细介绍。</p>
-<h2 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h2><p>  Attention模型最初应用于图像识别，模仿人看图像时，目光的焦点在不同的物体上移动。当神经网络对图像或语言进行识别时，每次集中于部分特征上，识别更加准确。如何衡量特征的重要性呢？最直观的方法就是权重，因此，Attention模型的结果就是在每次识别时，首先计算每个特征的权值，然后对特征进行加权求和，权值越大，该特征对当前识别的贡献就大。<br>  机器翻译中的Attention模型最直观，易于理解，因为每生成一个单词，找到源句子中与其对应的单词，翻译才准确。此处就以机器翻译为例讲解Attention模型的基本原理。在此之前，需要先介绍一下目前机器翻译领域应用最广泛的模型——Encoder-Decoder结构，谷歌最新发布的机器翻译系统就是基于该框架[1]，并且采用了Attention模型。<br>  Encoder-Decoder框架包括两个步骤，第一步是Encoder，将输入数据（如图像或文本）编码为一系列特征，第二步是Decoder，以编码的特征作为输入，将其解码为目标输出。Encoder和Decoder是两个独立的模型，可以采用神经网络，也可以采用其他模型。机器翻译中的Encoder-Decoder示例如下图（取自[2]）：<br><img src="https://img-blog.csdnimg.cn/20200821131933126.png#pic_center" alt="在这里插入图片描述"></p>
-<p>该示例将一个句子（ABC）翻译为另一种语言的句子（WXYZ），其中A、B、C和W、X、Y、Z分别表示一个字或一个单词，图中每个方框表示一个RNN模型，不同的方框表示不同的时刻，<eos>表示句子结束。<br>  了解Encoder-Decoder结构之后，我们再回到Attention模型，Attention在Encoder-Decoder中介于Encoder和Decoder中间，首先根据Encoder和Decoder的特征计算权值，然后对Encoder的特征进行加权求和，作为Decoder的输入，其作用是将Encoder的特征以更好的方式呈献给Decoder。[3]首次将Attention模型应用到机器翻译中，我们参照下图对其展开讲解。<br>  <img src="https://img-blog.csdnimg.cn/20200821131950210.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<p>  该图将句子(x1,x2,…,xT)翻译为(y1,y2,…,yt,…)，Encoder和Decoder均采用RNN模型，下方的一系列h为Encoder生成的特征，考虑到句子中单词的上下文关系，此处采用了双向RNN模型，所以每个时刻生成的特征由两个方向的特征组合而成，即hi=[hi→;hi←]。图中的αt,i就是Attention模型生成的权值，在t时刻，对特征h进行加权组合：<br><img src="https://img-blog.csdnimg.cn/20200821132652808.png#pic_center" alt="在这里插入图片描述"></p>
-<p>那么生成新的单词的过程为：<br><img src="https://img-blog.csdnimg.cn/20200821132733981.png#pic_center" alt="在这里插入图片描述"></p>
-<p>如果没有Attention模型计算权值，那么该过程就变为：<br><img src="https://img-blog.csdnimg.cn/20200821132751931.png#pic_center" alt="在这里插入图片描述"></p>
-<p>也就是说，在Decoder的每个时刻，其输入特征均是固定的，将所有的输入x编码为一个固定的特征容易造成信息损失，而且在Decoder的时候，每一个时刻均选取所有特征，没有针对性，因此就产生了Attention模型。那么Attention模型中的权值α是怎么计算的呢？<br><img src="https://img-blog.csdnimg.cn/20200821132817159.png#pic_center" alt="在这里插入图片描述"></p>
-<p>前面说了那么多，其实这里的fatt才是Attention模型的核心，它被称为alignment模型，计算Encoder的特征与Decoder特征的对应关系。举例如下图：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200821132627212.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<p>​<br>该图表示法语到英语的翻译，图中的小方格就是表示Attention模型的权值α的大小，颜色越浅表示权值越大。可以看到，大的权值基本上分布在对角线上，而在European Economic Area三个单词处，权值成反对角线分布，这是因为法语与英语的句法结构不同，这三个单词的权值依然是对应的，说明Attention模型在这里准确实现了单词之间的对应关系。<br>  综上所述，Attention模型就是对输入特征进行加权以衡量每个特征对当前识别的重要性，它自己集中于重要的特征，忽略不重要的特征。</p>
-<ol start="2">
-<li>Attention模型的主要应用</li>
-</ol>
-<p>  Attention模型主要应用于深度学习，目前深度学习最热门的应用就是自然语言理解、图像识别和语音识别三大领域。本文针对三个领域分别列举几个Attention模型的应用。<br>2.1 自然语言理解</p>
-<p>  第一节的机器翻译就是一个非常重要的应用，谷歌在最新发布的机器翻译模型中就采用了Attention模型，[4]一文中将Attention模型应用到文本摘要，从长句子或段落中提取关键词，如下图：<br><img src="https://img-blog.csdnimg.cn/20200821132051201.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<p>华为诺亚方舟实验室的李航博士将Attention模型应用于短文本对话[5]。</p>
-<h2 id="图像识别"><a href="#图像识别" class="headerlink" title="图像识别"></a>图像识别</h2><p>  Attention模型在图像识别里的应用既有图像分类，如[6][7]，又有图像生成，如[8][9]，个人最感兴趣的是图像标题生成[10]，如下图：<br>    <img src="https://img-blog.csdnimg.cn/20200821132110304.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<p>该研究中将Attention模型的权值可视化，显示在原图中，即图中白色的区域，可以看出，图中的飞盘和狗分别与句子中的frisbee和dog形成了对应关系。</p>
-<h2 id="语音识别"><a href="#语音识别" class="headerlink" title="语音识别"></a>语音识别</h2><p>  语音识别的经典模型要数CTC，基于Attention模型的Encoder-Decoder框架也取得了较好的结果，如[11][12]，Attention模型也建立了语音与单词之间的对应关系。<br>  <img src="https://img-blog.csdnimg.cn/20200821132130882.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<h2 id="研究进展"><a href="#研究进展" class="headerlink" title="研究进展"></a>研究进展</h2><p>  自从Attention模型引入深度学习后，不但获得了广泛应用，也产生了很多改进，下面列举几个研究进展。<br>   [10]首次将Attention模型引入图像标题应用时，提出了两种Attention方法——soft attention和hard attention，其中soft attention就是最初的attention方法，而hard attention在选取特征组合时，并不针对所有的特征生成权值，而是只选取1个或者几个特征，因此是hard的。<br>  从Attention中的alignment模型et,i=fatt(st−1,hi)<br>可以看出，它实际上是基于Decoder的t-1时刻的状态预测t时刻状态与Encoder特征hi的关联程度，在[13]中，首先不使用Attention模型进行Decoder，然后就可以使用Attenion计算t时刻的Decoder状态与Encoder特征的关联程度，et,i=fatt(st,hi)</p>
-<p>，并且文章基于bilinear方法提出了简化版的Attention模型，计算更加高效。<br>  在机器翻译中，存在过翻译和欠翻译的现象，即有些词被多次翻译，有些词却被漏掉，这是因为Attention模型没有记忆翻译进程的机制，[14]一文增加了Coverage模型，用于记录哪些单词已被翻译，哪些尚未翻译，从而使Attention模型专注于未翻译的单词，忽略已经翻译的单词。<br>  在2017年，google的团队提出一个只基于attention机制的结构来处理序列模型相关的问题[15]，没有采用常见的RNN和CNN网络，该结构能够并行训练，大大地减少了训练时间。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>  Attention模型在深度学习的各个领域均取得广泛的应用，作为一个独立的框架，attention机制还可以使用更加复杂的网络结构来改善其效果。并且，attention机制尚有不完善之处，如未记忆历史信息、缺乏对attention的评价机制等，仍在存在一定的改进空间。</p>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] Wu, Y., Schuster, M., Chen, Z., Le, Q. V., Norouzi, M., Macherey, W., … &amp; Klingner, J. (2016). Google’s Neural Machine Translation System: Bridging the Gap between Human and Machine Translation. arXiv preprint arXiv:1609.08144.<br>[2] Sutskever, I., Vinyals, O., &amp; Le, Q. V. (2014). Sequence to sequence learning with neural networks. In Advances in neural information processing systems (pp. 3104-3112).<br>[3] Bahdanau, D., Cho, K., &amp; Bengio, Y. (2014). Neural machine translation by jointly learning to align and translate. arXiv preprint arXiv:1409.0473.<br>[4] Rush, A. M., Chopra, S., &amp; Weston, J. (2015). A neural attention model for abstractive sentence summarization. arXiv preprint arXiv:1509.00685.<br>[5] Shang, L., Lu, Z., &amp; Li, H. (2015). Neural responding machine for short-text conversation. arXiv preprint arXiv:1503.02364.<br>[6] Mnih, V., Heess, N., &amp; Graves, A. (2014). Recurrent models of visual attention. In Advances in Neural Information Processing Systems (pp. 2204-2212).<br>[7] Ba, J., Mnih, V., &amp; Kavukcuoglu, K. (2014). Multiple object recognition with visual attention. arXiv preprint arXiv:1412.7755.<br>[8]Gregor, K., Danihelka, I., Graves, A., Rezende, D. J., &amp; Wierstra, D. (2015). DRAW: A recurrent neural network for image generation. arXiv preprint arXiv:1502.04623.<br>[9]Mansimov, E., Parisotto, E., Ba, J. L., &amp; Salakhutdinov, R. (2015). Generating images from captions with attention. arXiv preprint arXiv:1511.02793.<br>[10]Xu, K., Ba, J., Kiros, R., Cho, K., Courville, A., Salakhutdinov, R., … &amp; Bengio, Y. (2015). Show, attend and tell: Neural image caption generation with visual attention. arXiv preprint arXiv:1502.03044, 2(3), 5.<br>[11]Chan, W., Jaitly, N., Le, Q. V., &amp; Vinyals, O. (2015). Listen, attend and spell. arXiv preprint arXiv:1508.01211.<br>[12]Bahdanau, D., Chorowski, J., Serdyuk, D., &amp; Bengio, Y. (2016, March). End-to-end attention-based large vocabulary speech recognition. In 2016 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP) (pp. 4945-4949). IEEE.<br>[13] Luong, M. T., Pham, H., &amp; Manning, C. D. (2015). Effective approaches to attention-based neural machine translation. arXiv preprint arXiv:1508.04025.<br>[14] Tu, Z., Lu, Z., Liu, Y., Liu, X., &amp; Li, H. (2016). Modeling coverage for neural machine translation. ArXiv eprints, January.<br>[15] Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., … &amp; Polosukhin, I. (2017). Attention is all you need. In Advances in Neural Information Processing Systems (pp. 6000-6010).</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">algo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/04/05/Attention%E6%9C%BA%E5%88%B6%E8%AF%A6%E8%A7%A3/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-基于auto.js自动撸视频" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/01/05/%E5%9F%BA%E4%BA%8Eauto.js%E8%87%AA%E5%8A%A8%E6%92%B8%E8%A7%86%E9%A2%91/" target="_blank">基于auto.js自动撸视频</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/01/05/%E5%9F%BA%E4%BA%8Eauto.js%E8%87%AA%E5%8A%A8%E6%92%B8%E8%A7%86%E9%A2%91/" class="archive-article-date">
-        <time datetime="2020-01-05T04:45:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-05</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>背景：现在市面上出现了很多刷视频赚钱的软件，例如刷宝，快看点，趣头条，如果手刷的话很浪费你的时间，于是auto.js是很好用的一款软件，可以帮助你实现自动刷视频，并且稳定不会被封号，这里亲测过！！</p>
-<p>前提:手机没有root的话，必须安卓手机且Android 7.0 版本及以上<br>第一步 安装软件</p>
-<p>这里需要安装Auto.js，如果你要打包的话还需要安装Auto.js的插件，如果你不需要打包成Apk的话，你只需要在手机百度搜索Auto.js进行下载就可以了</p>
-<p><img src="https://img-blog.csdnimg.cn/20200214200050607.png" alt="在这里插入图片描述"></p>
-<p>第二步 编写代码</p>
-<p>这里以刷宝视频为例：<br>为了增加刷视频的活跃度，这里采用随机时间观看视频，以及随机点赞和关注，来增加视频的收益</p>
-<p><img src="https://img-blog.csdnimg.cn/2020021414154474.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这段程序的意思是获取随机时间，这样防止重复，增加刷视频的安全性，同样点赞和关注也是随机的，可以增加账号的活跃度<br>第三步 运行程序</p>
-<p>在电脑上写完程序之后，发送到手机上，auto.js上粘贴完程序之后，可以将其打包成apk文件，大致就这些步骤啦，如果你会写javascript代码，那么写起来很简单的，代码量太大，如果需要源代码，auto.js和打包插件的，在下面留言，我发给你。</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">suibi</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/01/05/%E5%9F%BA%E4%BA%8Eauto.js%E8%87%AA%E5%8A%A8%E6%92%B8%E8%A7%86%E9%A2%91/">展开全文 >></a>
     </p>
     
 
