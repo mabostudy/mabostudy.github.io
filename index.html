@@ -187,105 +187,6 @@
             
 
   
-    <article id="post-Selenium常用库和方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/09/05/Selenium%E5%B8%B8%E7%94%A8%E5%BA%93%E5%92%8C%E6%96%B9%E6%B3%95/" target="_blank">Selenium常用库和方法</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/09/05/Selenium%E5%B8%B8%E7%94%A8%E5%BA%93%E5%92%8C%E6%96%B9%E6%B3%95/" class="archive-article-date">
-        <time datetime="2020-09-04T16:15:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-05</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>在你写脚本时候肯定是会用到selenium的，但是这里的库有的时候又不能自动导入，这里记录一下selenium操作的一些方法：</p>
-<h2 id="导入库"><a href="#导入库" class="headerlink" title="导入库"></a>导入库</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support <span class="keyword">import</span> expected_conditions</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support.wait <span class="keyword">import</span> WebDriverWait</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support <span class="keyword">import</span> expected_conditions <span class="keyword">as</span> EC</span><br></pre></td></tr></table></figure>
-
-<p><strong>等待某元素可以被点击</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WebDriverWait(driver,<span class="number">10</span>).until(EC.element_to_be_clickable((By.XPATH,<span class="string">'//*[@id="casLoginForm"]/p[5]/button'</span>))).click()</span><br></pre></td></tr></table></figure>
-<h2 id="EC方法"><a href="#EC方法" class="headerlink" title="EC方法"></a>EC方法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#这两个条件类验证title，验证传入的参数title是否等于或在driver.title中</span></span><br><span class="line">EC.title_is</span><br><span class="line">EC.title_contains</span><br><span class="line"><span class="comment">#这两个条件验证元素是否出现，传入的参数都是元组类型的locator，如(By.ID, 'kw')</span></span><br><span class="line"><span class="comment">#一个只要一个符合条件的元素加载出来就通过；另一个必须所有符合条件的元素都加载出来才行</span></span><br><span class="line">EC.presence_of_element_located((By.CSS_SELECTOR,<span class="string">'.ui-page &gt; div.ui-page-wrap'</span>))</span><br><span class="line">EC.presence_of_all_elements_located((By.CSS_SELECTOR,<span class="string">'.ui-page &gt; div.ui-page-wrap'</span>))</span><br><span class="line"><span class="comment">#这三个条件验证元素是否可见，前两个传入参数是元组类型的locator，第三个传入WebElement</span></span><br><span class="line"><span class="comment">#第一个和第三个其实质是一样的</span></span><br><span class="line">EC.visibility_of_element_located</span><br><span class="line">EC.invisibility_of_element_located</span><br><span class="line">EC.visibility_of</span><br><span class="line"><span class="comment">#这两个人条件判断某段文本是否出现在某元素中，一个判断元素的text，一个判断元素的value属性</span></span><br><span class="line">EC.text_to_be_present_in_element</span><br><span class="line">EC.text_to_be_present_in_element_value</span><br><span class="line"><span class="comment">#这个条件判断frame是否可切入，可传入locator元组或者直接传入定位方式：id、name、index或WebElement</span></span><br><span class="line">EC.frame_to_be_available_and_switch_to_it</span><br><span class="line"><span class="comment">#这个条件判断是否有alert出现</span></span><br><span class="line">EC.alert_is_present</span><br><span class="line"><span class="comment">#这个条件判断元素是否可点击，传入locator</span></span><br><span class="line">EC.element_to_be_clickable</span><br><span class="line"><span class="comment">#这四个条件判断元素是否被选中，第一个条件传入WebElement对象，第二个传入locator元组</span></span><br><span class="line"><span class="comment">#第三个传入WebElement对象以及状态，相等返回True，否则返回False</span></span><br><span class="line"><span class="comment">#第四个传入locator以及状态，相等返回True，否则返回False</span></span><br><span class="line">EC.element_to_be_selected</span><br><span class="line">EC.element_located_to_be_selected</span><br><span class="line">EC.element_selection_state_to_be</span><br><span class="line">EC.element_located_selection_state_to_be</span><br><span class="line"><span class="comment">#最后一个条件判断一个元素是否仍在页面中，传入WebElement对象，可以判断页面是否刷新</span></span><br><span class="line">EC.staleness_of</span><br></pre></td></tr></table></figure>
-<h2 id="By方法"><a href="#By方法" class="headerlink" title="By方法"></a>By方法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">find_element(By.ID,<span class="string">"kw"</span>)</span><br><span class="line">find_element(By.NAME,<span class="string">"wd"</span>)</span><br><span class="line">find_element(By.CLASS_NAME,<span class="string">"s_ipt"</span>)</span><br><span class="line">find_element(By.TAG_NAME,<span class="string">"input"</span>)</span><br><span class="line">find_element(By.LINK_TEXT,<span class="string">u"新闻"</span>)  <span class="comment">##包含了文字</span></span><br><span class="line">find_element(By.PARTIAL_LINK_TEXT,<span class="string">u"新"</span>)</span><br><span class="line">find_element(By.XPATH,<span class="string">"//*[@class='bg s_btn']"</span>)</span><br><span class="line">find_element(By.CSS_SELECTOR,<span class="string">"span.bg s_btn_wr&gt;input#su"</span>)</span><br></pre></td></tr></table></figure>
-
-<h2 id="包含文字"><a href="#包含文字" class="headerlink" title="包含文字"></a>包含文字</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">WebDriverWait(driver,<span class="number">10</span>).until(EC.element_to_be_clickable((By.XPATH,<span class="string">"//*[contains(text(), '请点击此处补报')]"</span>))).click()</span><br><span class="line"></span><br><span class="line">find_element(By.LINK_TEXT,<span class="string">u"新闻"</span>)</span><br></pre></td></tr></table></figure>
-
-<h2 id="切换frame"><a href="#切换frame" class="headerlink" title="切换frame"></a>切换frame</h2><p>如果你的selenium怎么点击都点击不上去的话，那你就要考虑是不是iframe需要切换了，因为js前端会有很多frame组成的。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>有id，并且唯一，直接写id</span><br><span class="line">driver.switch_to_frame(<span class="string">"x-URS-iframe"</span>)</span><br><span class="line">driver.switch_to.frame(<span class="string">"x-URS-iframe"</span>)</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span>有name，并且唯一，直接写name</span><br><span class="line">driver.switch_to_frame(<span class="string">"xxxx"</span>)</span><br><span class="line">driver.switch_to.frame(<span class="string">"xxxx"</span>)</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span>无id，无name,先定位iframe元素</span><br><span class="line">iframe = driver.find_elements_by_tag_name(<span class="string">"iframe"</span>)[<span class="number">0</span>]</span><br><span class="line">driver.switch_to_frame(iframe)</span><br><span class="line">driver.switch_to.frame(iframe)</span><br></pre></td></tr></table></figure>
-
-<p>切换完了frame如果还需要回到主页面，记得用如下代码切换回来。<code>driver.switch_to.default_content()</code><br>其他操作frame的详细方法见：<br><a href="https://www.cnblogs.com/xiaoxiaolvdou/p/9316805.html" target="_blank" rel="noopener">frame切换</a></p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spider</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/09/05/Selenium%E5%B8%B8%E7%94%A8%E5%BA%93%E5%92%8C%E6%96%B9%E6%B3%95/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-怎么在github上部署网页" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -918,6 +819,104 @@
 
 
   
+    <article id="post-Leetcode第739题--每日温度" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/07/30/Leetcode%E7%AC%AC739%E9%A2%98--%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6/" target="_blank">Leetcode第739题--每日温度</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/07/30/Leetcode%E7%AC%AC739%E9%A2%98--%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6/" class="archive-article-date">
+        <time datetime="2020-07-30T03:24:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-30</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p><strong><em>题目</em></strong><br>请根据每日 气温 列表，重新生成一个列表。对应位置的输出为：要想观测到更高的气温，至少需要等待的天数。如果气温在这之后都不会升高，请在该位置用 0 来代替。</p>
+<p>例如，给定一个列表 temperatures = [73, 74, 75, 71, 69, 72, 76, 73]，你的输出应该是 [1, 1, 4, 2, 1, 1, 0, 0]。</p>
+<p>提示：气温 列表长度的范围是 [1, 30000]。每个气温的值的均为华氏度，都是在 [30, 100] 范围内的整数。</p>
+<p><strong><em>思路</em></strong><br>受到排序算法的影响，将序列分为可分的和不可分的。</p>
+<ol>
+<li>先固定第一个元素i，然后将后面的元素放在一个单独的列表中，判断这个列表中有无比前面的这个元素大的元素。</li>
+<li>如果后面没有比前面的元素更大了，那么跳出本层的循环，此时i+1；如果有，那么后面进行判断。</li>
+<li>构建一个计数器，如果前面的数比后面的数大，那么还没有到达符合要求的位置，计数器加一；如果前面的数往后数比第一个遇到的数要小，那么计数器加一后退出本轮循环。</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/2020073019092689.JPG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dailyTemperatures</span><span class="params">(self, T: List[int])</span> -&gt; List[int]:</span></span><br><span class="line">        count_list=[]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(T)):  <span class="comment">#i相当于移动的指针</span></span><br><span class="line">            count = <span class="number">0</span></span><br><span class="line">            a=sorted([T[k] <span class="keyword">for</span> k <span class="keyword">in</span> range(i,len(T))]) <span class="comment">##每轮将后面的位置放在一个列表中进行存储</span></span><br><span class="line">            maxmium = a[<span class="number">-1</span>]</span><br><span class="line">            <span class="keyword">if</span> T[i] == maxmium:</span><br><span class="line">                count_list.append(count)</span><br><span class="line">                <span class="keyword">continue</span>      <span class="comment">#如果后面没有比前面更大的了,count=0,continue是跳出本层循环，break是跳出全部循环</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(i+<span class="number">1</span>,len(T)):</span><br><span class="line">                <span class="keyword">if</span> T[i] &gt;= T[j]:</span><br><span class="line">                    count +=<span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    count +=<span class="number">1</span></span><br><span class="line">                    count_list.append(count)</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">return</span> count_list</span><br></pre></td></tr></table></figure>
+
+<p><strong>但是</strong>这样运行的话时间复杂度是超时的，所以我们使用了栈的概念进行了操作（后面会加以解释）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dailyTemperatures</span><span class="params">(self, T: List[int])</span> -&gt; List[int]:</span></span><br><span class="line">        length = len(T)  <span class="comment"># length of total days</span></span><br><span class="line">        res = [<span class="number">0</span>] * length</span><br><span class="line">        stack = []</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(length):</span><br><span class="line">            <span class="keyword">while</span> stack <span class="keyword">and</span> T[i] &gt; T[stack[<span class="number">-1</span>]]:  <span class="comment">###列表后面的数大于前面的数</span></span><br><span class="line">                small = stack.pop()             <span class="comment">##将前面的索引弹出</span></span><br><span class="line">                print(small)</span><br><span class="line">                res[small] = i - small  <span class="comment">####前面的索引 </span></span><br><span class="line">                </span><br><span class="line">            stack.append(i)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tiku</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/07/30/Leetcode%E7%AC%AC739%E9%A2%98--%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Leetcode第24题--两两交换链接中的节点" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1019,104 +1018,6 @@
 
 
   
-    <article id="post-Leetcode第739题--每日温度" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/07/30/Leetcode%E7%AC%AC739%E9%A2%98--%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6/" target="_blank">Leetcode第739题--每日温度</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/07/30/Leetcode%E7%AC%AC739%E9%A2%98--%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6/" class="archive-article-date">
-        <time datetime="2020-07-30T03:24:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-30</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p><strong><em>题目</em></strong><br>请根据每日 气温 列表，重新生成一个列表。对应位置的输出为：要想观测到更高的气温，至少需要等待的天数。如果气温在这之后都不会升高，请在该位置用 0 来代替。</p>
-<p>例如，给定一个列表 temperatures = [73, 74, 75, 71, 69, 72, 76, 73]，你的输出应该是 [1, 1, 4, 2, 1, 1, 0, 0]。</p>
-<p>提示：气温 列表长度的范围是 [1, 30000]。每个气温的值的均为华氏度，都是在 [30, 100] 范围内的整数。</p>
-<p><strong><em>思路</em></strong><br>受到排序算法的影响，将序列分为可分的和不可分的。</p>
-<ol>
-<li>先固定第一个元素i，然后将后面的元素放在一个单独的列表中，判断这个列表中有无比前面的这个元素大的元素。</li>
-<li>如果后面没有比前面的元素更大了，那么跳出本层的循环，此时i+1；如果有，那么后面进行判断。</li>
-<li>构建一个计数器，如果前面的数比后面的数大，那么还没有到达符合要求的位置，计数器加一；如果前面的数往后数比第一个遇到的数要小，那么计数器加一后退出本轮循环。</li>
-</ol>
-<p><img src="https://img-blog.csdnimg.cn/2020073019092689.JPG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dailyTemperatures</span><span class="params">(self, T: List[int])</span> -&gt; List[int]:</span></span><br><span class="line">        count_list=[]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(T)):  <span class="comment">#i相当于移动的指针</span></span><br><span class="line">            count = <span class="number">0</span></span><br><span class="line">            a=sorted([T[k] <span class="keyword">for</span> k <span class="keyword">in</span> range(i,len(T))]) <span class="comment">##每轮将后面的位置放在一个列表中进行存储</span></span><br><span class="line">            maxmium = a[<span class="number">-1</span>]</span><br><span class="line">            <span class="keyword">if</span> T[i] == maxmium:</span><br><span class="line">                count_list.append(count)</span><br><span class="line">                <span class="keyword">continue</span>      <span class="comment">#如果后面没有比前面更大的了,count=0,continue是跳出本层循环，break是跳出全部循环</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(i+<span class="number">1</span>,len(T)):</span><br><span class="line">                <span class="keyword">if</span> T[i] &gt;= T[j]:</span><br><span class="line">                    count +=<span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    count +=<span class="number">1</span></span><br><span class="line">                    count_list.append(count)</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">return</span> count_list</span><br></pre></td></tr></table></figure>
-
-<p><strong>但是</strong>这样运行的话时间复杂度是超时的，所以我们使用了栈的概念进行了操作（后面会加以解释）</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dailyTemperatures</span><span class="params">(self, T: List[int])</span> -&gt; List[int]:</span></span><br><span class="line">        length = len(T)  <span class="comment"># length of total days</span></span><br><span class="line">        res = [<span class="number">0</span>] * length</span><br><span class="line">        stack = []</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(length):</span><br><span class="line">            <span class="keyword">while</span> stack <span class="keyword">and</span> T[i] &gt; T[stack[<span class="number">-1</span>]]:  <span class="comment">###列表后面的数大于前面的数</span></span><br><span class="line">                small = stack.pop()             <span class="comment">##将前面的索引弹出</span></span><br><span class="line">                print(small)</span><br><span class="line">                res[small] = i - small  <span class="comment">####前面的索引 </span></span><br><span class="line">                </span><br><span class="line">            stack.append(i)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tiku</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/07/30/Leetcode%E7%AC%AC739%E9%A2%98--%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-科大讯飞算法工程师笔试题解析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1180,6 +1081,101 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/2020/07/30/%E7%A7%91%E5%A4%A7%E8%AE%AF%E9%A3%9E%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%AC%94%E8%AF%95%E9%A2%98%E8%A7%A3%E6%9E%90/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-四大排序算法的Python实现" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/07/23/%E5%9B%9B%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%9A%84Python%E5%AE%9E%E7%8E%B0/" target="_blank">四大排序算法的Python实现</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/07/23/%E5%9B%9B%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%9A%84Python%E5%AE%9E%E7%8E%B0/" class="archive-article-date">
+        <time datetime="2020-07-23T08:19:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-23</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>网上有很多关于算法的Java和C的实现方式，这里对很多人都不太友好，今天来把几种排序方法用Python实现，算法讲解博客参考：</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a href="https://blog.csdn.net/lu_1079776757/article/details/80459370" target="_blank" rel="noopener">冒泡排序</a><br><a href="https://codeplayer.vip/p/j7sbj" target="_blank" rel="noopener">选择排序</a><br><a href="https://blog.csdn.net/zxm317122667/article/details/83344178" target="_blank" rel="noopener">插入排序</a><br><a href="https://www.sohu.com/a/246785807_684445" target="_blank" rel="noopener">快速排序</a><br><strong>排序算法的关键在于交换的轮数和交换次数！！</strong></p>
+<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><p><strong>关键点在于”冒泡”</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bubble</span><span class="params">(li)</span>:</span></span><br><span class="line">	n = len(li)</span><br><span class="line">	<span class="keyword">for</span> j <span class="keyword">in</span> range(n):</span><br><span class="line">		<span class="keyword">for</span> i <span class="keyword">in</span> range(n<span class="number">-1</span>-j):</span><br><span class="line">			<span class="keyword">if</span> li[i] &gt; li[i+<span class="number">1</span>]:</span><br><span class="line">				li[i],li[i+<span class="number">1</span>] = li[i+<span class="number">1</span>],li[i]</span><br><span class="line">	print(li)</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">	li = [<span class="number">54</span>,<span class="number">26</span>,<span class="number">93</span>,<span class="number">17</span>,<span class="number">77</span>,<span class="number">31</span>,<span class="number">44</span>,<span class="number">55</span>,<span class="number">20</span>]</span><br><span class="line">	bubble(li)</span><br></pre></td></tr></table></figure>
+<h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><p><strong>关键点在于”每次只取出一个”最小值”排到最左边”</strong><br>这个选择在于分为 有序和无序序列时候，从后面无序序列选择一个最小的值与有序的交换或者放在其最后面。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">select</span><span class="params">(li)</span>:</span></span><br><span class="line">	n = len(li)</span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(n):   </span><br><span class="line">		min_index = i   <span class="comment">##每一轮假设第一个数是最小值</span></span><br><span class="line">		<span class="keyword">for</span> j <span class="keyword">in</span> range(i,n):</span><br><span class="line">			<span class="keyword">if</span> li[min_index] &gt; li[j]: <span class="comment">#后面有数比假设最小的值大时</span></span><br><span class="line">				min_index = j</span><br><span class="line">		li[min_index],li[i] = li[i],li[min_index]</span><br><span class="line">	print(li)</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">	li = [<span class="number">54</span>,<span class="number">26</span>,<span class="number">93</span>,<span class="number">17</span>,<span class="number">77</span>,<span class="number">31</span>,<span class="number">44</span>,<span class="number">55</span>,<span class="number">20</span>]</span><br><span class="line">	select(li)</span><br></pre></td></tr></table></figure>
+
+<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><p><strong>关键点在于”插入”,突破口为有序和无序</strong><br>这个插入在于分为 有序和无序序列时候，从后面无序序列顺序取出一个元素和前面的每个元素相比较，插入到有序序列中。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">insert</span><span class="params">(li)</span>:</span></span><br><span class="line">    n = len(li)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">        j = i</span><br><span class="line">        <span class="keyword">while</span> j&gt;<span class="number">0</span>:</span><br><span class="line">            <span class="keyword">if</span> li[j]&lt;li[j<span class="number">-1</span>]:</span><br><span class="line">                li[j],li[j<span class="number">-1</span>] = li[j<span class="number">-1</span>],li[j]</span><br><span class="line">            j-=<span class="number">1</span>	</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">	li = [<span class="number">54</span>,<span class="number">26</span>,<span class="number">93</span>,<span class="number">17</span>,<span class="number">77</span>,<span class="number">31</span>,<span class="number">44</span>,<span class="number">55</span>,<span class="number">20</span>]</span><br><span class="line">	insert(li)</span><br><span class="line">	print(li)</span><br></pre></td></tr></table></figure>
+<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p><strong>关键点在于确定好基准元素，基准元素的两边分别为比基准元素小的，和比基准元素大的</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quick</span><span class="params">(first,last,li)</span>:</span></span><br><span class="line">    mid_value = li[first]</span><br><span class="line">    left = first</span><br><span class="line">    right = last</span><br><span class="line">    <span class="keyword">if</span> first &gt;=last:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">    <span class="keyword">while</span> left &lt; right:</span><br><span class="line">        <span class="keyword">while</span> left &lt;right <span class="keyword">and</span> li[right] &gt;= mid_value:<span class="comment">##先从右边开始</span></span><br><span class="line">            right -= <span class="number">1</span></span><br><span class="line">        li[left] = li[right]</span><br><span class="line">        <span class="keyword">while</span> left &lt;right <span class="keyword">and</span> li[left] &lt; mid_value:</span><br><span class="line">            left += <span class="number">1</span></span><br><span class="line">        li[right] = li[left]</span><br><span class="line">    li[right] = mid_value </span><br><span class="line">    quick(first,left<span class="number">-1</span>,li)</span><br><span class="line">    quick(left+<span class="number">1</span>,last,li)</span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:                                                     </span><br><span class="line">    li = [<span class="number">54</span>,<span class="number">26</span>,<span class="number">93</span>,<span class="number">17</span>,<span class="number">77</span>,<span class="number">31</span>,<span class="number">44</span>,<span class="number">55</span>,<span class="number">20</span>]</span><br><span class="line">    first = <span class="number">0</span></span><br><span class="line">    last = len(li)<span class="number">-1</span></span><br><span class="line">    quick(first,last,li)</span><br><span class="line">    print(li)</span><br></pre></td></tr></table></figure>
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">suibi</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/07/23/%E5%9B%9B%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%9A%84Python%E5%AE%9E%E7%8E%B0/">展开全文 >></a>
     </p>
     
 
@@ -1342,11 +1338,11 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">suibi</a>
+                <a href="javascript:void(0)" class="js-tag color5">algo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">algo</a>
+                <a href="javascript:void(0)" class="js-tag color1">suibi</a>
               </li>
              
               <li class="article-tag-list-item">

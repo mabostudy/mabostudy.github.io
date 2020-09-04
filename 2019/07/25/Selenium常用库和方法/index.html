@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2020/9 | 知识分享</title>
+  <title>Selenium常用库和方法 | 知识分享</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="知识分享">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;archives&#x2F;2020&#x2F;09&#x2F;index.html">
+  <meta name="description" content="Selenium常用库和方法">
+<meta name="keywords" content="spider">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Selenium常用库和方法">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;07&#x2F;25&#x2F;Selenium%E5%B8%B8%E7%94%A8%E5%BA%93%E5%92%8C%E6%96%B9%E6%B3%95&#x2F;index.html">
 <meta property="og:site_name" content="知识分享">
+<meta property="og:description" content="Selenium常用库和方法">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-09-04T16:21:34.445Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="知识分享" type="application/atom+xml">
@@ -180,41 +184,136 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Selenium常用库和方法" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/09/05/Selenium%E5%B8%B8%E7%94%A8%E5%BA%93%E5%92%8C%E6%96%B9%E6%B3%95/" class="archive-article-date">
-        <time datetime="2020-09-04T16:15:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-05</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/09/05/Selenium%E5%B8%B8%E7%94%A8%E5%BA%93%E5%92%8C%E6%96%B9%E6%B3%95/" target="_blank">Selenium常用库和方法</a>
   
+    <h1 class="article-title" itemprop="name">
+      Selenium常用库和方法
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2019/07/25/Selenium%E5%B8%B8%E7%94%A8%E5%BA%93%E5%92%8C%E6%96%B9%E6%B3%95/" class="archive-article-date">
+        <time datetime="2019-07-24T16:15:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-25</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">719字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">3分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>在你写脚本时候肯定是会用到selenium的，但是这里的库有的时候又不能自动导入，这里记录一下selenium操作的一些方法：</p>
+<h2 id="导入库"><a href="#导入库" class="headerlink" title="导入库"></a>导入库</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support <span class="keyword">import</span> expected_conditions</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support.wait <span class="keyword">import</span> WebDriverWait</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support <span class="keyword">import</span> expected_conditions <span class="keyword">as</span> EC</span><br></pre></td></tr></table></figure>
+
+<p><strong>等待某元素可以被点击</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WebDriverWait(driver,<span class="number">10</span>).until(EC.element_to_be_clickable((By.XPATH,<span class="string">'//*[@id="casLoginForm"]/p[5]/button'</span>))).click()</span><br></pre></td></tr></table></figure>
+<h2 id="EC方法"><a href="#EC方法" class="headerlink" title="EC方法"></a>EC方法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#这两个条件类验证title，验证传入的参数title是否等于或在driver.title中</span></span><br><span class="line">EC.title_is</span><br><span class="line">EC.title_contains</span><br><span class="line"><span class="comment">#这两个条件验证元素是否出现，传入的参数都是元组类型的locator，如(By.ID, 'kw')</span></span><br><span class="line"><span class="comment">#一个只要一个符合条件的元素加载出来就通过；另一个必须所有符合条件的元素都加载出来才行</span></span><br><span class="line">EC.presence_of_element_located((By.CSS_SELECTOR,<span class="string">'.ui-page &gt; div.ui-page-wrap'</span>))</span><br><span class="line">EC.presence_of_all_elements_located((By.CSS_SELECTOR,<span class="string">'.ui-page &gt; div.ui-page-wrap'</span>))</span><br><span class="line"><span class="comment">#这三个条件验证元素是否可见，前两个传入参数是元组类型的locator，第三个传入WebElement</span></span><br><span class="line"><span class="comment">#第一个和第三个其实质是一样的</span></span><br><span class="line">EC.visibility_of_element_located</span><br><span class="line">EC.invisibility_of_element_located</span><br><span class="line">EC.visibility_of</span><br><span class="line"><span class="comment">#这两个人条件判断某段文本是否出现在某元素中，一个判断元素的text，一个判断元素的value属性</span></span><br><span class="line">EC.text_to_be_present_in_element</span><br><span class="line">EC.text_to_be_present_in_element_value</span><br><span class="line"><span class="comment">#这个条件判断frame是否可切入，可传入locator元组或者直接传入定位方式：id、name、index或WebElement</span></span><br><span class="line">EC.frame_to_be_available_and_switch_to_it</span><br><span class="line"><span class="comment">#这个条件判断是否有alert出现</span></span><br><span class="line">EC.alert_is_present</span><br><span class="line"><span class="comment">#这个条件判断元素是否可点击，传入locator</span></span><br><span class="line">EC.element_to_be_clickable</span><br><span class="line"><span class="comment">#这四个条件判断元素是否被选中，第一个条件传入WebElement对象，第二个传入locator元组</span></span><br><span class="line"><span class="comment">#第三个传入WebElement对象以及状态，相等返回True，否则返回False</span></span><br><span class="line"><span class="comment">#第四个传入locator以及状态，相等返回True，否则返回False</span></span><br><span class="line">EC.element_to_be_selected</span><br><span class="line">EC.element_located_to_be_selected</span><br><span class="line">EC.element_selection_state_to_be</span><br><span class="line">EC.element_located_selection_state_to_be</span><br><span class="line"><span class="comment">#最后一个条件判断一个元素是否仍在页面中，传入WebElement对象，可以判断页面是否刷新</span></span><br><span class="line">EC.staleness_of</span><br></pre></td></tr></table></figure>
+<h2 id="By方法"><a href="#By方法" class="headerlink" title="By方法"></a>By方法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">find_element(By.ID,<span class="string">"kw"</span>)</span><br><span class="line">find_element(By.NAME,<span class="string">"wd"</span>)</span><br><span class="line">find_element(By.CLASS_NAME,<span class="string">"s_ipt"</span>)</span><br><span class="line">find_element(By.TAG_NAME,<span class="string">"input"</span>)</span><br><span class="line">find_element(By.LINK_TEXT,<span class="string">u"新闻"</span>)  <span class="comment">##包含了文字</span></span><br><span class="line">find_element(By.PARTIAL_LINK_TEXT,<span class="string">u"新"</span>)</span><br><span class="line">find_element(By.XPATH,<span class="string">"//*[@class='bg s_btn']"</span>)</span><br><span class="line">find_element(By.CSS_SELECTOR,<span class="string">"span.bg s_btn_wr&gt;input#su"</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="包含文字"><a href="#包含文字" class="headerlink" title="包含文字"></a>包含文字</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">WebDriverWait(driver,<span class="number">10</span>).until(EC.element_to_be_clickable((By.XPATH,<span class="string">"//*[contains(text(), '请点击此处补报')]"</span>))).click()</span><br><span class="line"></span><br><span class="line">find_element(By.LINK_TEXT,<span class="string">u"新闻"</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="切换frame"><a href="#切换frame" class="headerlink" title="切换frame"></a>切换frame</h2><p>如果你的selenium怎么点击都点击不上去的话，那你就要考虑是不是iframe需要切换了，因为js前端会有很多frame组成的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>有id，并且唯一，直接写id</span><br><span class="line">driver.switch_to_frame(<span class="string">"x-URS-iframe"</span>)</span><br><span class="line">driver.switch_to.frame(<span class="string">"x-URS-iframe"</span>)</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span>有name，并且唯一，直接写name</span><br><span class="line">driver.switch_to_frame(<span class="string">"xxxx"</span>)</span><br><span class="line">driver.switch_to.frame(<span class="string">"xxxx"</span>)</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span>无id，无name,先定位iframe元素</span><br><span class="line">iframe = driver.find_elements_by_tag_name(<span class="string">"iframe"</span>)[<span class="number">0</span>]</span><br><span class="line">driver.switch_to_frame(iframe)</span><br><span class="line">driver.switch_to.frame(iframe)</span><br></pre></td></tr></table></figure>
+
+<p>切换完了frame如果还需要回到主页面，记得用如下代码切换回来。<code>driver.switch_to.default_content()</code><br>其他操作frame的详细方法见：<br><a href="https://www.cnblogs.com/xiaoxiaolvdou/p/9316805.html" target="_blank" rel="noopener">frame切换</a></p>
+
+    
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/alipay.jpg">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/weixin.jpg">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          Ma Bo
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="http://yoursite.com/2019/07/25/Selenium常用库和方法/" title="Selenium常用库和方法" target="_blank">http://yoursite.com/2019/07/25/Selenium常用库和方法/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -226,19 +325,116 @@
 		</ul>
 	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+    
 
     
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/25/Selenium%E5%B8%B8%E7%94%A8%E5%BA%93%E5%92%8C%E6%96%B9%E6%B3%95/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+
+<nav id="article-nav">
+  
+    <a href="/2019/08/22/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84Respbian%E6%88%96%E8%80%85ubuntu%E7%B3%BB%E7%BB%9F%E4%B8%8B%E5%AE%89%E8%A3%85opencv%E6%9C%80%E6%9C%89%E6%95%88%E7%9A%84%E6%96%B9%E6%B3%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          树莓派的Respbian或者ubuntu系统下安装opencv最有效的方法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/07/21/%E7%88%AC%E8%99%AB%E4%B9%8Bselenium%E7%9A%84%E4%BD%BF%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">爬虫之selenium的使用</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
           </div>
@@ -279,8 +475,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
@@ -367,11 +563,11 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">suibi</a>
+                <a href="javascript:void(0)" class="js-tag color5">algo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">algo</a>
+                <a href="javascript:void(0)" class="js-tag color1">suibi</a>
               </li>
              
               <li class="article-tag-list-item">
