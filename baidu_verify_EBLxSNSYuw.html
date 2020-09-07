@@ -6,19 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>科大讯飞算法工程师笔试题解析 | 知识分享</title>
+  <title>知识分享</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="科大讯飞算法工程师笔试题解析">
-<meta name="keywords" content="tiku">
-<meta property="og:type" content="article">
-<meta property="og:title" content="科大讯飞算法工程师笔试题解析">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;07&#x2F;30&#x2F;%E7%A7%91%E5%A4%A7%E8%AE%AF%E9%A3%9E%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%AC%94%E8%AF%95%E9%A2%98%E8%A7%A3%E6%9E%90&#x2F;index.html">
+  <meta name="description" content="EBLxSNSYuw">
+<meta property="og:type" content="website">
+<meta property="og:title" content="知识分享">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;baidu_verify_EBLxSNSYuw.html">
 <meta property="og:site_name" content="知识分享">
-<meta property="og:description" content="科大讯飞算法工程师笔试题解析">
+<meta property="og:description" content="EBLxSNSYuw">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-07-30T03:26:28.176Z">
+<meta property="og:updated_time" content="2020-09-07T05:13:04.361Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="知识分享" type="application/atom+xml">
@@ -184,67 +183,12 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-科大讯飞算法工程师笔试题解析" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
   <div class="article-inner">
     
-      <header class="article-header">
-  
-  
-    <h1 class="article-title" itemprop="name">
-      科大讯飞算法工程师笔试题解析
-    </h1>
-  
-
-
-  
-  
-        
-        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
-              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
-        </span>
-
-<a href="/2020/07/30/%E7%A7%91%E5%A4%A7%E8%AE%AF%E9%A3%9E%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%AC%94%E8%AF%95%E9%A2%98%E8%A7%A3%E6%9E%90/" class="archive-article-date">
-        <time datetime="2020-07-30T03:24:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-30</time>
-</a>
-
-  
-  
-    
-<div style="margin-top:10px;">
-  <span class="post-time">
-    <span class="post-meta-item-icon">
-      <!-- fonts.scss -->
-      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
-      <i class="icon-statistics"></i>
-      <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">453字</span>
-    </span>
-  </span>
-
-  <span class="post-time">
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-      <i class="icon-book icon"></i>
-      <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
-    </span>
-  </span>
-</div>
-
-
-  
-  </header>
-  
   <div class="article-entry" itemprop="articleBody">
     
-    <p><strong>题目描述</strong><br> 华老师的n个学生参加了一次模拟测验，考出来的分数很糟糕，但是华老师可以将成绩修改为[0,100]中的任意值，所以他想知道，如果要使所有人的成绩的平均分不少于X分，至少要改动多少个人的分数？</p>
-<p><strong><em>输入</em></strong><br> 第一行一个数T，共T组数据（T≤10）<br> 接下来对于每组数据：<br> 第一行两个整数n和X。（1≤n≤1000, 0≤X≤100）<br> 第二行n个整数，第i个数Ai表示第i个学生的成绩。（0≤Ai≤100）<br> <strong><em>输出</em></strong><br> 共T行，每行一个整数，代表最少的人数。<br> <strong><em>样例输入</em></strong><br> 2<br> 5 60<br> 59 20 30 90 100<br> 5 60<br> 59 20 10 10 100<br> <strong><em>样例输出</em></strong><br> 1<br> 2<br> Hint<br> 对于第一组数据，将59改成60即可</p>
-<p>思路解析：</p>
-<ol>
-<li>拿到这种需要处理多输入的问题，需要<code>sys.stdin.readline().strip()</code>函数，并用list(map()))函数将其转换为列表形式。</li>
-<li>题目的题眼是分数的总和，利用差值进行突破，<br> 2.1 如果最大的值与100的差大于等于总分数的差值，那么只需要变换一次。<br> 2.2 如果最大的值与100的差小于总分数的差值，那么需要继续进行遍历做差，其中目标差值需要减少，次数需要增加一次。</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">num = int(sys.stdin.readline().strip())  <span class="comment">##处理多输入 并将其转换为整形</span></span><br><span class="line">count_list = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(num):</span><br><span class="line">    line = sys.stdin.readline().strip() <span class="comment">##处理多输入</span></span><br><span class="line">    two = list(map(int,line.split()))</span><br><span class="line">    line = sys.stdin.readline().strip()</span><br><span class="line">    num_list = list(map(int,line.split()))</span><br><span class="line">    num_list = sorted(num_list)</span><br><span class="line">    tar_cha =  two[<span class="number">0</span>] *two[<span class="number">1</span>] - sum(num_list)</span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line">    cha_list=sorted([<span class="number">100</span> -j <span class="keyword">for</span> j <span class="keyword">in</span> num_list])</span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> range(len(cha_list)<span class="number">-1</span>,<span class="number">0</span>,<span class="number">-1</span>):</span><br><span class="line">        a = tar_cha - cha_list[k]</span><br><span class="line">        tar_cha = tar_cha - cha_list[k]</span><br><span class="line">        count +=<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> a &lt;=<span class="number">0</span>:</span><br><span class="line">            count_list.append(count)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"><span class="keyword">for</span> cou <span class="keyword">in</span> count_list:</span><br><span class="line">    print(cou)</span><br></pre></td></tr></table></figure>
+    EBLxSNSYuw
     
 
     
@@ -290,7 +234,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://yoursite.com/2020/07/30/科大讯飞算法工程师笔试题解析/" title="科大讯飞算法工程师笔试题解析" target="_blank">http://yoursite.com/2020/07/30/科大讯飞算法工程师笔试题解析/</a>
+          <a href="http://yoursite.com/baidu_verify_EBLxSNSYuw.html" title="" target="_blank">http://yoursite.com/baidu_verify_EBLxSNSYuw.html</a>
         </li>
         
         <li>
@@ -307,17 +251,6 @@
   <div class="article-info article-info-index">
     
     
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tiku</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
     
 
     
@@ -368,7 +301,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/07/30/%E7%A7%91%E5%A4%A7%E8%AE%AF%E9%A3%9E%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%AC%94%E8%AF%95%E9%A2%98%E8%A7%A3%E6%9E%90/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/baidu_verify_EBLxSNSYuw.html" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -380,25 +313,6 @@
   </div>
 </article>
 
-
-<nav id="article-nav">
-  
-    <a href="/2020/07/30/Leetcode%E7%AC%AC739%E9%A2%98--%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Leetcode第739题--每日温度
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2020/07/23/%E5%9B%9B%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%9A%84Python%E5%AE%9E%E7%8E%B0/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">四大排序算法的Python实现</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
 
 
 <aside class="wrap-side-operation">
@@ -468,7 +382,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
