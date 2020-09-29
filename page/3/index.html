@@ -1072,7 +1072,7 @@
 
 
   
-    <article id="post-Xgboost算法详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-ubuntu下创建定时任务的两种方式及常见问题解决方案" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -1080,7 +1080,7 @@
   
     <h1 itemprop="name">
 	
-	  <a class="article-title" href="/2019/09/05/Xgboost%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3/" target="_blank">Xgboost算法详解</a>
+	  <a class="article-title" href="/2019/09/05/ubuntu%E4%B8%8B%E5%88%9B%E5%BB%BA%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F%E5%8F%8A%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" target="_blank">ubuntu下创建定时任务的两种方式及常见问题解决方案</a>
   
     </h1>
   
@@ -1088,7 +1088,7 @@
 
   
   
-<a href="/2019/09/05/Xgboost%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
+<a href="/2019/09/05/ubuntu%E4%B8%8B%E5%88%9B%E5%BB%BA%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F%E5%8F%8A%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="archive-article-date">
         <time datetime="2019-09-05T02:22:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-05</time>
 </a>
 
@@ -1101,19 +1101,52 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>因为Xgboost算法常常用于有监督学习，关于有监督学习我们在前面已经介绍过来，但是有监督学习的要素有哪些呢？Xgboost算法为什么经常用于有监督学习呢？</p>
-<p><strong>有监督学习的要素</strong>包含两大块:</p>
-<h3 id="模型和参数"><a href="#模型和参数" class="headerlink" title="模型和参数"></a>模型和参数</h3><p><strong>模型</strong>通常是给定输入Xi，找出和输出y之间的关系，如线性模型<img src="https://img-blog.csdnimg.cn/20191108093352142.png" alt=""><br><strong>参数</strong>通常是我们需要从数据中学习的未确定部分。在线性回归模型中，参数是系数Wj。</p>
-<h3 id="损失函数和正则化"><a href="#损失函数和正则化" class="headerlink" title="损失函数和正则化"></a>损失函数和正则化</h3><p>我们在对数据进行训练的时候，总是要有一个评价指标，判断训练的好坏程度，这时候就引入了目标函数的概念，其中:<br>目标函数=损失函数L(θ)+正则化Ω(θ)</p>
-<p><strong>损失函数</strong><br>损失函数L(θ)是描述预测值和真实值的偏差有多少，衡量我们的数据对训练数据的预测性，数学表达式用l(Y-Yi)来表示,其中l(x)可以是均方误差，逻辑回归损失。</p>
-<p><strong>正则化</strong><br>正则化Ω(θ)控制模型的复杂性，这有助于避免过拟合。</p>
-<p>简单来说就是损失函数判断模型的好坏，正则化判断模型的复杂程度，我们当然需要一个既简单又可以预测的模型。如果数据量无限多的话，训练最好的情况下此时的模型拟合误差记为bias。如果在有限数据量的条件下进行拟合的话，那么此时的误差记为variance。</p>
-<h4 id="树集成"><a href="#树集成" class="headerlink" title="树集成"></a>树集成</h4><p>现在有五个人，要研究的是他们去打电脑游戏的可能性，最后的结果越大表明去打游戏的可能性也就越大。<br><img src="https://img-blog.csdnimg.cn/20191108103017885.png" alt=""><br><img src="https://img-blog.csdnimg.cn/20191108102900457.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt=""></p>
-<p>如果只用上图左边根据性别和年龄来进行分类的话，采用的是单棵树。如果加上上图右边的树将使用电脑频率进行分类的话，两棵树的结果相加最后得到每个人会去打电脑游戏的可能性，这样的方法称为树集成。而Xgboost本质上就是树集成。</p>
-<p>有了上面的基础之后，我们再来讨论，当我们既有了一棵树，我们还得添加哪些树?添加多少树呢？</p>
-<p><strong>添加哪些树？</strong><br>Xgboost里面的树是一个一个添加的，每一个树都可以看作是一个函数<br><img src="https://img-blog.csdnimg.cn/20191108104234681.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt=""><br><strong>所以我们添加的树必须要保证预测效果是比不加树之前的效果要好的。</strong></p>
-<p><strong>添加多少树?</strong><br>有可能到最后树的性能是提升了，但是提升的增益很小，甚至会带来过拟合情况的产生。这个时候就引入了惩罚函数<br><img src="https://img-blog.csdnimg.cn/20191108105042316.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt="">)比如<img src="https://img-blog.csdnimg.cn/20191108105112704.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzgwMDAwMg==,size_16,color_FFFFFF,t_70" alt=""><strong>对目标函数进行优化</strong></p>
-<p><img src="https://img-blog.csdnimg.cn/20191108172735542.png" alt=""><br>利用均方误差对目标函数进行展开之后<br><img src="https://img-blog.csdnimg.cn/20191108172751261.png" alt=""><br>将均方误差的泰勒展示式展开到二阶之后<br><img src="https://img-blog.csdnimg.cn/20191108172855627.png" alt=""><br>因为损失函数最后是一个具体的值，和输入xi没有什么关系，所以除去损失函数和常量的值<br><img src="https://img-blog.csdnimg.cn/20191108171644887.png" alt=""><br>其中<br><img src="https://img-blog.csdnimg.cn/20191108171705562.png" alt=""><br><img src="https://img-blog.csdnimg.cn/20191108172641106.png" alt=""><br><img src="https://img-blog.csdnimg.cn/20191108172654248.png" alt=""><br>在二次函数的基础上满足以下条件可以使得目标函数最小，<br><img src="https://img-blog.csdnimg.cn/2019110817270710.png" alt=""><br><strong>信息增益:</strong><br>对于每次扩展，我们依旧要枚举所有可能的方案。对于某个特定的分割，我们要计算出这个分割的左子树的导数和和右子数导数和之和，然后和划分前的进行比较（基于损失，看分割后的损失和分割前的损失有没有发生变化，变化了多少）。遍历所有分割，选择变化最大的作为最合适的分割。<br><img src="https://img-blog.csdnimg.cn/20191108174320355.png" alt=""></p>
+    <p>创建定时任务的目的就是摆脱人为对程序重复性地运行。</p>
+<p>\0. 首先用下面的指令检查你是否安装crontab,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">crontab -l</span><br><span class="line">如果本身就有的话，那么出现如下指令</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">LC_CTYPE=&quot;zh_CN.utf-8&quot;</span><br><span class="line"># Edit this file to introduce tasks to be run by cron.</span><br><span class="line"># </span><br><span class="line"># Each task to run has to be defined through a single line</span><br><span class="line"># indicating with different fields when the task will be run</span><br><span class="line"># and what command to run for the task</span><br><span class="line"># </span><br><span class="line"># To define the time you can provide concrete values for</span><br><span class="line"># minute (m), hour (h), day of month (dom), month (mon),</span><br><span class="line"># and day of week (dow) or use &apos;*&apos; in these fields (for &apos;any&apos;).# </span><br><span class="line"># Notice that tasks will be started based on the cron&apos;s system</span><br><span class="line"># daemon&apos;s notion of time and timezones.</span><br><span class="line"># </span><br><span class="line"># Output of the crontab jobs (including errors) is sent through</span><br><span class="line"># email to the user the crontab file belongs to (unless redirected).</span><br><span class="line"># </span><br><span class="line"># For example, you can run a backup of all your user accounts</span><br><span class="line"># at 5 a.m every week with:</span><br><span class="line"># 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/</span><br></pre></td></tr></table></figure>
+
+
+<p>如果没有的话按下面的方式进行安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">apt-get install cron</span><br><span class="line">方式有下面两种：</span><br><span class="line"></span><br><span class="line">1.crontab -e指令</span><br><span class="line">直接在终端输入crontab -e，进入nano编辑器的编辑界面，它相对vi，vim编辑器来说更友好，简单。</span><br><span class="line"># For more information see the manual pages of crontab(5) and cron(8)</span><br><span class="line"># </span><br><span class="line"># m h  dom mon dow   command</span><br><span class="line">  7 15 * * * /usr/bin/python2.7 /home/mabo/Desktop/camera.py</span><br><span class="line">需要注意一行的前面如果希望它执行的话，是不可以有#号的</span><br><span class="line">m h  dom mon dow   command  分别是(minute; hour; day of month; month; day of week)的缩写</span><br></pre></td></tr></table></figure>
+
+<p><strong>minute：</strong> 表示分钟，可以是从0到59之间的任何整数。</p>
+<p><strong>hour：</strong>表示小时，可以是从0到23之间的任何整数。</p>
+<p><strong>day：</strong>表示日期，可以是从1到31之间的任何整数。</p>
+<p><strong>month：</strong>表示月份，可以是从1到12之间的任何整数。</p>
+<p><strong>week：</strong>表示星期几，可以是从0到7之间的任何整数，这里的0或7代表星期日。</p>
+<p><strong>command</strong>：要执行的命令，可以是系统命令，也可以是自己编写的脚本文件</p>
+<p><strong>[Note]:需要注意的是在编写command指令之前要在终端进行测试是否能够执行。后面会具体说</strong></p>
+<p><strong>星号（*）</strong>：代表所有可能的值，例如month字段如果是星号，则表示在满足其它字段的制约条件后每月都执行该命令操作。</p>
+<p><strong>逗号（,）</strong>：可以用逗号隔开的值指定一个列表范围，例如，“1,2,5,7,8,9”。</p>
+<p><strong>中杠（-）</strong>：可以用整数之间的中杠表示一个整数范围，例如“2-6”表示“2,3,4,5,6”。</p>
+<p><strong>正斜线（/）</strong>：可以用正斜线指定时间的间隔频率，例如“0-23/2”表示每两小时执行一次。同时正斜线可以和星号一起使用，例如*/10，如果用在minute字段，表示每十分钟执行一次。</p>
+<p><strong>2.用编辑器打开 /etc/crontab</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">二选一即可</span><br><span class="line">sudo nano /etc/crontab</span><br><span class="line">sudo vi /etc/crontab</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># m h dom mon dow user  command</span><br><span class="line">17 *    * * *   root    cd / &amp;&amp; run-parts --report /etc/cron.hourly</span><br><span class="line">25 6    * * *   root    test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --repo$</span><br><span class="line">47 6    * * 7   root    test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --repo$</span><br><span class="line">52 6    1 * *   root    test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --repo$</span><br><span class="line">#</span><br><span class="line">17 16   * * *   mabo    /usr/bin/python2.7 /home/mabo/Desktop/camera.py</span><br></pre></td></tr></table></figure>
+
+
+
+<p>打开之后如上图所示，最下面的一行是我自己写的定时任务。这里与第一种方法有个不同的是这个用户(user)级别的问题。</p>
+<p><strong>常见问题:</strong></p>
+<p>Q：定时任务不执行？</p>
+<p>A: 遇到这种情况首先应该检查程序是否有问题，你可能会想，在pycharm中运行的都没有问题，但是现在你用的是IDE，所以你需要将上述的command指令全部复制到终端上，看是否运行成功，不是的话根据提示来解决问题，直到运行没有问题。</p>
+<p>上面的方法已经能够解决很大一部分问题了，在排除了程序中的错误之后，如果你使用的是第二种方法，那么你可以将root修改为你的普通用户，重新执行。</p>
+<p>Q：定时任务常用相关指令？</p>
+<p>A：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">crontab -l              //查看设置的所有定时任务service crond start     //启动服务</span><br><span class="line">service crond stop      //关闭服务</span><br><span class="line">service crond restart   //重启服务</span><br></pre></td></tr></table></figure>
+
+
+
+<p>Q：怎么查看我的定时任务执行情况？</p>
+<p>A：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">下面二选一即可</span><br><span class="line">sudo nano /var/log/cron.log</span><br><span class="line">sudo vi /var/log/cron.log</span><br></pre></td></tr></table></figure>
+
+<p>在日志里，你可以看到你所设置的定时任务的运行情况。经过多次实践发现，正常的运行时，在日志里面只会出现和你command指令相同的指令，有其它多余的指令都会导致定时任务失败。根据这多余的指令来排除错误</p>
 
     
 
@@ -1130,7 +1163,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">algo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">suibi</a>
         		</li>
       		
 		</ul>
@@ -1140,7 +1173,7 @@
 
     
     <p class="article-more-link">
-      <a class="article-more-a" href="/2019/09/05/Xgboost%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3/">展开全文 >></a>
+      <a class="article-more-a" href="/2019/09/05/ubuntu%E4%B8%8B%E5%88%9B%E5%BB%BA%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F%E5%8F%8A%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">展开全文 >></a>
     </p>
     
 
